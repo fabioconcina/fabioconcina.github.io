@@ -1,7 +1,47 @@
 body {
-  padding-top: 50px;
+  font-family: 'Raleway', sans-serif;
 }
-.starter-template {
-  padding: 20px 15px;
-  text-align: left;
+.header {
+  padding-top: 70px;
+  padding-bottom: 70px;
+  text-align: center;
+}
+
+.header h1 {
+  font-size: 42px;
+}
+
+.header h4 {
+  font-size: 20px;
+}
+
+
+/* unvisited link */
+a:link {
+    color: rgb(70, 70, 70);
+}
+
+/* visited link */
+a:visited {
+    color: rgb(70, 70, 70);
+}
+
+/* mouse over link */
+a:hover {
+    color: rgb(90, 90, 90);
+}
+
+/* selected link */
+a:active {
+    color: rgb(70, 70, 70);
+}
+
+.row {
+  text-align: center;
+  padding: 50px;
+}
+
+.projects {
+  font-size: 16px;
+  padding-bottom: 10px;
 }
