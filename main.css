@@ -45,3 +45,7 @@ a:active {
   font-size: 16px;
   padding-bottom: 10px;
 }
+
+.navbar-fixed-bottom {
+    text-align: right;
+}
