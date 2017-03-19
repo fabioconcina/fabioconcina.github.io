@@ -1,0 +1,54 @@
+---
+title: "Create multiple line chart with R and Plotly"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+In this post we create some time-series from random data and use the Plotly package to draw a line chart with multiple time-series.
+
+
+First of all, load Plotly into R using:
+```{r, message=FALSE, warning=FALSE}
+if(!(require(plotly))){
+  install.packages("plotly")
+}
+require(plotly)
+```
+
+Let's generate some random data:
+
+```{r, message=FALSE, warning=FALSE}
+n = 50
+time <- c(1:n)  
+# the R function c() combines elements together, and can be used in to create vectors. 
+# In this case it combines the sequence of numbers from 1 to n into a vector.
+unifObs <- runif(n)  
+normObs <- rnorm(n)
+```
+
+```runif(n, min, max)``` function in R draws $n$ random numbers from a Uniform distribution, i.e. $X \sim U[min, max]$. By default, $X \sim U[0, 1]$.
+
+```rnorm(n, mean, sd)``` function draws $n$ realizations from a Normal distribution, with density:
+
+$$f(x) = \dfrac{1}{\sqrt{2\sigma^2 \pi}} e^{-\dfrac{(x-\mu)^2}{2\sigma^2}}$$
+
+By default, $mean = 0$ and $sd = 1$, i.e. $X\sim N(0,1)$.
+
+The ```plot_ly()``` function requires the data to be in a dataframe object, which is a common R data structure.
+We create the dataframe passing 3 vectors of the same length to the ```data.frame()``` method:
+
+```{r, message=FALSE, warning=FALSE}
+data = data.frame(time,unifObs,normObs)
+```
+
+Now we can call the actual ```plot_ly()``` function to create the chart:
+
+```{r, message=FALSE, warning=FALSE}
+plot_ly(data, x = ~time, y = ~unifObs, name="uniform",
+        type = "scatter", mode = "lines") %>%
+  add_trace(y= ~normObs, name="normal", type = "scatter") %>%
+  layout(yaxis = list(title = "observations"))
+```
