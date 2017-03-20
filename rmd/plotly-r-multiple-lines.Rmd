@@ -1,5 +1,5 @@
 ---
-title: "Create multiple line chart with R and Plotly"
+title: "Create a multiple line chart with R and Plotly"
 output: html_document
 ---
 
@@ -8,6 +8,8 @@ knitr::opts_chunk$set(echo = TRUE)
 ```
 
 In this post we create some time-series from random data and use the Plotly package to draw a line chart with multiple time-series.
+Plotly is a R package to create modern web-based visualizations via the open source JavaScript graphing library plotly.js.
+It offers API libraries also for Python, MATLAB, Scala and others.
 
 
 First of all, load Plotly into R using:
@@ -23,7 +25,7 @@ Let's generate some random data:
 ```{r, message=FALSE, warning=FALSE}
 n = 50
 time <- c(1:n)  
-# the R function c() combines elements together, and can be used in to create vectors. 
+# the R function c() combines elements together, and can be used to create vectors. 
 # In this case it combines the sequence of numbers from 1 to n into a vector.
 unifObs <- runif(n)  
 normObs <- rnorm(n)
