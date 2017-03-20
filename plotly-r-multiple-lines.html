@@ -91,6 +91,7 @@ h6 {
   max-width: 940px;
   margin-left: auto;
   margin-right: auto;
+  font-family: 'Raleway', sans-serif;
 }
 code {
   color: inherit;
@@ -143,10 +144,10 @@ $(document).ready(function () {
 require(plotly)</code></pre>
 <p>Let’s generate some random data:</p>
 <pre class="r"><code>n = 50
-time &lt;- c(1:n)  
-# the R function c() combines elements together, and can be used to create vectors. 
+time &lt;- c(1:n)
+# the R function c() combines elements together, and can be used to create vectors.
 # In this case it combines the sequence of numbers from 1 to n into a vector.
-unifObs &lt;- runif(n)  
+unifObs &lt;- runif(n)
 normObs &lt;- rnorm(n)</code></pre>
 <p><code>runif(n, min, max)</code> function in R draws <span class="math inline">\(n\)</span> random numbers from a Uniform distribution, i.e. <span class="math inline">\(X \sim U[min, max]\)</span>. By default, <span class="math inline">\(X \sim U[0, 1]\)</span>.</p>
 <p><code>rnorm(n, mean, sd)</code> function draws <span class="math inline">\(n\)</span> realizations from a Normal distribution, with density:</p>
