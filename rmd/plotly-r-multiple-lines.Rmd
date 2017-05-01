@@ -1,6 +1,8 @@
 ---
 title: "Create a multiple line chart with R and Plotly"
-output: html_document
+output: 
+  html_document: 
+    self_contained: no
 ---
 
 ```{r setup, include=FALSE}
