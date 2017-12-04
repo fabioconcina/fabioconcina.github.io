@@ -2,6 +2,10 @@ body {
   font-family: 'Raleway', sans-serif;
 }
 
+.container {
+  max-width: 900px;
+}
+
 .header {
   padding-top: 40px;
   padding-bottom: 40px;
@@ -13,7 +17,7 @@ body {
 }
 
 .header h4 {
-  font-size: 20px;
+  font-size: 24px;
 }
 
 .header a {
@@ -43,13 +47,13 @@ a:active {
 
 .row {
   text-align: center;
-  padding: 50px;
+  padding: 10px;
 }
 
 .par {
   padding-left:80px;
   padding-right:80px;
-  font-size: 16px;
+  font-size: 18px;
   margin-bottom: 30px;
 }
 
