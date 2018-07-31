@@ -45,7 +45,10 @@
   </div>
 
   <div class="par">
-    2015-present <span id ='time' style="margin-left: 5px;"></span> | Data Scientist at 
+    2018-present | Technical Manager at 
+    <a href="https://www.kwantis.com" target="_blank"><strong>kwantis</strong></a>, Milan
+    <br>
+    2015-2018 <span id ='time_1' style="margin-left: 5px;"></span> | Data Scientist at 
     <a href="https://www.kwantis.com" target="_blank"><strong>kwantis</strong></a>, Milan
     <br>
     <hr />
@@ -55,7 +58,7 @@
       data-toggle="tooltip" title="MSc thesis, Italian, 6.6 MB"></i>
     </a>, 
     <strong>University of Trieste</strong>
-    <br><br>
+    <br>
     2009-2012 | BSc in Mathematical Engineering, <strong>Politecnico di Milano</strong>
   </div>
 
@@ -87,8 +90,10 @@
 <script type="text/javascript">
 var days_in_a_year = 365;
 var seconds_in_a_day = 86400;
-var work_starting_date = 1442818800000;
-document.getElementById("time").innerHTML = '(' + Math.round(((Date.now() - work_starting_date)/1000|0)/seconds_in_a_day/days_in_a_year * 10)/10 + ' yrs)';
+var work_starting_date_1 = 1442818800000;
+var work_starting_date_2 = 1538380800000;
+document.getElementById("time_1").innerHTML = '(' + Math.round(((work_starting_date_2 - work_starting_date_1)/1000|0)/seconds_in_a_day/days_in_a_year * 10)/10 + ' yrs)';
+document.getElementById("time_2").innerHTML = '(' + Math.round(((Date.now() - work_starting_date_2)/1000|0)/seconds_in_a_day/days_in_a_year * 10)/10 + ' yrs)';
 </script>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
