@@ -40,27 +40,51 @@
   <div class="par">
     <span>
     I like Technology.<br>
-    Currently developing products for the Energy industry.
+    Currently developing software products for the Energy industry.
     </span>
-  </div>
+  </div><!-- /.par -->
 
   <div class="par">
-    2018-present | Technical Manager at 
-    <a href="https://www.kwantis.com" target="_blank"><strong>kwantis</strong></a>, Milan
-    <br>
-    2015-2018 <span id ='time_1' style="margin-left: 5px;"></span> | Data Scientist at 
-    <a href="https://www.kwantis.com" target="_blank"><strong>kwantis</strong></a>, Milan
-    <br>
+
+    <div class="row">
+      <div class="col-sm-6" style="text-align:right">
+          2018-present <span id ='time_2' style="margin-left: 5px;"></span>
+      </div>
+      <div class="col-sm-6" style="text-align:right">
+          Technical Manager at 
+          <a href="https://www.kwantis.com" target="_blank"><strong>kwantis</strong></a>, Milan
+      </div>
+    </div><!-- /.row -->
+
+    <div class="row">
+      <div class="col-sm-6" style="text-align:right">
+          2015-2018 <span id ='time_1' style="margin-left: 5px;"></span>
+      </div>
+      <div class="col-sm-6" style="text-align:right">
+          Data Scientist at 
+          <a href="https://www.kwantis.com" target="_blank"><strong>kwantis</strong></a>, Milan
+      </div>
+    </div><!-- /.row -->
+
     <hr />
-    2012-2015 | MSc, Statistics and Actuarial Science
-    <a href='static/pdf/paid-incurred-stochastic-reserving.pdf' target="_blank">
-      <i class="fa fa-file-pdf-o fa-1x" aria-hidden="true"
-      data-toggle="tooltip" title="MSc thesis, Italian, 6.6 MB"></i>
-    </a>, 
-    <strong>University of Trieste</strong>
-    <br>
-    2009-2012 | BSc, Mathematical Engineering, <strong>Politecnico di Milano</strong>
-  </div>
+
+    <div class="row">
+      <div class="col-sm-12" style="text-align:right">
+          <a href='static/pdf/paid-incurred-stochastic-reserving.pdf' target="_blank">
+            <i class="fa fa-file-pdf-o fa-1x" aria-hidden="true"
+            data-toggle="tooltip" title="MSc thesis, Italian, 6.6 MB"></i>
+          </a>
+          MSc, <strong>Statistics and Actuarial Science</strong>, University of Trieste
+      </div>
+    </div><!-- /.row -->
+
+    <div class="row">
+      <div class="col-sm-12" style="text-align:right">
+          BSc, <strong>Mathematical Engineering</strong>, Politecnico di Milano
+      </div>
+    </div><!-- /.row -->
+
+  </div><!-- /.par -->
 
   <div class="row">
   <div class="col-sm-8"></div>
@@ -88,12 +112,12 @@
 </div><!-- /.container -->
 
 <script type="text/javascript">
-var days_in_a_year = 365;
-var seconds_in_a_day = 86400;
-var work_starting_date_1 = 1442818800000;
-var work_starting_date_2 = 1538380800000;
-document.getElementById("time_1").innerHTML = '(' + Math.round(((work_starting_date_2 - work_starting_date_1)/1000|0)/seconds_in_a_day/days_in_a_year * 10)/10 + ' yrs)';
-document.getElementById("time_2").innerHTML = '(' + Math.round(((Date.now() - work_starting_date_2)/1000|0)/seconds_in_a_day/days_in_a_year * 10)/10 + ' yrs)';
+  var days_in_a_year = 365;
+  var seconds_in_a_day = 86400;
+  var work_starting_date_1 = 1442818800000;
+  var work_starting_date_2 = 1538380800000;
+  document.getElementById("time_1").innerHTML = '(' + Math.round(((work_starting_date_2 - work_starting_date_1)/1000|0)/seconds_in_a_day/days_in_a_year * 10)/10 + ' yrs)';
+  document.getElementById("time_2").innerHTML = '(' + Math.round(((Date.now() - work_starting_date_2)/1000|0)/seconds_in_a_day/days_in_a_year * 10)/10 + ' yrs)';
 </script>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
@@ -104,5 +128,6 @@ document.getElementById("time_2").innerHTML = '(' + Math.round(((Date.now() - wo
       $('[data-toggle="tooltip"]').tooltip();
   });
 </script>
+
 </body>
 </html>
