@@ -1,0 +1,73 @@
+body {
+  font-family: 'Raleway', sans-serif;
+}
+
+.container {
+  max-width: 800px;
+  padding: 30px;
+  text-align: left;
+}
+
+.header {
+  padding-top: 10px;
+  padding-bottom: 5px;
+  text-align: right;
+}
+
+.header h1 {
+  font-size: 40px;
+}
+
+.header h4 {
+  font-size: 24px;
+}
+
+.header a {
+  text-decoration: none;
+}
+
+
+/* unvisited link */
+a:link {
+    color: rgb(70, 70, 70);
+}
+
+/* visited link */
+a:visited {
+    color: rgb(70, 70, 70);
+}
+
+/* mouse over link */
+a:hover {
+    color: rgb(90, 90, 90);
+}
+
+/* selected link */
+a:active {
+    color: rgb(70, 70, 70);
+}
+
+.row {
+  text-align: center;
+  padding: 5px;
+}
+
+.par {
+  font-size: 18px;
+  margin-bottom: 40px;
+}
+
+.navbar-fixed-bottom {
+    text-align: right;
+}
+
+code {
+  color: rgb(80,80,80);
+  background-color: rgb(250,250,250);
+}
+
+pre {
+  color: rgb(80,80,80);
+  background-color: rgb(250,250,250);
+  border: 0;
+}
