@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+ <title></title>
+ <link href="https://fabioconcina.github.io/static/img/favicon.ico" rel="icon">
+ <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
+
+ <!-- CSS -->
+ <link rel="stylesheet" 
+       href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" 
+       integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" 
+       crossorigin="anonymous">
+ <link rel="stylesheet" 
+       href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" 
+       integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" 
+       crossorigin="anonymous">
+ <link href="https://fabioconcina.github.io/static/css/main.css" rel="stylesheet">
+<!-- Google Analytics script -->
+<script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-93736348-1', 'auto');
+    ga('send', 'pageview');
+</script>
+</head>
+<body>
+ <div class="container">
+<div style="padding:1rem;text-align:right;">
+    <a href="https://fabioconcina.github.io/blog" 
+       class="btn btn-dark" 
+       role="button" 
+       aria-pressed="true" 
+       style="color:white">Back</a>
+</div>
+<hr />
+<h1>Using Python virtualenv</h1>
+<p>21 February 2019</p>
+<!-- <p>Python</p>
+    python
+    virtualenv
+ -->
+<p>Each Python project comes with its own dependencies, usually listed in a <em>requirements.txt</em> file.
+As the number of projects grows comes the need to isolate each installation, as each one may use a different version of the same library, and it's simply no more feasible to use a system wide installation.</p>
+<p><strong>virtualenv</strong> is a Python module which allows easy creation of virtual environments right inside the project folder.</p>
+<p>To begin, install <code>virtualenv</code>:</p>
+<div class="highlight"><pre><span></span>pip install virtualenv
+</pre></div>
+
+
+<p>Inside your project folder create a virtual environment (usually named <em>venv</em> as a convention):</p>
+<div class="highlight"><pre><span></span>virtualenv venv
+</pre></div>
+
+
+<p>This creates a separate <code>python</code> executable, and separate <code>pip</code> and <code>setuptools</code> you can use to install dependencies in venv.</p>
+<p>How to activate the environment depends on the OS used.
+On Unix based machines (MacOS, Linux), you can use:</p>
+<div class="highlight"><pre><span></span><span class="nb">source</span> venv/bin/activate
+</pre></div>
+
+
+<p>On Windows machines you have to use a .bat or .ps script located at <code>venv/Scripts/activate.bat</code> and <code>venv/Scripts/activate.psl</code>, respectively.</p>
+<p>On either OS, to deactivate the environment simpy use <code>deactivate</code>.</p>
+<p>On <code>bash</code>, you can check which enviroment you are using with</p>
+<div class="highlight"><pre><span></span>which python
+</pre></div>
+
+
+<p>Once the virtual environment is active you can use <code>pip</code> to install modules, which will be installed inside the <em>venv</em> folder in a standard <em>site-packages</em> directory.
+For example, you may want to use</p>
+<div class="highlight"><pre><span></span>pip install -r requirements.txt
+</pre></div>
+
+
+<p>to install the dependencies of your project.</p>
+<p>If you need to run a project script with a process control system (such as <a href="http://supervisord.org/"><code>supervisord</code></a>), be sure to specify the right python executable to use (i.e. <code>venv/bin/python</code>).</p>
+<div style="text-align:right;">
+    <a href="https://fabioconcina.github.io/blog" 
+       class="btn btn-dark" 
+       role="button" 
+       aria-pressed="true" 
+       style="color:white">Back</a>
+</div>
+ </div> 
+</body>
+</html>
