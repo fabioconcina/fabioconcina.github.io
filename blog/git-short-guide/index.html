@@ -122,7 +122,7 @@ crossorigin="anonymous"></script>
 <ul>
 <li>Push local commits to remote repository on branch <em>x</em>:</li>
 </ul>
-<div class="highlight"><pre><span></span>git push origin x
+<div class="highlight"><pre><span></span>git push &lt;remote_name&gt; x
 </pre></div>
 
 
@@ -161,6 +161,25 @@ git merge branch_y
 <li>Delete branch_y:</li>
 </ul>
 <div class="highlight"><pre><span></span>git branch -d branch_y
+</pre></div>
+
+
+<ul>
+<li>Rename local branch:</li>
+</ul>
+<div class="highlight"><pre><span></span>git branch -m &lt;new_name&gt;
+</pre></div>
+
+
+<p>if on a different branch from the one to rename:</p>
+<div class="highlight"><pre><span></span>git branch -m &lt;branch_name&gt; &lt;new_name&gt;
+</pre></div>
+
+
+<ul>
+<li>Rename remote branch:</li>
+</ul>
+<div class="highlight"><pre><span></span>git push --delete &lt;remote_name&gt; &lt;branch_name&gt;
 </pre></div>
 <div style="text-align:right;">
     <a href="https://fabioconcina.github.io/blog" 
