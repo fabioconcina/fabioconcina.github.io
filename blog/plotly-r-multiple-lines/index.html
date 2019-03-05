@@ -54,8 +54,8 @@ crossorigin="anonymous"></script>
     R
     visualization
  -->
-<p>This post shows how to create multiple random time series data and use the Plotly package to draw a line chart. 
-Plotly is a R package to create modern web-based visualizations via the open source JavaScript graphing library <code>plotly.js</code>. It offers API libraries also for Python, MATLAB, Scala and others.</p>
+<p>This post shows how to create multiple random time series data and use the Plotly package to draw a line chart.<br> 
+<strong>Plotly</strong> (<a href="https://plot.ly/r/" target="_blank">https://plot.ly/r/</a>) is a R package to create modern web-based visualizations via the open source JavaScript graphing library <code>plotly.js</code>. It offers API libraries also for Python and other languages.</p>
 <p>First of all, load Plotly into R using:</p>
 <div class="highlight"><pre><span></span><span class="nf">if</span><span class="p">(</span><span class="o">!</span><span class="p">(</span><span class="nf">require</span><span class="p">(</span><span class="n">plotly</span><span class="p">))){</span>
   <span class="nf">install.packages</span><span class="p">(</span><span class="s">&quot;plotly&quot;</span><span class="p">)</span>
@@ -91,6 +91,7 @@ Plotly is a R package to create modern web-based visualizations via the open sou
 </pre></div>
 
 
+<p>Key is the use of <code>%&gt;%</code> operator to add new traces to the chart istance.</p>
 <p><img alt="plot" src="https://fabioconcina.github.io/images/plotly-r-multiple-lines.png" width="100%"></p>
 <script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
     var align = "center",
@@ -147,6 +148,7 @@ Plotly is a R package to create modern web-based visualizations via the open sou
     (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
 }
 </script>
+<hr />
 <div style="text-align:right;">
     <a href="https://fabioconcina.github.io/blog" 
        class="btn btn-dark" 

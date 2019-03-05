@@ -56,7 +56,7 @@ crossorigin="anonymous"></script>
  -->
 <p>Each Python project comes with its own dependencies, usually listed in a <em>requirements.txt</em> file.
 As the number of projects grows comes the need to isolate each installation, as each one may use a different version of the same library, and it's simply no more feasible to use a system wide installation.</p>
-<p><strong>virtualenv</strong> is a Python module which allows easy creation of virtual environments right inside the project folder.</p>
+<p><strong>virtualenv</strong> (<a href="https://virtualenv.pypa.io/en/latest/" target="_blank">https://virtualenv.pypa.io/en/latest/</a>) is a Python module which allows easy creation of virtual environments right inside the project folder.</p>
 <p>To begin, install <code>virtualenv</code>:</p>
 <div class="highlight"><pre><span></span>pip install virtualenv
 </pre></div>
@@ -88,7 +88,9 @@ For example, you may want to use</p>
 
 
 <p>to install the dependencies of your project.</p>
-<p>If you need to run a project script with a process control system (such as <a href="http://supervisord.org/"><code>supervisord</code></a>), be sure to specify the right python executable to use (i.e. <code>venv/bin/python</code>).</p>
+<p>If you need to run a project script with a process control system (such as 
+<a href="http://supervisord.org/" target="_blank">supervisord</a>), be sure to specify the right python executable to use (i.e. <code>venv/bin/python</code>).</p>
+<hr />
 <div style="text-align:right;">
     <a href="https://fabioconcina.github.io/blog" 
        class="btn btn-dark" 
