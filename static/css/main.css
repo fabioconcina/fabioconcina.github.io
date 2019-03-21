@@ -9,7 +9,7 @@ body {
 }
 
 .header {
-  padding-top: 10px;
+  padding-top: 50px;
   padding-bottom: 5px;
   text-align: right;
 }
@@ -71,4 +71,8 @@ pre {
   background-color: rgb(245,245,245);
   border: 0;
   padding: 1rem;
+}
+
+.accent {
+  color: rgb(6, 175, 253);
 }
