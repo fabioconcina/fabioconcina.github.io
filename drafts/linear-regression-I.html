@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+ <meta charset="utf-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+ <title></title>
+ <link href="https://fabioconcina.github.io/static/img/favicon.ico" rel="icon">
+ <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
+
+ <!-- CSS -->
+ <link rel="stylesheet" 
+       href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" 
+       integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" 
+       crossorigin="anonymous">
+ <link rel="stylesheet" 
+       href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" 
+       integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" 
+       crossorigin="anonymous">
+ <link href="https://fabioconcina.github.io/static/css/main.css" rel="stylesheet">
+<!-- Google Analytics script -->
+<script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-93736348-1', 'auto');
+    ga('send', 'pageview');
+</script>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" 
+integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" 
+crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" 
+integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" 
+crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" 
+integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" 
+crossorigin="anonymous"></script>
+</head>
+<body>
+ <div class="container">
+<div style="padding:1rem;text-align:right;">
+    <a href="https://fabioconcina.github.io/blog" 
+       class="btn btn-dark" 
+       role="button" 
+       aria-pressed="true" 
+       style="color:white">Back</a>
+</div>
+<hr />
+<h6 class="accent"><strong>MODEL</strong></h6>
+<h1>Linear Regression I</h1>
+<p>March 21, 2019</p>
+<!--    model
+    stat
+ -->
+<p>Linear Regression is one of the simplest yet explainable models to describe the relationship between quantitative variables.
+More advanced statistical learning models can be seen as a generalization of this approach.<br>
+In this model, one or more indipendent variables (explanatory variables, regressors) are used to predict one dependent variable (response variable, regressand).<br>
+The model assumes that there is approximately a linear relationship between indipendent and dependent variables.</p>
+<p>The scenario with a single indipendent variable is called <strong>simple linear regression</strong>:</p>
+<div class="math">$$Y = \beta_0 + \beta_1 X + \epsilon$$</div>
+<p><span class="math">\(Y\)</span> is the response variable and <span class="math">\(X\)</span> is the explanatory variable.<br>
+<span class="math">\(\epsilon\)</span> is an error term, a random variable used to model the deviation from the regression line observed in the data.
+<span class="math">\(\beta_0\)</span> and <span class="math">\(\beta_1\)</span> are called <strong>parameters</strong>. They are unknown and we must estimate them from the data. This step represents the training process for the model.
+To estimate the parameters, the most common algorithm is the <strong>ordinary least squares (OLS)</strong>. The method tries to minimize the sum of squares of the differences between the actual observations of the response variable and the predicted response using the model. The estimated <strong>regression line</strong> is the best fit to the data in the sense of least squares; this can be different from the actual <strong>population line</strong>, since we only have available a sample of the population to estimate the model.<br>
+Once the parameters are estimated, we can use the model to predict the response variable given a value of the explanatory variable. We can also explain how the explanatory variable influences the response variable (does it change when the indipendent variables changes? how much does it change?).
+Notice that the linearity is in the parameters, but not in the indipendent variables (<span class="math">\(Y = \beta_0 + \beta_1 X^2 + \epsilon\)</span> is still a linear model).</p>
+<p>The case with multiple indipendent variables is called <strong>multiple linear regression</strong>:</p>
+<div class="math">$$Y = \beta_0 + \beta_1 X_1 + \beta_2 X_2 + ... + \beta_p X_p + \epsilon$$</div>
+<p>This can conveniently represented with matrix linear algebra:</p>
+<div class="math">$$y = X \beta + \epsilon$$</div>
+<p><span class="math">\(X\)</span> is a N x (p+1) matrix with N observations and p indipendent variables plus 1 constant term.<br>
+<span class="math">\(\beta\)</span> is a (p+1)-vector of parameters and <span class="math">\(\epsilon\)</span> is a N-vector of errors.<br>
+We can then write the error term as</p>
+<div class="math">$$\epsilon(\beta) = y - X \beta$$</div>
+<p>So the residual sum of squares is</p>
+<div class="math">$$RSS(\beta) = (y - X \beta)^T(y - X \beta)$$</div>
+<p>Using some calculus we can compute the derivative of the quadratic function:</p>
+<div class="math">$$\frac{\partial RSS}{\partial \beta} = -2X^T (y - X \beta)$$</div>
+<div class="math">$$\frac{\partial ^ 2 RSS}{\partial^2 \beta} = 2 X^T X$$</div>
+<p>If <span class="math">\(X^T X\)</span> has full rank, we can compute the inverse, and <span class="math">\(X^T X\)</span> is positive definite, so the function has a global minimum where the first derivative is equal to zero:</p>
+<div class="math">$$X^T (y - X \beta) = 0$$</div>
+<p>The unique solution is</p>
+<div class="math">$$\hat \beta = (X^T X)^{-1} X^T y$$</div>
+<p>The predicted value for the response variable is then</p>
+<div class="math">$$\hat y = X \hat \beta = X (X^T X)^{-1} X^T y = H y$$</div>
+<p>H is called <strong>hat matrix</strong>, because it transforms <span class="math">\(y\)</span> in <span class="math">\(\hat y\)</span>.<br>
+If <span class="math">\(X\)</span> has not full rank, i.e. some columns are not linearly indipendent, as in the case of perfect correlation, some strategy is necessary to remove the columns.</p>
+<p>We should now make some probabilistic hypothesis on the random variables used in the model, so that we can derive additional results.</p>
+<ol>
+<li>Errors variance is constant (<strong>homoschedasticity</strong>), i.e.
+<div class="math">$$Var(\epsilon_i) = \sigma^2 \quad \forall i$$</div>
+</li>
+<li>Errors have expected value equal to 0, i.e.
+<div class="math">$$E(\epsilon_i) = 0 \quad \forall i$$</div>
+</li>
+<li>Errors are uncorrelated, i.e.
+<div class="math">$$Cov(\epsilon_i, \epsilon_j) = 0 \quad \forall i,j, \: i \neq j$$</div>
+</li>
+<li>The conditional expectation of the response variable is linear in the indipendent variables, i.e.
+<div class="math">$$E(Y | X) = X \beta$$</div>
+</li>
+</ol>
+<p>We can require a more stronger condition of <span class="math">\((1)+(2)+(3)\)</span>, which is</p>
+<div class="math">$$\epsilon \sim N(0, \sigma^2) \quad i.i.d.  \qquad (*)$$</div>
+<p>The additional assumptions made by <span class="math">\((*)\)</span> are that errors follow a Gaussian distribution and are indipendent (a stronger assumption than uncorrelated).</p>
+<p>Under <span class="math">\((1)+(2)+(3)+(4)\)</span> we have</p>
+<div class="math">$$E(\hat \beta | X) = (X^T X)^{-1} X^T E(y | X) = (X^T X)^{-1} X^T X \beta = \beta$$</div>
+<p>and</p>
+<div class="math">$$Var(\hat \beta | X) = (X^T X)^{-1} X^T Var(\beta | X) X ((X^T X)^{-1})^T =$$</div>
+<div class="math">$$= (X^T X)^{-1} X^T X ((X^T X)^T)^{-1} \sigma^2 = (X^T X)^{-1} \sigma^2$$</div>
+<p>So <span class="math">\(\hat \beta\)</span> is an unbiased estimator for <span class="math">\(\beta\)</span>.
+Under <span class="math">\((*)\)</span> we have then</p>
+<div class="math">$$\hat \beta \sim N(\beta, (X^T X)^{-1} \sigma^2)$$</div>
+<p>To estimate <span class="math">\(\sigma^2\)</span> we can use the following estimator:</p>
+<div class="math">$$\hat \sigma^2 = \frac{1}{N-p-1}  \sum_{i=1}^{N} (y_i - \hat y_i)^2$$</div>
+<p>The <strong>Gauss-Markov theorem</strong> states that, under the above hypothesis, the OLS estimator for <span class="math">\(\beta\)</span> has the minimum variance among unbiased estimators for <span class="math">\(\beta\)</span>.<br>
+It is still possible though to find a biased estimator with lower variance.</p>
+<p>We can then use the results to compute <em>confidence intervals</em> and perform <em>hypothesis tests</em> on the parameters.<br>
+To compute a <strong>confidence interval</strong> for the parameters we can use the distributional information on <span class="math">\(\hat \beta\)</span>:</p>
+<div class="math">$$\left(\hat \beta_j - t^{(1-\alpha)}v_j^{1/2} \hat \sigma, \quad\hat \beta_j + t^{(1-\alpha)}v_j^{1/2} \hat \sigma \right)$$</div>
+<p>where <span class="math">\(t_j^{(1-\alpha)}\)</span> is the <span class="math">\(1-\alpha\)</span> percentile of the <strong>Student's t-distribution</strong> with n-p-1 degrees of freedom and <span class="math">\(v_j\)</span> is the j-th diagonal element of <span class="math">\(X\)</span> matrix.<br>
+If we know the real value of <span class="math">\(\sigma\)</span>, or the sample size n is sufficiently large, we can use the percentile of a Normal distribution <span class="math">\(z_j^{(1-\alpha)}\)</span> instead.<br>
+We can construct an <strong>hypothesis test</strong> as follows:</p>
+<div class="math">$$H_0: \qquad \beta_j = 0$$</div>
+<div class="math">$$H_1: \qquad \beta_j \neq 0$$</div>
+<p>We use as <strong>test statistics</strong> the <em>standardized coefficient</em> (or <em>z-score</em>), a random variable defined as</p>
+<div class="math">$$z_j = \frac{\hat \beta_j}{\hat \sigma \sqrt{v_j}}$$</div>
+<p>Under <span class="math">\(H_0\)</span>, <span class="math">\(z_j \sim t_{n-p-1}\)</span> (Student's t-distribution with n-p-1 degrees of freedom).<br>
+A large value of <span class="math">\(z_j\)</span> leads to reject the null hypothesis <span class="math">\(H_0\)</span>, which implies that the parameter <span class="math">\(\beta_j\)</span> is significantly different from zero, hence there is a relationship between the <span class="math">\(X_j\)</span> variable and the response variable.    </p>
+<p>Considering the easier case of simple linear regression, we can explicitly write the estimators for the standard error of the parameters:</p>
+<div class="math">$$SE(\hat \beta_0)^2 = \sigma^2 \left[\frac{1}{n} + \frac{\bar x^2}{\sum_{i=1}^{n} (x_i - \bar x)^2} \right]$$</div>
+<div class="math">$$SE(\hat \beta_1)^2 = \frac{\sigma^2}{\sum_{i=1}^{n}(x_i - \bar x)^2}$$</div>
+<p>Using the estimator <span class="math">\(\hat \sigma\)</span> we can then derive numeric values for the standard errors.<br>
+We can compute confidence intervals using</p>
+<div class="math">$$\left(\hat \beta_j - z^{(1-\alpha)} SE(\hat \beta_j), \quad \hat \beta_j + z^{(1-\alpha)} SE(\hat \beta_j) \right) \qquad j=0,1$$</div>
+<p>If we choose a 95% confidence interval, <span class="math">\(\alpha=0.025\)</span> and <span class="math">\(z^{(1-\alpha)}=1.96\)</span>.</p>
+<script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
+    var align = "center",
+        indent = "0em",
+        linebreak = "false";
+
+    if (false) {
+        align = (screen.width < 768) ? "left" : align;
+        indent = (screen.width < 768) ? "0em" : indent;
+        linebreak = (screen.width < 768) ? 'true' : linebreak;
+    }
+
+    var mathjaxscript = document.createElement('script');
+    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
+    mathjaxscript.type = 'text/javascript';
+    mathjaxscript.src = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS-MML_HTMLorMML';
+    mathjaxscript[(window.opera ? "innerHTML" : "text")] =
+        "MathJax.Hub.Config({" +
+        "    config: ['MMLorHTML.js']," +
+        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'AMS' } }," +
+        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
+        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
+        "    displayAlign: '"+ align +"'," +
+        "    displayIndent: '"+ indent +"'," +
+        "    showMathMenu: true," +
+        "    messageStyle: 'normal'," +
+        "    tex2jax: { " +
+        "        inlineMath: [ ['\\\\(','\\\\)'] ], " +
+        "        displayMath: [ ['$$','$$'] ]," +
+        "        processEscapes: true," +
+        "        preview: 'TeX'," +
+        "    }, " +
+        "    'HTML-CSS': { " +
+        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'inherit ! important'} }," +
+        "        linebreaks: { automatic: "+ linebreak +", width: '90% container' }," +
+        "    }, " +
+        "}); " +
+        "if ('default' !== 'default') {" +
+            "MathJax.Hub.Register.StartupHook('HTML-CSS Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax['HTML-CSS'].FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+            "MathJax.Hub.Register.StartupHook('SVG Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+        "}";
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
+}
+</script>
+<hr />
+<div style="text-align:right;">
+    <a href="https://fabioconcina.github.io/blog" 
+       class="btn btn-dark" 
+       role="button" 
+       aria-pressed="true" 
+       style="color:white">Back</a>
+</div>
+<div id="disqus_thread"></div>
+<script>
+
+/**
+*  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+
+var disqus_config = function () {
+this.page.url = "https://fabioconcina.github.io/drafts/linear-regression-I.html";  // Replace PAGE_URL with your page's canonical URL variable
+this.page.identifier = "linear-regression-I"; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+};
+
+(function() { // DON'T EDIT BELOW THIS LINE
+var d = document, s = d.createElement('script');
+s.src = 'https://fabioconcina.disqus.com/embed.js';
+s.setAttribute('data-timestamp', +new Date());
+(d.head || d.body).appendChild(s);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+ </div>
+</body>
+</html>
