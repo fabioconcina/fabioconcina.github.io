@@ -5,41 +5,48 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>https://fabioconcina.github.io/</loc>
-<lastmod>2019-03-26T20:21:50-00:00</lastmod>
+<lastmod>2019-04-01T23:36:44-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>https://fabioconcina.github.io/archives.html</loc>
-<lastmod>2019-03-26T20:21:50-00:00</lastmod>
+<lastmod>2019-04-01T23:36:44-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>https://fabioconcina.github.io/tags.html</loc>
-<lastmod>2019-03-26T20:21:50-00:00</lastmod>
+<lastmod>2019-04-01T23:36:44-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>https://fabioconcina.github.io/categories.html</loc>
-<lastmod>2019-03-26T20:21:50-00:00</lastmod>
+<lastmod>2019-04-01T23:36:44-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>https://fabioconcina.github.io/fabio-concina/</loc>
-<lastmod>2019-03-26T20:21:50-00:00</lastmod>
+<lastmod>2019-04-01T23:36:44-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
-<loc>https://fabioconcina.github.io/blog/linear-regression-I/</loc>
+<loc>https://fabioconcina.github.io/blog/linear-regression-example/</loc>
+<lastmod>2019-04-01T22:00:00+02:00</lastmod>
+<changefreq>daily</changefreq>
+<priority>0.5</priority>
+</url>
+
+<url>
+<loc>https://fabioconcina.github.io/blog/linear-regression/</loc>
 <lastmod>2019-03-24T22:00:00+01:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
@@ -96,7 +103,7 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>https://fabioconcina.github.io/category/model.html</loc>
-<lastmod>2019-03-24T22:00:00+00:09</lastmod>
+<lastmod>2019-04-01T22:00:00+00:09</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -124,14 +131,28 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>https://fabioconcina.github.io/tag/model.html</loc>
-<lastmod>2019-03-24T22:00:00+00:09</lastmod>
+<lastmod>2019-04-01T22:00:00+00:09</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>https://fabioconcina.github.io/tag/stat.html</loc>
-<lastmod>2019-03-24T22:00:00+00:09</lastmod>
+<lastmod>2019-04-01T22:00:00+00:09</lastmod>
+<changefreq>daily</changefreq>
+<priority>0.5</priority>
+</url>
+
+<url>
+<loc>https://fabioconcina.github.io/tag/python.html</loc>
+<lastmod>2019-04-01T22:00:00+00:09</lastmod>
+<changefreq>daily</changefreq>
+<priority>0.5</priority>
+</url>
+
+<url>
+<loc>https://fabioconcina.github.io/tag/statsmodel.html</loc>
+<lastmod>2019-04-01T22:00:00+00:09</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -167,13 +188,6 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <url>
 <loc>https://fabioconcina.github.io/tag/job.html</loc>
 <lastmod>2019-03-05T22:00:00+00:09</lastmod>
-<changefreq>daily</changefreq>
-<priority>0.5</priority>
-</url>
-
-<url>
-<loc>https://fabioconcina.github.io/tag/python.html</loc>
-<lastmod>2019-02-21T08:00:00+00:09</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -215,7 +229,7 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>https://fabioconcina.github.io/author/fabio-concina.html</loc>
-<lastmod>2019-03-24T22:00:00+00:09</lastmod>
+<lastmod>2019-04-01T22:00:00+00:09</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>

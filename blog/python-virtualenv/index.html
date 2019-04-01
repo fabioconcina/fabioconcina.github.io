@@ -58,32 +58,32 @@ crossorigin="anonymous"></script>
 As the number of projects grows comes the need to isolate each installation, as each one may use a different version of the same library, and it's simply no more feasible to use a system wide installation.</p>
 <p><strong>virtualenv</strong> (<a href="https://virtualenv.pypa.io/en/latest/" target="_blank">https://virtualenv.pypa.io/en/latest/</a>) is a Python module which allows easy creation of virtual environments right inside the project folder.</p>
 <p>To begin, install <code>virtualenv</code>:</p>
-<div class="highlight"><pre><span></span>pip install virtualenv
+<div class="codehilite"><pre><span></span>pip install virtualenv
 </pre></div>
 
 
 <p>Inside your project folder create a virtual environment (usually named <em>venv</em> as a convention):</p>
-<div class="highlight"><pre><span></span>virtualenv venv
+<div class="codehilite"><pre><span></span>virtualenv venv
 </pre></div>
 
 
 <p>This creates a separate <code>python</code> executable, and separate <code>pip</code> and <code>setuptools</code> you can use to install dependencies in venv.</p>
 <p>How to activate the environment depends on the OS used.
 On Unix based machines (MacOS, Linux), you can use:</p>
-<div class="highlight"><pre><span></span><span class="nb">source</span> venv/bin/activate
+<div class="codehilite"><pre><span></span><span class="nb">source</span> venv/bin/activate
 </pre></div>
 
 
 <p>On Windows machines you have to use a .bat or .ps1 script located at <code>venv/Scripts/activate.bat</code> and <code>venv/Scripts/activate.ps1</code>, respectively.</p>
 <p>On either OS, to deactivate the environment simpy use <code>deactivate</code>.</p>
 <p>On <code>bash</code>, you can check which enviroment you are using with</p>
-<div class="highlight"><pre><span></span>which python
+<div class="codehilite"><pre><span></span>which python
 </pre></div>
 
 
 <p>Once the virtual environment is active you can use <code>pip</code> to install modules, which will be installed inside the <em>venv</em> folder in a standard <em>site-packages</em> directory.
 For example, you may want to use</p>
-<div class="highlight"><pre><span></span>pip install -r requirements.txt
+<div class="codehilite"><pre><span></span>pip install -r requirements.txt
 </pre></div>
 
 

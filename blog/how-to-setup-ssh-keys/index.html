@@ -67,12 +67,12 @@ Public-key cryptography uses a pair of keys: a public key and a private key.
 The public key should be put on the remote server to which we want to gain access, the private key should be kept secret and known only to the user. <br>
 This setting is similar to a door lock: the public key is the door lock and the private key is the door key. The difference is that the same door can have multiple door locks that open it, each one with an associated with a different door key.</p>
 <p>To create a SSH key pair (using the widely available <code>ssh-keygen</code> tool) simply type:</p>
-<div class="highlight"><pre><span></span>ssh-keygen
+<div class="codehilite"><pre><span></span>ssh-keygen
 </pre></div>
 
 
 <p>You should see the following output:</p>
-<div class="highlight"><pre><span></span>Generating public/private rsa key pair.
+<div class="codehilite"><pre><span></span>Generating public/private rsa key pair.
 Enter file in which to save the key <span class="o">(</span>/user/.ssh/id_rsa<span class="o">)</span>:
 </pre></div>
 
@@ -80,14 +80,14 @@ Enter file in which to save the key <span class="o">(</span>/user/.ssh/id_rsa<sp
 <p>By default, it saves the key pair under your home directory in a hidden <code>.ssh</code> folder.<br>
 Then it will ask for a (optional) passphrase, used to add an additional layer of protection to the private key.
 Finally, it should write in output</p>
-<div class="highlight"><pre><span></span>Your identification has been saved in /user/.ssh/id_rsa.
+<div class="codehilite"><pre><span></span>Your identification has been saved in /user/.ssh/id_rsa.
 Your public key has been saved in /user/.ssh/id_rsa.pub.
 </pre></div>
 
 
 <p>We have successfully generated a new SSH key pair.<br>
 Remember to set the correct permissions on the file system:</p>
-<div class="highlight"><pre><span></span>chmod <span class="m">700</span> .ssh
+<div class="codehilite"><pre><span></span>chmod <span class="m">700</span> .ssh
 chmod <span class="m">644</span> .ssh/id_rsa.pub
 chmod <span class="m">600</span> .ssh/id_rsa
 </pre></div>
@@ -96,7 +96,7 @@ chmod <span class="m">600</span> .ssh/id_rsa
 <p>To authenticate to a remote server we should now copy the generated public key in a specific location on the remote server, which is the <code>authorized_keys</code> file under <code>~/.ssh</code> folder.<br>
 If the file already exists we should append the new public key to the keys already present in the file.</p>
 <p>On our client we should now be able to login to the remote server without using a password:</p>
-<div class="highlight"><pre><span></span>ssh username@remote_host
+<div class="codehilite"><pre><span></span>ssh username@remote_host
 </pre></div>
 <hr />
 <div style="text-align:right;">

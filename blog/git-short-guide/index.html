@@ -66,84 +66,84 @@ crossorigin="anonymous"></script>
 <ul>
 <li>Initialize local repository:</li>
 </ul>
-<div class="highlight"><pre><span></span>git init
+<div class="codehilite"><pre><span></span>git init
 </pre></div>
 
 
 <ul>
 <li>Add remote named <em>origin</em> (a remote is simply an alias for a remote repository URL):</li>
 </ul>
-<div class="highlight"><pre><span></span>git remote add origin &lt;url_to_remote&gt;
+<div class="codehilite"><pre><span></span>git remote add origin &lt;url_to_remote&gt;
 </pre></div>
 
 
 <ul>
 <li>Fetch commits from remote to local repository:</li>
 </ul>
-<div class="highlight"><pre><span></span>git fetch
+<div class="codehilite"><pre><span></span>git fetch
 </pre></div>
 
 
 <ul>
 <li>Pull and merge commits from remote to local repository and working copy:</li>
 </ul>
-<div class="highlight"><pre><span></span>git pull
+<div class="codehilite"><pre><span></span>git pull
 </pre></div>
 
 
 <ul>
 <li>Check working directory status:</li>
 </ul>
-<div class="highlight"><pre><span></span>git status
+<div class="codehilite"><pre><span></span>git status
 </pre></div>
 
 
 <ul>
 <li>View changes to files not yet staged:</li>
 </ul>
-<div class="highlight"><pre><span></span>git diff
+<div class="codehilite"><pre><span></span>git diff
 </pre></div>
 
 
 <ul>
 <li>Add all changes to staging:</li>
 </ul>
-<div class="highlight"><pre><span></span>git add *
+<div class="codehilite"><pre><span></span>git add *
 </pre></div>
 
 
 <ul>
 <li>Commit staged files to local repository:</li>
 </ul>
-<div class="highlight"><pre><span></span>git commit -m <span class="s2">&quot;add missing timezone support&quot;</span>
+<div class="codehilite"><pre><span></span>git commit -m <span class="s2">&quot;add missing timezone support&quot;</span>
 </pre></div>
 
 
 <ul>
 <li>Push local commits to remote repository on branch <em>x</em>:</li>
 </ul>
-<div class="highlight"><pre><span></span>git push &lt;remote_name&gt; x
+<div class="codehilite"><pre><span></span>git push &lt;remote_name&gt; x
 </pre></div>
 
 
 <ul>
 <li>Delete all your local changes and reset to last commit:</li>
 </ul>
-<div class="highlight"><pre><span></span>git reset --hard
+<div class="codehilite"><pre><span></span>git reset --hard
 </pre></div>
 
 
 <ul>
 <li>List local branches:</li>
 </ul>
-<div class="highlight"><pre><span></span>git branch
+<div class="codehilite"><pre><span></span>git branch
 </pre></div>
 
 
 <ul>
 <li>Create a new branch and checkout:</li>
 </ul>
-<div class="highlight"><pre><span></span>git branch awesome_branch
+<div class="codehilite"><pre><span></span>git branch awesome_branch
 git checkout awesome_branch
 </pre></div>
 
@@ -152,7 +152,7 @@ git checkout awesome_branch
 <ul>
 <li>Merge <strong>branch_y</strong> onto <strong>branch_x</strong>:</li>
 </ul>
-<div class="highlight"><pre><span></span>git checkout branch_x
+<div class="codehilite"><pre><span></span>git checkout branch_x
 git merge branch_y
 </pre></div>
 
@@ -160,26 +160,26 @@ git merge branch_y
 <ul>
 <li>Delete branch_y:</li>
 </ul>
-<div class="highlight"><pre><span></span>git branch -d branch_y
+<div class="codehilite"><pre><span></span>git branch -d branch_y
 </pre></div>
 
 
 <ul>
 <li>Rename local branch:</li>
 </ul>
-<div class="highlight"><pre><span></span>git branch -m &lt;new_name&gt;
+<div class="codehilite"><pre><span></span>git branch -m &lt;new_name&gt;
 </pre></div>
 
 
 <p>if on a different branch from the one to rename:</p>
-<div class="highlight"><pre><span></span>git branch -m &lt;branch_name&gt; &lt;new_name&gt;
+<div class="codehilite"><pre><span></span>git branch -m &lt;branch_name&gt; &lt;new_name&gt;
 </pre></div>
 
 
 <ul>
 <li>Rename remote branch:</li>
 </ul>
-<div class="highlight"><pre><span></span>git push --delete &lt;remote_name&gt; &lt;branch_name&gt;
+<div class="codehilite"><pre><span></span>git push --delete &lt;remote_name&gt; &lt;branch_name&gt;
 </pre></div>
 <hr />
 <div style="text-align:right;">

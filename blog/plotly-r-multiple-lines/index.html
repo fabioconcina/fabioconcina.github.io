@@ -57,7 +57,7 @@ crossorigin="anonymous"></script>
 <p>This post shows how to create multiple random time series data and use the Plotly package to draw a line chart.<br> 
 <strong>Plotly</strong> (<a href="https://plot.ly/r/" target="_blank">https://plot.ly/r/</a>) is a R package to create modern web-based visualizations via the open source JavaScript graphing library <code>plotly.js</code>. It offers API libraries also for Python and other languages.</p>
 <p>First of all, load Plotly into R using:</p>
-<div class="highlight"><pre><span></span><span class="nf">if</span><span class="p">(</span><span class="o">!</span><span class="p">(</span><span class="nf">require</span><span class="p">(</span><span class="n">plotly</span><span class="p">))){</span>
+<div class="codehilite"><pre><span></span><span class="nf">if</span><span class="p">(</span><span class="o">!</span><span class="p">(</span><span class="nf">require</span><span class="p">(</span><span class="n">plotly</span><span class="p">))){</span>
   <span class="nf">install.packages</span><span class="p">(</span><span class="s">&quot;plotly&quot;</span><span class="p">)</span>
 <span class="p">}</span>
 <span class="nf">require</span><span class="p">(</span><span class="n">plotly</span><span class="p">)</span>
@@ -65,7 +65,7 @@ crossorigin="anonymous"></script>
 
 
 <p>Let's now generate some random data:</p>
-<div class="highlight"><pre><span></span><span class="n">n</span> <span class="o">=</span> <span class="m">50</span>
+<div class="codehilite"><pre><span></span><span class="n">n</span> <span class="o">=</span> <span class="m">50</span>
 <span class="n">time</span> <span class="o">&lt;-</span> <span class="nf">c</span><span class="p">(</span><span class="m">1</span><span class="o">:</span><span class="n">n</span><span class="p">)</span>
 <span class="c1"># the R function c() combines elements together, and can be used to create vectors.</span>
 <span class="c1"># In this case it combines the sequence of numbers from 1 to n into a vector.</span>
@@ -79,12 +79,12 @@ crossorigin="anonymous"></script>
 <div class="math">$$ f(x) = \dfrac{1}{\sqrt{2\sigma^2 \pi}} e^{-\dfrac{(x-\mu)^2}{2\sigma^2}} $$</div>
 <p>By default, <code>mean = 0</code> and <code>sd = 1</code>, i.e. <span class="math">\(X \sim N(0, 1)\)</span>.</p>
 <p>The <code>plot_ly()</code> function requires the data to be in a dataframe object, which is a common R data structure. We create the dataframe passing 3 vectors of the same length to the <code>data.frame()</code> function:</p>
-<div class="highlight"><pre><span></span><span class="n">data</span> <span class="o">=</span> <span class="nf">data.frame</span><span class="p">(</span><span class="n">time</span><span class="p">,</span> <span class="n">unifObs</span><span class="p">,</span> <span class="n">normObs</span><span class="p">)</span>
+<div class="codehilite"><pre><span></span><span class="n">data</span> <span class="o">=</span> <span class="nf">data.frame</span><span class="p">(</span><span class="n">time</span><span class="p">,</span> <span class="n">unifObs</span><span class="p">,</span> <span class="n">normObs</span><span class="p">)</span>
 </pre></div>
 
 
 <p>Now we can call the actual <code>plot_ly()</code> function to create the chart:</p>
-<div class="highlight"><pre><span></span><span class="nf">plot_ly</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">x</span> <span class="o">=</span> <span class="o">~</span><span class="n">time</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="o">~</span><span class="n">unifObs</span><span class="p">,</span> <span class="n">name</span> <span class="o">=</span> <span class="s">&quot;uniform&quot;</span><span class="p">,</span>
+<div class="codehilite"><pre><span></span><span class="nf">plot_ly</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">x</span> <span class="o">=</span> <span class="o">~</span><span class="n">time</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="o">~</span><span class="n">unifObs</span><span class="p">,</span> <span class="n">name</span> <span class="o">=</span> <span class="s">&quot;uniform&quot;</span><span class="p">,</span>
         <span class="n">type</span> <span class="o">=</span> <span class="s">&quot;scatter&quot;</span><span class="p">,</span> <span class="n">mode</span> <span class="o">=</span> <span class="s">&quot;lines&quot;</span><span class="p">)</span> <span class="o">%&gt;%</span>
   <span class="nf">add_trace</span><span class="p">(</span><span class="n">y</span> <span class="o">=</span> <span class="o">~</span><span class="n">normObs</span><span class="p">,</span> <span class="n">name</span> <span class="o">=</span> <span class="s">&quot;normal&quot;</span><span class="p">,</span> <span class="n">type</span> <span class="o">=</span> <span class="s">&quot;scatter&quot;</span><span class="p">)</span> <span class="o">%&gt;%</span>
   <span class="nf">layout</span><span class="p">(</span><span class="n">yaxis</span> <span class="o">=</span> <span class="nf">list</span><span class="p">(</span><span class="n">title</span> <span class="o">=</span> <span class="s">&quot;observations&quot;</span><span class="p">))</span>

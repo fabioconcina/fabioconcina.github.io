@@ -49,11 +49,15 @@ crossorigin="anonymous"></script>
 </div>
 <hr />
 <h6 class="accent"><strong>MODEL</strong></h6>
-<h1>Linear Regression I</h1>
-<p>March 21, 2019</p>
+<h1>Linear Regression</h1>
+<p>March 24, 2019</p>
 <!--    model
     stat
  -->
+<div style="text-align:center; padding:1rem">
+    <img src="https://fabioconcina.github.io/images/linear-regression.png" width="65%">
+</div>
+
 <p>Linear Regression is one of the simplest yet explainable models to describe the relationship between quantitative variables.
 More advanced statistical learning models can be seen as a generalization of this approach.<br>
 In this model, one or more indipendent variables (explanatory variables, regressors) are used to predict one dependent variable (response variable, regressand).<br>
@@ -68,24 +72,26 @@ Once the parameters are estimated, we can use the model to predict the response 
 Notice that the linearity is in the parameters, but not in the indipendent variables (<span class="math">\(Y = \beta_0 + \beta_1 X^2 + \epsilon\)</span> is still a linear model).</p>
 <p>The case with multiple indipendent variables is called <strong>multiple linear regression</strong>:</p>
 <div class="math">$$Y = \beta_0 + \beta_1 X_1 + \beta_2 X_2 + ... + \beta_p X_p + \epsilon$$</div>
-<p>This can conveniently represented with matrix linear algebra:</p>
+<p>Supposing to have N observations, the last formula can conveniently represented with matrix linear algebra:</p>
 <div class="math">$$y = X \beta + \epsilon$$</div>
-<p><span class="math">\(X\)</span> is a N x (p+1) matrix with N observations and p indipendent variables plus 1 constant term.<br>
-<span class="math">\(\beta\)</span> is a (p+1)-vector of parameters and <span class="math">\(\epsilon\)</span> is a N-vector of errors.<br>
-We can then write the error term as</p>
+<p><span class="math">\(X\)</span> is a N x (p+1) matrix where we have p indipendent variables plus 1 constant term.<br>
+<span class="math">\(y\)</span> is a N-vector of response variables, <span class="math">\(\beta\)</span> is a (p+1)-vector of parameters and <span class="math">\(\epsilon\)</span> is a N-vector of errors.<br>
+We now minimize the sum of squares using this linear algebra representation.<br>
+We can then write the error term as a function of <span class="math">\(\beta\)</span> as</p>
 <div class="math">$$\epsilon(\beta) = y - X \beta$$</div>
-<p>So the residual sum of squares is</p>
+<p>The residual sum of squares is</p>
 <div class="math">$$RSS(\beta) = (y - X \beta)^T(y - X \beta)$$</div>
 <p>Using some calculus we can compute the derivative of the quadratic function:</p>
 <div class="math">$$\frac{\partial RSS}{\partial \beta} = -2X^T (y - X \beta)$$</div>
 <div class="math">$$\frac{\partial ^ 2 RSS}{\partial^2 \beta} = 2 X^T X$$</div>
-<p>If <span class="math">\(X^T X\)</span> has full rank, we can compute the inverse, and <span class="math">\(X^T X\)</span> is positive definite, so the function has a global minimum where the first derivative is equal to zero:</p>
+<p>If <span class="math">\(X^T X\)</span> has full rank, we can compute the inverse and <span class="math">\(X^T X\)</span> is positive definite, so the function has a global minimum where the first derivative is equal to zero:</p>
 <div class="math">$$X^T (y - X \beta) = 0$$</div>
 <p>The unique solution is</p>
-<div class="math">$$\hat \beta = (X^T X)^{-1} X^T y$$</div>
-<p>The predicted value for the response variable is then</p>
-<div class="math">$$\hat y = X \hat \beta = X (X^T X)^{-1} X^T y = H y$$</div>
-<p>H is called <strong>hat matrix</strong>, because it transforms <span class="math">\(y\)</span> in <span class="math">\(\hat y\)</span>.<br>
+<div class="math">$$\tilde \beta = (X^T X)^{-1} X^T y$$</div>
+<p><span class="math">\(\tilde \beta\)</span> is an <strong>estimator</strong> for <span class="math">\(\beta\)</span>.<br>
+The <em>predicted</em> value for the response variable is then</p>
+<div class="math">$$\tilde y = X \tilde \beta = X (X^T X)^{-1} X^T y = H y$$</div>
+<p>H is usually called <strong>hat matrix</strong>.<br>
 If <span class="math">\(X\)</span> has not full rank, i.e. some columns are not linearly indipendent, as in the case of perfect correlation, some strategy is necessary to remove the columns.</p>
 <p>We should now make some probabilistic hypothesis on the random variables used in the model, so that we can derive additional results.</p>
 <ol>
@@ -106,36 +112,38 @@ If <span class="math">\(X\)</span> has not full rank, i.e. some columns are not 
 <div class="math">$$\epsilon \sim N(0, \sigma^2) \quad i.i.d.  \qquad (*)$$</div>
 <p>The additional assumptions made by <span class="math">\((*)\)</span> are that errors follow a Gaussian distribution and are indipendent (a stronger assumption than uncorrelated).</p>
 <p>Under <span class="math">\((1)+(2)+(3)+(4)\)</span> we have</p>
-<div class="math">$$E(\hat \beta | X) = (X^T X)^{-1} X^T E(y | X) = (X^T X)^{-1} X^T X \beta = \beta$$</div>
+<div class="math">$$E(\tilde \beta | X) = (X^T X)^{-1} X^T E(y | X) = (X^T X)^{-1} X^T X \beta = \beta$$</div>
 <p>and</p>
-<div class="math">$$Var(\hat \beta | X) = (X^T X)^{-1} X^T Var(\beta | X) X ((X^T X)^{-1})^T =$$</div>
+<div class="math">$$Var(\tilde \beta | X) = (X^T X)^{-1} X^T Var(\beta | X) X ((X^T X)^{-1})^T =$$</div>
 <div class="math">$$= (X^T X)^{-1} X^T X ((X^T X)^T)^{-1} \sigma^2 = (X^T X)^{-1} \sigma^2$$</div>
-<p>So <span class="math">\(\hat \beta\)</span> is an unbiased estimator for <span class="math">\(\beta\)</span>.
+<p>So <span class="math">\(\tilde \beta\)</span> is an unbiased estimator for <span class="math">\(\beta\)</span>.
 Under <span class="math">\((*)\)</span> we have then</p>
-<div class="math">$$\hat \beta \sim N(\beta, (X^T X)^{-1} \sigma^2)$$</div>
+<div class="math">$$\tilde \beta \sim N(\beta, (X^T X)^{-1} \sigma^2)$$</div>
 <p>To estimate <span class="math">\(\sigma^2\)</span> we can use the following estimator:</p>
-<div class="math">$$\hat \sigma^2 = \frac{1}{N-p-1}  \sum_{i=1}^{N} (y_i - \hat y_i)^2$$</div>
-<p>The <strong>Gauss-Markov theorem</strong> states that, under the above hypothesis, the OLS estimator for <span class="math">\(\beta\)</span> has the minimum variance among unbiased estimators for <span class="math">\(\beta\)</span>.<br>
+<div class="math">$$\tilde \sigma^2 = \frac{1}{N-p-1}  \sum_{i=1}^{N} (y_i - \tilde y_i)^2$$</div>
+<p>The <strong>Gauss-Markov theorem</strong> states that, under the above hypothesis, the OLS estimator <span class="math">\(\tilde \beta\)</span> has the minimum variance among unbiased estimators for <span class="math">\(\beta\)</span>.<br>
 It is still possible though to find a biased estimator with lower variance.</p>
 <p>We can then use the results to compute <em>confidence intervals</em> and perform <em>hypothesis tests</em> on the parameters.<br>
-To compute a <strong>confidence interval</strong> for the parameters we can use the distributional information on <span class="math">\(\hat \beta\)</span>:</p>
-<div class="math">$$\left(\hat \beta_j - t^{(1-\alpha)}v_j^{1/2} \hat \sigma, \quad\hat \beta_j + t^{(1-\alpha)}v_j^{1/2} \hat \sigma \right)$$</div>
-<p>where <span class="math">\(t_j^{(1-\alpha)}\)</span> is the <span class="math">\(1-\alpha\)</span> percentile of the <strong>Student's t-distribution</strong> with n-p-1 degrees of freedom and <span class="math">\(v_j\)</span> is the j-th diagonal element of <span class="math">\(X\)</span> matrix.<br>
-If we know the real value of <span class="math">\(\sigma\)</span>, or the sample size n is sufficiently large, we can use the percentile of a Normal distribution <span class="math">\(z_j^{(1-\alpha)}\)</span> instead.<br>
+To compute a <strong>confidence interval</strong> for the parameters we can use the distributional information on <span class="math">\(\tilde \beta\)</span>:</p>
+<div class="math">$$\left(\tilde \beta_j - t^{(1-\alpha)}v_j^{1/2} \tilde \sigma, \quad\tilde \beta_j + t^{(1-\alpha)}v_j^{1/2} \tilde \sigma \right)$$</div>
+<p>where <span class="math">\(t_j^{(1-\alpha)}\)</span> is the <span class="math">\(1-\alpha\)</span> percentile of the <strong>Student's t-distribution</strong> with N-p-1 degrees of freedom and <span class="math">\(v_j\)</span> is the j-th diagonal element of <span class="math">\(X\)</span> matrix.<br>
+If we know the real value of <span class="math">\(\sigma\)</span>, or the sample size N is sufficiently large, we can use the percentile of a Normal distribution <span class="math">\(z_j^{(1-\alpha)}\)</span> instead.<br>
 We can construct an <strong>hypothesis test</strong> as follows:</p>
 <div class="math">$$H_0: \qquad \beta_j = 0$$</div>
 <div class="math">$$H_1: \qquad \beta_j \neq 0$$</div>
 <p>We use as <strong>test statistics</strong> the <em>standardized coefficient</em> (or <em>z-score</em>), a random variable defined as</p>
-<div class="math">$$z_j = \frac{\hat \beta_j}{\hat \sigma \sqrt{v_j}}$$</div>
-<p>Under <span class="math">\(H_0\)</span>, <span class="math">\(z_j \sim t_{n-p-1}\)</span> (Student's t-distribution with n-p-1 degrees of freedom).<br>
+<div class="math">$$z_j = \frac{\tilde \beta_j}{\tilde \sigma \sqrt{v_j}}$$</div>
+<p>Under <span class="math">\(H_0\)</span>, <span class="math">\(z_j \sim t_{N-p-1}\)</span> (Student's t-distribution with N-p-1 degrees of freedom).<br>
 A large value of <span class="math">\(z_j\)</span> leads to reject the null hypothesis <span class="math">\(H_0\)</span>, which implies that the parameter <span class="math">\(\beta_j\)</span> is significantly different from zero, hence there is a relationship between the <span class="math">\(X_j\)</span> variable and the response variable.    </p>
 <p>Considering the easier case of simple linear regression, we can explicitly write the estimators for the standard error of the parameters:</p>
-<div class="math">$$SE(\hat \beta_0)^2 = \sigma^2 \left[\frac{1}{n} + \frac{\bar x^2}{\sum_{i=1}^{n} (x_i - \bar x)^2} \right]$$</div>
-<div class="math">$$SE(\hat \beta_1)^2 = \frac{\sigma^2}{\sum_{i=1}^{n}(x_i - \bar x)^2}$$</div>
-<p>Using the estimator <span class="math">\(\hat \sigma\)</span> we can then derive numeric values for the standard errors.<br>
+<div class="math">$$SE(\tilde \beta_0)^2 = \sigma^2 \left[\frac{1}{N} + \frac{\bar x^2}{\sum_{i=1}^{N} (x_i - \bar x)^2} \right]$$</div>
+<div class="math">$$SE(\tilde \beta_1)^2 = \frac{\sigma^2}{\sum_{i=1}^{N}(x_i - \bar x)^2}$$</div>
+<p>Using the estimator <span class="math">\(\tilde \sigma\)</span> we can then derive numeric values for the standard errors.<br>
 We can compute confidence intervals using</p>
-<div class="math">$$\left(\hat \beta_j - z^{(1-\alpha)} SE(\hat \beta_j), \quad \hat \beta_j + z^{(1-\alpha)} SE(\hat \beta_j) \right) \qquad j=0,1$$</div>
+<div class="math">$$\left(\tilde \beta_j - z^{(1-\alpha)} SE(\tilde \beta_j), \quad \tilde \beta_j + z^{(1-\alpha)} SE(\tilde \beta_j) \right) \qquad j=0,1$$</div>
 <p>If we choose a 95% confidence interval, <span class="math">\(\alpha=0.025\)</span> and <span class="math">\(z^{(1-\alpha)}=1.96\)</span>.</p>
+<p>In a next post I'll show how to evaluate the goodness of fit for a linear model.<br>
+For an example of application of a linear regression model on a real dataset see this post: <a href="/blog/linear-regression-example/" target="_blank">Linear Regression Example</a>.</p>
 <script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
     var align = "center",
         indent = "0em",
@@ -207,8 +215,8 @@ We can compute confidence intervals using</p>
 *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
 
 var disqus_config = function () {
-this.page.url = "https://fabioconcina.github.io/drafts/linear-regression-I.html";  // Replace PAGE_URL with your page's canonical URL variable
-this.page.identifier = "linear-regression-I"; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+this.page.url = "https://fabioconcina.github.io/blog/linear-regression/";  // Replace PAGE_URL with your page's canonical URL variable
+this.page.identifier = "linear-regression"; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
 };
 
 (function() { // DON'T EDIT BELOW THIS LINE

@@ -1,0 +1,604 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+ <meta charset="utf-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+ <title></title>
+ <link href="https://fabioconcina.github.io/static/img/favicon.ico" rel="icon">
+ <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
+
+ <!-- CSS -->
+ <link rel="stylesheet" 
+       href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" 
+       integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" 
+       crossorigin="anonymous">
+ <link rel="stylesheet" 
+       href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" 
+       integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" 
+       crossorigin="anonymous">
+ <link href="https://fabioconcina.github.io/static/css/main.css" rel="stylesheet">
+<!-- Google Analytics script -->
+<script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-93736348-1', 'auto');
+    ga('send', 'pageview');
+</script>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" 
+integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" 
+crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" 
+integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" 
+crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" 
+integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" 
+crossorigin="anonymous"></script>
+</head>
+<body>
+ <div class="container">
+<div style="padding:1rem;text-align:right;">
+    <a href="https://fabioconcina.github.io/blog" 
+       class="btn btn-dark" 
+       role="button" 
+       aria-pressed="true" 
+       style="color:white">Back</a>
+</div>
+<hr />
+<h6 class="accent"><strong>MODEL</strong></h6>
+<h1>Linear Regression: a simple application</h1>
+<p>April 01, 2019</p>
+<!--    model
+    stat
+    python
+    statsmodel
+ -->
+<p>In this post we'll show a practical application of the Linear Regression model using an example dataset of houses energy efficiency.<br>
+For the task we'll use Python with <code>pandas</code> and <code>statsmodel</code> libraries.</p>
+<div class="codehilite"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="kn">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">statsmodels.formula.api</span> <span class="kn">as</span> <span class="nn">smf</span>
+</pre></div>
+
+
+<p>The dataset is hosted by UC Irvine Machine Learning Repository from the University of California, Irvine (<a href="http://archive.ics.uci.edu/ml/index.php" target="_blank">http://archive.ics.uci.edu/ml/index.php</a>).<br>
+The data has 8 features related to building parameters and 2 target variables (heating and cooling requirements). The goal is to predict the energy requirements as a function of the building characteristics.</p>
+<p>First, we load the data in a pandas DataFrame:</p>
+<div class="codehilite"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_excel</span><span class="p">(</span><span class="s1">&#39;https://archive.ics.uci.edu/ml/machine-learning-databases/00242/ENB2012_data.xlsx&#39;</span><span class="p">)</span>
+<span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+
+
+<style>
+    .table {
+        font-size: 12px;
+        width: 100%;
+    }
+    table, th, td {
+  border: 1px solid black;
+  text-align: left;
+}
+tr:nth-child(even) {background-color: #f2f2f2;}
+</style>
+
+<div style="overflow: scroll">
+<table class="table">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>X1</th>
+      <th>X2</th>
+      <th>X3</th>
+      <th>X4</th>
+      <th>X5</th>
+      <th>X6</th>
+      <th>X7</th>
+      <th>X8</th>
+      <th>Y1</th>
+      <th>Y2</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>0.98</td>
+      <td>514.5</td>
+      <td>294.0</td>
+      <td>110.25</td>
+      <td>7.0</td>
+      <td>2</td>
+      <td>0.0</td>
+      <td>0</td>
+      <td>15.55</td>
+      <td>21.33</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>0.98</td>
+      <td>514.5</td>
+      <td>294.0</td>
+      <td>110.25</td>
+      <td>7.0</td>
+      <td>3</td>
+      <td>0.0</td>
+      <td>0</td>
+      <td>15.55</td>
+      <td>21.33</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>0.98</td>
+      <td>514.5</td>
+      <td>294.0</td>
+      <td>110.25</td>
+      <td>7.0</td>
+      <td>4</td>
+      <td>0.0</td>
+      <td>0</td>
+      <td>15.55</td>
+      <td>21.33</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>0.98</td>
+      <td>514.5</td>
+      <td>294.0</td>
+      <td>110.25</td>
+      <td>7.0</td>
+      <td>5</td>
+      <td>0.0</td>
+      <td>0</td>
+      <td>15.55</td>
+      <td>21.33</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>0.90</td>
+      <td>563.5</td>
+      <td>318.5</td>
+      <td>122.50</td>
+      <td>7.0</td>
+      <td>2</td>
+      <td>0.0</td>
+      <td>0</td>
+      <td>20.84</td>
+      <td>28.28</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<p>Pandas <code>read_excel()</code> method is very handy to load Excel files and allows to read them directly from an URL.<br>
+We rename the columns with a descriptive name using the description provided by the dataset authors:</p>
+<div class="codehilite"><pre><span></span><span class="n">column_name_dict</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;X1&#39;</span><span class="p">:</span> <span class="s1">&#39;relative_compactness&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;X2&#39;</span><span class="p">:</span> <span class="s1">&#39;surface_area&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;X3&#39;</span><span class="p">:</span> <span class="s1">&#39;wall_area&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;X4&#39;</span><span class="p">:</span> <span class="s1">&#39;roof_area&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;X5&#39;</span><span class="p">:</span> <span class="s1">&#39;overall_height&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;X6&#39;</span><span class="p">:</span> <span class="s1">&#39;orientation&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;X7&#39;</span><span class="p">:</span> <span class="s1">&#39;glazing_area&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;X8&#39;</span><span class="p">:</span> <span class="s1">&#39;glazing_area_distribution&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;Y1&#39;</span><span class="p">:</span> <span class="s1">&#39;heating_load&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;Y2&#39;</span><span class="p">:</span> <span class="s1">&#39;cooling_load&#39;</span>
+<span class="p">}</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="n">column_name_dict</span><span class="p">)</span>
+<span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+
+
+<div style="overflow: scroll">
+<table class="table">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>relative_compactness</th>
+      <th>surface_area</th>
+      <th>wall_area</th>
+      <th>roof_area</th>
+      <th>overall_height</th>
+      <th>orientation</th>
+      <th>glazing_area</th>
+      <th>glazing_area_distribution</th>
+      <th>heating_load</th>
+      <th>cooling_load</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>0.98</td>
+      <td>514.5</td>
+      <td>294.0</td>
+      <td>110.25</td>
+      <td>7.0</td>
+      <td>2</td>
+      <td>0.0</td>
+      <td>0</td>
+      <td>15.55</td>
+      <td>21.33</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>0.98</td>
+      <td>514.5</td>
+      <td>294.0</td>
+      <td>110.25</td>
+      <td>7.0</td>
+      <td>3</td>
+      <td>0.0</td>
+      <td>0</td>
+      <td>15.55</td>
+      <td>21.33</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>0.98</td>
+      <td>514.5</td>
+      <td>294.0</td>
+      <td>110.25</td>
+      <td>7.0</td>
+      <td>4</td>
+      <td>0.0</td>
+      <td>0</td>
+      <td>15.55</td>
+      <td>21.33</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>0.98</td>
+      <td>514.5</td>
+      <td>294.0</td>
+      <td>110.25</td>
+      <td>7.0</td>
+      <td>5</td>
+      <td>0.0</td>
+      <td>0</td>
+      <td>15.55</td>
+      <td>21.33</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>0.90</td>
+      <td>563.5</td>
+      <td>318.5</td>
+      <td>122.50</td>
+      <td>7.0</td>
+      <td>2</td>
+      <td>0.0</td>
+      <td>0</td>
+      <td>20.84</td>
+      <td>28.28</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<p>Recall the formula for a multiple linear regression model</p>
+<div class="math">$$y = X \beta + \epsilon$$</div>
+<p><span class="math">\(X\)</span> is the <strong>feature matrix</strong> with n=768 observations and 9 columns (8 features + 1 intercept).<br>
+<span class="math">\(y\)</span> is one of the two target variables, suppose it to be <em>heating_load</em>.<br>
+<span class="math">\(\beta\)</span> is the unknown 9-vector of parameters.</p>
+<p>We know from theory that, under the assumption of linear indipendence of the feature matrix columns, we can compute an OLS estimate for <span class="math">\(\beta\)</span> doing some matrix multiplication</p>
+<div class="math">$$\tilde \beta = (X^T X)^{-1} X^T y$$</div>
+<p>There is no need to actually implementing the multiplication because <code>statsmodel</code> already provides a method for that.</p>
+<p><code>statsmodel</code> allows a R-like formula for the definition of a linear regression model, such as</p>
+<div class="math">$$target \sim feature_1 + feature_2 + .. + feature_n$$</div>
+<p>We generate programmaticaly the regressors part of the formula using a list and the <code>join</code> method:</p>
+<div class="codehilite"><pre><span></span><span class="n">feature_name_list</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s1">&#39;relative_compactness&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;surface_area&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;wall_area&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;roof_area&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;overall_height&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;orientation&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;glazing_area&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;glazing_area_distribution&#39;</span><span class="p">,</span>
+<span class="p">]</span>
+<span class="n">regressor_formula</span> <span class="o">=</span> <span class="s1">&#39; + &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">feature_name_list</span><span class="p">)</span>
+<span class="n">regressor_formula</span>
+</pre></div>
+
+
+<div class="highlight"><pre><span></span>&#39;relative_compactness + surface_area + wall_area + roof_area + overall_height + orientation + glazing_area + glazing_area_distribution&#39;
+</pre></div>
+
+
+<p>We now create an instance of the linear regression model and use the <code>fit</code> method to estimate the parameters from data:</p>
+<div class="codehilite"><pre><span></span><span class="n">model</span> <span class="o">=</span> <span class="n">smf</span><span class="o">.</span><span class="n">ols</span><span class="p">(</span><span class="n">formula</span><span class="o">=</span><span class="n">f</span><span class="s1">&#39;heating_load ~ {regressor_formula}&#39;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">df</span><span class="p">)</span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
+<span class="n">result</span><span class="o">.</span><span class="n">summary</span><span class="p">()</span>
+</pre></div>
+
+
+<div style="overflow: scroll">
+<table class="table">
+<caption>OLS Regression Results</caption>
+<tbody><tr>
+  <th>Dep. Variable:</th>      <td>heating_load</td>   <th>  R-squared:         </th> <td>   0.916</td>
+</tr>
+<tr>
+  <th>Model:</th>                   <td>OLS</td>       <th>  Adj. R-squared:    </th> <td>   0.915</td>
+</tr>
+<tr>
+  <th>Method:</th>             <td>Least Squares</td>  <th>  F-statistic:       </th> <td>   1187.</td>
+</tr>
+<tr>
+  <th>Date:</th>             <td>Sun, 31 Mar 2019</td> <th>  Prob (F-statistic):</th>  <td>  0.00</td> 
+</tr>
+<tr>
+  <th>Time:</th>                 <td>19:25:33</td>     <th>  Log-Likelihood:    </th> <td> -1912.5</td>
+</tr>
+<tr>
+  <th>No. Observations:</th>      <td>   768</td>      <th>  AIC:               </th> <td>   3841.</td>
+</tr>
+<tr>
+  <th>Df Residuals:</th>          <td>   760</td>      <th>  BIC:               </th> <td>   3878.</td>
+</tr>
+<tr>
+  <th>Df Model:</th>              <td>     7</td>      <th>                     </th>     <td> </td>   
+</tr>
+<tr>
+  <th>Covariance Type:</th>      <td>nonrobust</td>    <th>                     </th>     <td> </td>   
+</tr>
+</tbody></table>
+<table class="table">
+<tbody><tr>
+              <td></td>                 <th>coef</th>     <th>std err</th>      <th>t</th>      <th>P&gt;|t|</th>  <th>[0.025</th>    <th>0.975]</th>  
+</tr>
+<tr>
+  <th>Intercept</th>                 <td>   84.0134</td> <td>   19.034</td> <td>    4.414</td> <td> 0.000</td> <td>   46.649</td> <td>  121.378</td>
+</tr>
+<tr>
+  <th>relative_compactness</th>      <td>  -64.7734</td> <td>   10.289</td> <td>   -6.295</td> <td> 0.000</td> <td>  -84.973</td> <td>  -44.574</td>
+</tr>
+<tr>
+  <th>surface_area</th>              <td>   -0.0626</td> <td>    0.013</td> <td>   -4.670</td> <td> 0.000</td> <td>   -0.089</td> <td>   -0.036</td>
+</tr>
+<tr>
+  <th>wall_area</th>                 <td>    0.0361</td> <td>    0.004</td> <td>    9.386</td> <td> 0.000</td> <td>    0.029</td> <td>    0.044</td>
+</tr>
+<tr>
+  <th>roof_area</th>                 <td>   -0.0494</td> <td>    0.008</td> <td>   -6.569</td> <td> 0.000</td> <td>   -0.064</td> <td>   -0.035</td>
+</tr>
+<tr>
+  <th>overall_height</th>            <td>    4.1700</td> <td>    0.338</td> <td>   12.338</td> <td> 0.000</td> <td>    3.506</td> <td>    4.833</td>
+</tr>
+<tr>
+  <th>orientation</th>               <td>   -0.0233</td> <td>    0.095</td> <td>   -0.246</td> <td> 0.805</td> <td>   -0.209</td> <td>    0.163</td>
+</tr>
+<tr>
+  <th>glazing_area</th>              <td>   19.9327</td> <td>    0.814</td> <td>   24.488</td> <td> 0.000</td> <td>   18.335</td> <td>   21.531</td>
+</tr>
+<tr>
+  <th>glazing_area_distribution</th> <td>    0.2038</td> <td>    0.070</td> <td>    2.915</td> <td> 0.004</td> <td>    0.067</td> <td>    0.341</td>
+</tr>
+</tbody></table>
+<table class="table">
+<tbody><tr>
+  <th>Omnibus:</th>       <td>18.647</td> <th>  Durbin-Watson:     </th> <td>   0.654</td>
+</tr>
+<tr>
+  <th>Prob(Omnibus):</th> <td> 0.000</td> <th>  Jarque-Bera (JB):  </th> <td>  37.707</td>
+</tr>
+<tr>
+  <th>Skew:</th>          <td> 0.044</td> <th>  Prob(JB):          </th> <td>6.49e-09</td>
+</tr>
+<tr>
+  <th>Kurtosis:</th>      <td> 4.082</td> <th>  Cond. No.          </th> <td>1.46e+16</td>
+</tr>
+</tbody></table>
+<p style="font-size: 12px">Warnings:<br>[1] Standard Errors assume that the covariance matrix of the errors is correctly specified.<br>[2] The smallest eigenvalue is 2.14e-24. This might indicate that there are<br>strong multicollinearity problems or that the design matrix is singular.</p>
+</div>
+
+<p>The second warning tells us that the feature matrix may be singular, questioning the linear indipendence hypothesis.</p>
+<p>We can obtain the estimate <span class="math">\(\hat \beta\)</span> of the vector of parameters with <code>result.params</code></p>
+<div class="codehilite"><pre><span></span><span class="n">result</span><span class="o">.</span><span class="n">params</span>
+</pre></div>
+
+
+<div class="highlight"><pre><span></span>Intercept                    84.013418
+relative_compactness        -64.773432
+surface_area                 -0.062606
+wall_area                     0.036129
+roof_area                    -0.049368
+overall_height                4.169954
+orientation                  -0.023330
+glazing_area                 19.932736
+glazing_area_distribution     0.203777
+dtype: float64
+</pre></div>
+
+
+<p>To compute a 95% confidence interval for the parameters we can use <code>result.conf_int()</code></p>
+<div class="codehilite"><pre><span></span><span class="n">result</span><span class="o">.</span><span class="n">conf_int</span><span class="p">(</span><span class="n">alpha</span><span class="o">=</span><span class="mf">0.05</span><span class="p">)</span>  <span class="c1"># we can change the value of alpha to obtain a different interval, e.g. 0.01 -&gt; 99%</span>
+</pre></div>
+
+
+<div>
+<table class="table">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>0</th>
+      <th>1</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>Intercept</th>
+      <td>46.648718</td>
+      <td>121.378119</td>
+    </tr>
+    <tr>
+      <th>relative_compactness</th>
+      <td>-84.972548</td>
+      <td>-44.574316</td>
+    </tr>
+    <tr>
+      <th>surface_area</th>
+      <td>-0.088924</td>
+      <td>-0.036287</td>
+    </tr>
+    <tr>
+      <th>wall_area</th>
+      <td>0.028573</td>
+      <td>0.043686</td>
+    </tr>
+    <tr>
+      <th>roof_area</th>
+      <td>-0.064122</td>
+      <td>-0.034613</td>
+    </tr>
+    <tr>
+      <th>overall_height</th>
+      <td>3.506449</td>
+      <td>4.833459</td>
+    </tr>
+    <tr>
+      <th>orientation</th>
+      <td>-0.209244</td>
+      <td>0.162584</td>
+    </tr>
+    <tr>
+      <th>glazing_area</th>
+      <td>18.334808</td>
+      <td>21.530665</td>
+    </tr>
+    <tr>
+      <th>glazing_area_distribution</th>
+      <td>0.066522</td>
+      <td>0.341032</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<p>The standardized coefficients for hypothesis testing are given by <code>result.tvalues</code></p>
+<div class="codehilite"><pre><span></span><span class="n">result</span><span class="o">.</span><span class="n">tvalues</span>
+</pre></div>
+
+
+<div class="highlight"><pre><span></span>Intercept                     4.413950
+relative_compactness         -6.295132
+surface_area                 -4.669782
+wall_area                     9.386018
+roof_area                    -6.568568
+overall_height               12.337503
+orientation                  -0.246347
+glazing_area                 24.487806
+glazing_area_distribution     2.914520
+dtype: float64
+</pre></div>
+
+
+<p>If the distributional hypothesis for the linear regression hold (see <a href="/blog/linear-regression/" target="_blank">Linear Regression</a> post), the t-values are distributed as <span class="math">\(t_{759}\)</span> (t-Student distribution with 759 degrees of freedom). Being N so large, we can approximate it with a Normal distribution.  </p>
+<p>What the <strong>t-test</strong> does is computing the probability <span class="math">\(P(x&gt;|t|)\)</span>; if the probability is lower than a chosen threshold (usually 0.05), we reject the null hypothesis <span class="math">\(H_0\)</span> which supposes that <span class="math">\(\beta_j = 0\)</span>, concluding that the <span class="math">\(j^{th}\)</span> feature is statistically significant for the model.</p>
+<p>We can obtain the probability <span class="math">\(P(x&gt;|t|)\)</span> with <code>result.pvalues</code></p>
+<div class="codehilite"><pre><span></span><span class="n">result</span><span class="o">.</span><span class="n">pvalues</span>
+</pre></div>
+
+
+<div class="highlight"><pre><span></span>Intercept                    1.161946e-05
+relative_compactness         5.189187e-10
+surface_area                 3.564652e-06
+wall_area                    7.049323e-20
+roof_area                    9.419684e-11
+overall_height               5.245915e-32
+orientation                  8.054803e-01
+glazing_area                 4.415417e-98
+glazing_area_distribution    3.667021e-03
+dtype: float64
+</pre></div>
+
+
+<p>The p-value for <code>orientation</code> is very high, so it should probably be removed from the model definition and the model be estimated again.<br>
+There are many statistical algorithms that can be used to reduce the number of features (<strong>subset selection</strong>). They will be the topic of another post.</p>
+<script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
+    var align = "center",
+        indent = "0em",
+        linebreak = "false";
+
+    if (false) {
+        align = (screen.width < 768) ? "left" : align;
+        indent = (screen.width < 768) ? "0em" : indent;
+        linebreak = (screen.width < 768) ? 'true' : linebreak;
+    }
+
+    var mathjaxscript = document.createElement('script');
+    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
+    mathjaxscript.type = 'text/javascript';
+    mathjaxscript.src = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS-MML_HTMLorMML';
+    mathjaxscript[(window.opera ? "innerHTML" : "text")] =
+        "MathJax.Hub.Config({" +
+        "    config: ['MMLorHTML.js']," +
+        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'AMS' } }," +
+        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
+        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
+        "    displayAlign: '"+ align +"'," +
+        "    displayIndent: '"+ indent +"'," +
+        "    showMathMenu: true," +
+        "    messageStyle: 'normal'," +
+        "    tex2jax: { " +
+        "        inlineMath: [ ['\\\\(','\\\\)'] ], " +
+        "        displayMath: [ ['$$','$$'] ]," +
+        "        processEscapes: true," +
+        "        preview: 'TeX'," +
+        "    }, " +
+        "    'HTML-CSS': { " +
+        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'inherit ! important'} }," +
+        "        linebreaks: { automatic: "+ linebreak +", width: '90% container' }," +
+        "    }, " +
+        "}); " +
+        "if ('default' !== 'default') {" +
+            "MathJax.Hub.Register.StartupHook('HTML-CSS Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax['HTML-CSS'].FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+            "MathJax.Hub.Register.StartupHook('SVG Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+        "}";
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
+}
+</script>
+<hr />
+<div style="text-align:right;">
+    <a href="https://fabioconcina.github.io/blog" 
+       class="btn btn-dark" 
+       role="button" 
+       aria-pressed="true" 
+       style="color:white">Back</a>
+</div>
+<div id="disqus_thread"></div>
+<script>
+
+/**
+*  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+
+var disqus_config = function () {
+this.page.url = "https://fabioconcina.github.io/blog/linear-regression-example/";  // Replace PAGE_URL with your page's canonical URL variable
+this.page.identifier = "linear-regression-example"; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+};
+
+(function() { // DON'T EDIT BELOW THIS LINE
+var d = document, s = d.createElement('script');
+s.src = 'https://fabioconcina.disqus.com/embed.js';
+s.setAttribute('data-timestamp', +new Date());
+(d.head || d.body).appendChild(s);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+ </div>
+</body>
+</html>
