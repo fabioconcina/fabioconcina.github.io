@@ -65,7 +65,7 @@ For the task we'll use Python with <code>pandas</code> and <code>statsmodel</cod
 
 <p>The dataset is hosted by UC Irvine Machine Learning Repository from the University of California, Irvine (<a href="http://archive.ics.uci.edu/ml/index.php" target="_blank">http://archive.ics.uci.edu/ml/index.php</a>).<br>
 The data has 8 features related to building parameters and 2 target variables (heating and cooling requirements). The goal is to predict the energy requirements as a function of the building characteristics.</p>
-<p>First, we load the data in a pandas DataFrame:</p>
+<p>First, we load the data in a pandas DataFrame; pandas <code>read_excel()</code> method is very handy to load Excel files and allows to read them directly from an URL:</p>
 <div class="codehilite"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_excel</span><span class="p">(</span><span class="s1">&#39;https://archive.ics.uci.edu/ml/machine-learning-databases/00242/ENB2012_data.xlsx&#39;</span><span class="p">)</span>
 <span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 </pre></div>
@@ -170,8 +170,29 @@ tr:nth-child(even) {background-color: #f2f2f2;}
 </table>
 </div>
 
-<p>Pandas <code>read_excel()</code> method is very handy to load Excel files and allows to read them directly from an URL.<br>
-We rename the columns with a descriptive name using the description provided by the dataset authors:</p>
+<div class="codehilite"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">info</span><span class="p">()</span>
+</pre></div>
+
+
+<div class="highlight"><pre><span></span>&amp;lt;class &#39;pandas.core.frame.DataFrame&#39;&amp;gt;
+RangeIndex: 768 entries, 0 to 767
+Data columns (total 10 columns):
+X1    768 non-null float64
+X2    768 non-null float64
+X3    768 non-null float64
+X4    768 non-null float64
+X5    768 non-null float64
+X6    768 non-null int64
+X7    768 non-null float64
+X8    768 non-null int64
+Y1    768 non-null float64
+Y2    768 non-null float64
+dtypes: float64(8), int64(2)
+memory usage: 60.1 KB
+</pre></div>
+
+
+<p>We rename the columns with a descriptive name using the description provided by the dataset authors:</p>
 <div class="codehilite"><pre><span></span><span class="n">column_name_dict</span> <span class="o">=</span> <span class="p">{</span>
     <span class="s1">&#39;X1&#39;</span><span class="p">:</span> <span class="s1">&#39;relative_compactness&#39;</span><span class="p">,</span>
     <span class="s1">&#39;X2&#39;</span><span class="p">:</span> <span class="s1">&#39;surface_area&#39;</span><span class="p">,</span>
@@ -276,14 +297,14 @@ We rename the columns with a descriptive name using the description provided by 
 </table>
 </div>
 
-<p>Recall the formula for a multiple linear regression model</p>
+<p>Recall the formula for a multiple linear regression model:</p>
 <div class="math">$$y = X \beta + \epsilon$$</div>
 <p><span class="math">\(X\)</span> is the <strong>feature matrix</strong> with n=768 observations and 9 columns (8 features + 1 intercept).<br>
 <span class="math">\(y\)</span> is one of the two target variables, suppose it to be <em>heating_load</em>.<br>
 <span class="math">\(\beta\)</span> is the unknown 9-vector of parameters.</p>
-<p>We know from theory that, under the assumption of linear indipendence of the feature matrix columns, we can compute an OLS estimate for <span class="math">\(\beta\)</span> doing some matrix multiplication</p>
+<p>We know from theory that, under the assumption of linear indipendence of the feature matrix columns, we can compute an OLS estimate for <span class="math">\(\beta\)</span> doing some matrix algebra:</p>
 <div class="math">$$\tilde \beta = (X^T X)^{-1} X^T y$$</div>
-<p>There is no need to actually implementing the multiplication because <code>statsmodel</code> already provides a method for that.</p>
+<p>There is no need to actually implementing the computation because <code>statsmodel</code> already provides a method for that.</p>
 <p><code>statsmodel</code> allows a R-like formula for the definition of a linear regression model, such as</p>
 <div class="math">$$target \sim feature_1 + feature_2 + .. + feature_n$$</div>
 <p>We generate programmaticaly the regressors part of the formula using a list and the <code>join</code> method:</p>
@@ -494,7 +515,7 @@ dtype: float64
 </pre></div>
 
 
-<p>If the distributional hypothesis for the linear regression hold (see <a href="/blog/linear-regression/" target="_blank">Linear Regression</a> post), the t-values are distributed as <span class="math">\(t_{759}\)</span> (t-Student distribution with 759 degrees of freedom). Being N so large, we can approximate it with a Normal distribution.  </p>
+<p>If the distributional hypothesis for the linear regression hold (see the <a href="/blog/linear-regression/" target="_blank">Linear Regression</a> post), the t-values are distributed as <span class="math">\(t_{759}\)</span> (t-Student distribution with 759 degrees of freedom). Being N so large, we can approximate it with a Normal distribution.  </p>
 <p>What the <strong>t-test</strong> does is computing the probability <span class="math">\(P(x&gt;|t|)\)</span>; if the probability is lower than a chosen threshold (usually 0.05), we reject the null hypothesis <span class="math">\(H_0\)</span> which supposes that <span class="math">\(\beta_j = 0\)</span>, concluding that the <span class="math">\(j^{th}\)</span> feature is statistically significant for the model.</p>
 <p>We can obtain the probability <span class="math">\(P(x&gt;|t|)\)</span> with <code>result.pvalues</code></p>
 <div class="codehilite"><pre><span></span><span class="n">result</span><span class="o">.</span><span class="n">pvalues</span>
@@ -515,7 +536,7 @@ dtype: float64
 
 
 <p>The p-value for <code>orientation</code> is very high, so it should probably be removed from the model definition and the model be estimated again.<br>
-There are many statistical algorithms that can be used to reduce the number of features (<strong>subset selection</strong>). They will be the topic of another post.</p>
+There are many statistical algorithms that can be used to reduce the number of features (namely <strong>subset selection</strong>). This will be the topic for another post.</p>
 <script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
     var align = "center",
         indent = "0em",
