@@ -5,28 +5,35 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>https://fabioconcina.github.io/</loc>
-<lastmod>2019-04-02T19:38:05-00:00</lastmod>
+<lastmod>2019-04-07T21:44:01-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>https://fabioconcina.github.io/archives.html</loc>
-<lastmod>2019-04-02T19:38:05-00:00</lastmod>
+<lastmod>2019-04-07T21:44:01-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>https://fabioconcina.github.io/tags.html</loc>
-<lastmod>2019-04-02T19:38:05-00:00</lastmod>
+<lastmod>2019-04-07T21:44:01-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>https://fabioconcina.github.io/categories.html</loc>
-<lastmod>2019-04-02T19:38:05-00:00</lastmod>
+<lastmod>2019-04-07T21:44:01-00:00</lastmod>
+<changefreq>daily</changefreq>
+<priority>0.5</priority>
+</url>
+
+<url>
+<loc>https://fabioconcina.github.io/blog/logistic-regression/</loc>
+<lastmod>2019-04-07T22:00:00+02:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -96,7 +103,7 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>https://fabioconcina.github.io/category/model.html</loc>
-<lastmod>2019-04-01T22:00:00+00:09</lastmod>
+<lastmod>2019-04-07T22:00:00+00:09</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -124,14 +131,14 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>https://fabioconcina.github.io/tag/model.html</loc>
-<lastmod>2019-04-01T22:00:00+00:09</lastmod>
+<lastmod>2019-04-07T22:00:00+00:09</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>https://fabioconcina.github.io/tag/stat.html</loc>
-<lastmod>2019-04-01T22:00:00+00:09</lastmod>
+<lastmod>2019-04-07T22:00:00+00:09</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -222,7 +229,7 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>https://fabioconcina.github.io/author/fabio-concina.html</loc>
-<lastmod>2019-04-01T22:00:00+00:09</lastmod>
+<lastmod>2019-04-07T22:00:00+00:09</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
