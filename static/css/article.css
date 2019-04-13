@@ -1,0 +1,23 @@
+.nodeAccent {
+    color:green;
+}
+
+/* unvisited link */
+a:link {
+    color: rgb(107, 131, 172);
+}
+
+/* visited link */
+a:visited {
+    color: rgb(99, 122, 163);
+}
+
+/* mouse over link */
+a:hover {
+    color: rgb(99, 122, 163);
+}
+
+/* selected link */
+a:active {
+    color: rgb(99, 122, 163);
+}

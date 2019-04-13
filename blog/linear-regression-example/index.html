@@ -40,6 +40,7 @@ crossorigin="anonymous"></script>
 </head>
 <body>
  <div class="container">
+<link href="https://fabioconcina.github.io/static/css/article.css" rel="stylesheet">
 <div style="padding:1rem;text-align:right;">
     <a href="https://fabioconcina.github.io/blog" 
        class="btn btn-dark" 
@@ -521,7 +522,7 @@ dtype: float64
 </pre></div>
 
 
-<p>If the distributional hypothesis for the linear regression hold (see the <a href="/blog/linear-regression/" target="_blank">Linear Regression</a> post), the t-values are distributed as <span class="math">\(t_{759}\)</span> (t-Student distribution with 759 degrees of freedom). Being N so large, we can approximate it with a Normal distribution.  </p>
+<p>If the distributional hypothesis for the linear regression hold (see the <a href="/blog/linear-regression/">Linear Regression</a> post), the t-values are distributed as <span class="math">\(t_{759}\)</span> (t-Student distribution with 759 degrees of freedom). Being N so large, we can approximate it with a Normal distribution.  </p>
 <p>What the <strong>t-test</strong> does is computing the probability <span class="math">\(P(x&gt;|t|)\)</span>; if the probability is lower than a chosen threshold (usually 0.05), we reject the null hypothesis <span class="math">\(H_0\)</span> which supposes that <span class="math">\(\beta_j = 0\)</span>, concluding that the <span class="math">\(j^{th}\)</span> feature is statistically significant for the model.</p>
 <p>We can obtain the probability <span class="math">\(P(x&gt;|t|)\)</span> with <code>result.pvalues</code></p>
 <div class="codehilite"><pre><span></span><span class="n">result</span><span class="o">.</span><span class="n">pvalues</span>

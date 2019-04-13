@@ -5,28 +5,35 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>https://fabioconcina.github.io/</loc>
-<lastmod>2019-04-07T21:44:01-00:00</lastmod>
+<lastmod>2019-04-13T17:59:35-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>https://fabioconcina.github.io/archives.html</loc>
-<lastmod>2019-04-07T21:44:01-00:00</lastmod>
+<lastmod>2019-04-13T17:59:35-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>https://fabioconcina.github.io/tags.html</loc>
-<lastmod>2019-04-07T21:44:01-00:00</lastmod>
+<lastmod>2019-04-13T17:59:35-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>https://fabioconcina.github.io/categories.html</loc>
-<lastmod>2019-04-07T21:44:01-00:00</lastmod>
+<lastmod>2019-04-13T17:59:35-00:00</lastmod>
+<changefreq>daily</changefreq>
+<priority>0.5</priority>
+</url>
+
+<url>
+<loc>https://fabioconcina.github.io/blog/loopback-4-quickstart/</loc>
+<lastmod>2019-04-13T22:00:00+02:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -95,6 +102,13 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 </url>
 
 <url>
+<loc>https://fabioconcina.github.io/category/framework.html</loc>
+<lastmod>2019-04-13T22:00:00+00:09</lastmod>
+<changefreq>daily</changefreq>
+<priority>0.5</priority>
+</url>
+
+<url>
 <loc>https://fabioconcina.github.io/category/job.html</loc>
 <lastmod>2019-03-05T22:00:00+00:09</lastmod>
 <changefreq>daily</changefreq>
@@ -125,6 +139,20 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <url>
 <loc>https://fabioconcina.github.io/category/visualization.html</loc>
 <lastmod>2018-10-03T08:00:00+00:09</lastmod>
+<changefreq>daily</changefreq>
+<priority>0.5</priority>
+</url>
+
+<url>
+<loc>https://fabioconcina.github.io/tag/api.html</loc>
+<lastmod>2019-04-13T22:00:00+00:09</lastmod>
+<changefreq>daily</changefreq>
+<priority>0.5</priority>
+</url>
+
+<url>
+<loc>https://fabioconcina.github.io/tag/nodejs.html</loc>
+<lastmod>2019-04-13T22:00:00+00:09</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -229,7 +257,7 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>https://fabioconcina.github.io/author/fabio-concina.html</loc>
-<lastmod>2019-04-07T22:00:00+00:09</lastmod>
+<lastmod>2019-04-13T22:00:00+00:09</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
