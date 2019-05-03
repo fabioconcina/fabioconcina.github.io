@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+ <meta charset="utf-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+ <meta name="description" content="Using LoopBack 4 request-level context to get additional info.">
+
+ <title>
+      LoopBack 4: using request-level context
+ </title>
+ <link href="https://fabioconcina.github.io/static/img/favicon.ico" rel="icon">
+ <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
+
+ <!-- CSS -->
+ <link rel="stylesheet" 
+       href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" 
+       integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" 
+       crossorigin="anonymous">
+ <link rel="stylesheet" 
+       href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" 
+       integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" 
+       crossorigin="anonymous">
+ <link href="https://fabioconcina.github.io/static/css/main.css" rel="stylesheet">
+<!-- Google Analytics script -->
+<script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-93736348-1', 'auto');
+    ga('send', 'pageview');
+</script>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" 
+integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" 
+crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" 
+integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" 
+crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" 
+integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" 
+crossorigin="anonymous"></script>
+</head>
+<body>
+ <div class="container">
+<link href="https://fabioconcina.github.io/static/css/article.css" rel="stylesheet">
+<div style="padding:1rem;text-align:right;">
+    <a href="https://fabioconcina.github.io/blog" 
+       class="btn btn-dark" 
+       role="button" 
+       aria-pressed="true" 
+       style="color:white">Back</a>
+    <a href="/" 
+       class="btn btn-dark" 
+       role="button" 
+       aria-pressed="true" 
+       style="color:white">Home</a>
+</div>
+<hr />
+<h6 class="accent"><strong>FRAMEWORK</strong></h6>
+<h1>LoopBack 4: using request-level context</h1>
+<p>May 03, 2019</p>
+<!--    api
+    nodejs
+ -->
+<p>In <a href="https://v4.loopback.io/" target="_blank"><strong>LoopBack 4</strong></a> a <strong>Context</strong> is an abstraction for the state of the application, a registry for all the resources available when the application is running.</p>
+<p>There a 3 levels of context:</p>
+<ul>
+<li>application-level (global)</li>
+<li>server-level (for each server instance)</li>
+<li>request-level (for each single request)</li>
+</ul>
+<p>The <strong>request-level context</strong> is generated for each request and is garbage collected once the response is sent. It is very useful to enrich the information available during the request/response lifecycle, allowing controllers to have additional data, for example for user profilation.  </p>
+<p>Take for example the application <strong>Sequence</strong> (which defines how the server handles each request) and add a custom logic to extract info from the request header and bind it to request-level context:</p>
+<div class="codehilite"><pre><span></span><span class="kr">public</span> <span class="nx">async</span> <span class="nx">handle</span><span class="p">(</span><span class="nx">context</span>: <span class="kt">RequestContext</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">try</span> <span class="p">{</span>
+      <span class="kr">const</span> <span class="p">{</span><span class="nx">request</span><span class="p">,</span> <span class="nx">response</span><span class="p">}</span> <span class="o">=</span> <span class="nx">context</span><span class="p">;</span>
+
+      <span class="c1">// extract additional info from request header</span>
+      <span class="c1">// and bind it to request-level context</span>
+      <span class="kr">const</span> <span class="nx">user</span> <span class="o">=</span> <span class="nx">request</span><span class="p">.</span><span class="nx">headers</span><span class="p">.</span><span class="nx">user_info</span> 
+      <span class="nx">context</span><span class="p">.</span><span class="nx">bind</span><span class="p">(</span><span class="s2">&quot;userInfo&quot;</span><span class="p">).</span><span class="nx">to</span><span class="p">(</span><span class="nx">user</span><span class="p">);</span>
+
+      <span class="kr">const</span> <span class="nx">route</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">findRoute</span><span class="p">(</span><span class="nx">request</span><span class="p">);</span>
+      <span class="kr">const</span> <span class="nx">args</span> <span class="o">=</span> <span class="nx">await</span> <span class="k">this</span><span class="p">.</span><span class="nx">parseParams</span><span class="p">(</span><span class="nx">request</span><span class="p">,</span> <span class="nx">route</span><span class="p">);</span>
+      <span class="kr">const</span> <span class="nx">result</span> <span class="o">=</span> <span class="nx">await</span> <span class="k">this</span><span class="p">.</span><span class="nx">invoke</span><span class="p">(</span><span class="nx">route</span><span class="p">,</span> <span class="nx">args</span><span class="p">);</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">send</span><span class="p">(</span><span class="nx">response</span><span class="p">,</span> <span class="nx">result</span><span class="p">);</span>
+    <span class="p">}</span> <span class="k">catch</span> <span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">reject</span><span class="p">(</span><span class="nx">context</span><span class="p">,</span> <span class="nx">err</span><span class="p">);</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+</pre></div>
+
+
+<p>In this example <code>userInfo</code> is the <strong>BindingKey</strong> and <code>user</code> is the <strong>BindingValue</strong>.  </p>
+<p>We can then use dependency injection to retrieve this information in a controller:</p>
+<div class="codehilite"><pre><span></span><span class="kr">import</span> <span class="p">{</span><span class="nx">inject</span><span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;@loopback/context&#39;</span><span class="p">;</span>
+
+<span class="kr">export</span> <span class="kr">class</span> <span class="nx">MyController</span> <span class="p">{</span>
+  <span class="kr">constructor</span><span class="p">(</span>
+      <span class="kd">@inject</span><span class="p">(</span><span class="s1">&#39;userInfo&#39;</span><span class="p">)</span> <span class="kr">private</span> <span class="nx">userInfo</span>: <span class="kt">string</span>
+  <span class="p">)</span> <span class="p">{}</span>
+
+    <span class="c1">// controller logic can now use </span>
+    <span class="c1">// the private variable userInfo</span>
+<span class="p">}</span>
+</pre></div>
+
+
+<p>The controller can now make use of the variable <code>userInfo</code>, which is dynamic for each request, depending from the header of the single HTTP request.</p>
+<p>If you're interested in a general overview of the framework, see <a href="/blog/loopback-4-quickstart/">LoopBack 4 Quickstart</a>.</p>
+<hr />
+<div style="text-align:right;">
+    <a href="https://fabioconcina.github.io/blog" 
+       class="btn btn-dark" 
+       role="button" 
+       aria-pressed="true" 
+       style="color:white">Back</a>
+</div>
+<div id="disqus_thread"></div>
+<script>
+
+/**
+*  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+
+var disqus_config = function () {
+this.page.url = "https://fabioconcina.github.io/blog/loopback-4-request-context/";  // Replace PAGE_URL with your page's canonical URL variable
+this.page.identifier = "loopback-4-request-context"; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+};
+
+(function() { // DON'T EDIT BELOW THIS LINE
+var d = document, s = d.createElement('script');
+s.src = 'https://fabioconcina.disqus.com/embed.js';
+s.setAttribute('data-timestamp', +new Date());
+(d.head || d.body).appendChild(s);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+ </div>
+</body>
+</html>

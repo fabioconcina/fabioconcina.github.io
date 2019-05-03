@@ -68,17 +68,18 @@ crossorigin="anonymous"></script>
     <img src="https://fabioconcina.github.io/images/linear-regression.png" width="65%">
 </div>
 
-<p>Linear Regression is one of the simplest yet explainable models to describe the relationship between quantitative variables.
+<p><strong>Linear Regression</strong> is one of the simplest yet explainable models to describe the relationship between quantitative variables.
 More advanced statistical learning models can be seen as a generalization of this approach.<br>
-In this model, one or more indipendent variables (explanatory variables, regressors) are used to predict one dependent variable (response variable, regressand).<br>
+In this model, one or more indipendent variables (<strong>explanatory variables, regressors</strong>) are used to predict one dependent variable (<strong>response variable, regressand</strong>).<br>
 The model assumes that there is approximately a linear relationship between indipendent and dependent variables.</p>
 <p>The scenario with a single indipendent variable is called <strong>simple linear regression</strong>:</p>
 <div class="math">$$Y = \beta_0 + \beta_1 X + \epsilon$$</div>
 <p><span class="math">\(Y\)</span> is the response variable and <span class="math">\(X\)</span> is the explanatory variable.<br>
-<span class="math">\(\epsilon\)</span> is an error term, a random variable used to model the deviation from the regression line observed in the data.
-<span class="math">\(\beta_0\)</span> and <span class="math">\(\beta_1\)</span> are called <strong>parameters</strong>. They are unknown and we must estimate them from the data. This step represents the training process for the model.
-To estimate the parameters, the most common algorithm is the <strong>ordinary least squares (OLS)</strong>. The method tries to minimize the sum of squares of the differences between the actual observations of the response variable and the predicted response using the model. The estimated <strong>regression line</strong> is the best fit to the data in the sense of least squares; this can be different from the actual <strong>population line</strong>, since we only have available a sample of the population to estimate the model.<br>
-Once the parameters are estimated, we can use the model to predict the response variable given a value of the explanatory variable. We can also explain how the explanatory variable influences the response variable (does it change when the indipendent variables changes? how much does it change?).
+<span class="math">\(\epsilon\)</span> is an error term, a random variable used to model the deviation from the regression line observed in the data.<br>
+<span class="math">\(\beta_0\)</span> and <span class="math">\(\beta_1\)</span> are called <strong>parameters</strong>. They are unknown and we must estimate them from the data. This step represents the training process for the model.</p>
+<p>To estimate the parameters, the most common algorithm is the <strong>ordinary least squares (OLS)</strong>. This method tries to minimize the sum of squares of the differences between the actual observations of the response variable and the predicted response using the model. <br>
+The estimated <strong>regression line</strong> is the best fit to the data in the sense of least squares; this can be different from the actual <strong>population line</strong>, since we only have available a sample of the population to estimate the model.  </p>
+<p>Once the parameters are estimated, we can use the model to predict the response variable given a value of the explanatory variable. We can also explain how the explanatory variable influences the response variable (does it change when the indipendent variables changes? how much does it change?).<br>
 Notice that the linearity is in the parameters, but not in the indipendent variables (<span class="math">\(Y = \beta_0 + \beta_1 X^2 + \epsilon\)</span> is still a linear model).</p>
 <p>The case with multiple indipendent variables is called <strong>multiple linear regression</strong>:</p>
 <div class="math">$$Y = \beta_0 + \beta_1 X_1 + \beta_2 X_2 + ... + \beta_p X_p + \epsilon$$</div>
@@ -126,13 +127,13 @@ If <span class="math">\(X\)</span> has not full rank, i.e. some columns are not 
 <p>and</p>
 <div class="math">$$Var(\tilde \beta | X) = (X^T X)^{-1} X^T Var(\beta | X) X ((X^T X)^{-1})^T =$$</div>
 <div class="math">$$= (X^T X)^{-1} X^T X ((X^T X)^T)^{-1} \sigma^2 = (X^T X)^{-1} \sigma^2$$</div>
-<p>So <span class="math">\(\tilde \beta\)</span> is an unbiased estimator for <span class="math">\(\beta\)</span>.
+<p>So <span class="math">\(\tilde \beta\)</span> is an unbiased estimator for <span class="math">\(\beta\)</span> and has conditional variance <span class="math">\((X^T X)^{-1} \sigma^2\)</span>.<br>
 Under <span class="math">\((*)\)</span> we have then</p>
 <div class="math">$$\tilde \beta \sim N(\beta, (X^T X)^{-1} \sigma^2)$$</div>
-<p>To estimate <span class="math">\(\sigma^2\)</span> we can use the following estimator:</p>
-<div class="math">$$\tilde \sigma^2 = \frac{1}{N-p-1}  \sum_{i=1}^{N} (y_i - \tilde y_i)^2$$</div>
 <p>The <strong>Gauss-Markov theorem</strong> states that, under the above hypothesis, the OLS estimator <span class="math">\(\tilde \beta\)</span> has the minimum variance among unbiased estimators for <span class="math">\(\beta\)</span>.<br>
 It is still possible though to find a biased estimator with lower variance.</p>
+<p>To estimate <span class="math">\(\sigma^2\)</span> we can use the following estimator:</p>
+<div class="math">$$\tilde \sigma^2 = \frac{1}{N-p-1}  \sum_{i=1}^{N} (y_i - \tilde y_i)^2$$</div>
 <p>We can then use the results to compute <em>confidence intervals</em> and perform <em>hypothesis tests</em> on the parameters.<br>
 To compute a <strong>confidence interval</strong> for the parameters we can use the distributional information on <span class="math">\(\tilde \beta\)</span>:</p>
 <div class="math">$$\left(\tilde \beta_j - t^{(1-\alpha)}v_j^{1/2} \tilde \sigma, \quad\tilde \beta_j + t^{(1-\alpha)}v_j^{1/2} \tilde \sigma \right)$$</div>
@@ -152,8 +153,8 @@ A large value of <span class="math">\(z_j\)</span> leads to reject the null hypo
 We can compute confidence intervals using</p>
 <div class="math">$$\left(\tilde \beta_j - z^{(1-\alpha)} SE(\tilde \beta_j), \quad \tilde \beta_j + z^{(1-\alpha)} SE(\tilde \beta_j) \right) \qquad j=0,1$$</div>
 <p>If we choose a 95% confidence interval, <span class="math">\(\alpha=0.025\)</span> and <span class="math">\(z^{(1-\alpha)}=1.96\)</span>.</p>
-<p>In a next post I'll show how to evaluate the goodness of fit for a linear model.<br>
-For an example of application of a linear regression model on a real dataset see this post: <a href="/blog/linear-regression-example/">Linear Regression Example</a>.</p>
+<p>In a next post I'll show how to evaluate the goodness of fit for a linear model.  </p>
+<p>For an example of application of a linear regression model on a real dataset see this post: <a href="/blog/linear-regression-example/">Linear Regression Example</a>.</p>
 <script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
     var align = "center",
         indent = "0em",
