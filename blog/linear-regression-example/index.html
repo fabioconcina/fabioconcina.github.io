@@ -67,7 +67,7 @@ crossorigin="anonymous"></script>
     statsmodels
  -->
 <p>In this post we'll show a practical application of the Linear Regression model using an example dataset of houses energy efficiency.<br>
-For the task we'll use Python with <code>pandas</code> and <code>statsmodel</code> libraries.</p>
+For the task we'll use Python with <code>pandas</code> and <code>statsmodels</code> libraries.</p>
 <div class="codehilite"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="kn">as</span> <span class="nn">pd</span>
 <span class="kn">import</span> <span class="nn">statsmodels.formula.api</span> <span class="kn">as</span> <span class="nn">smf</span>
 </pre></div>
@@ -315,8 +315,8 @@ memory usage: 60.1 KB
 <span class="math">\(\beta\)</span> is the unknown 9-vector of parameters.</p>
 <p>We know from theory that, under the assumption of linear indipendence of the feature matrix columns, we can compute an OLS estimate for <span class="math">\(\beta\)</span> doing some matrix algebra:</p>
 <div class="math">$$\tilde \beta = (X^T X)^{-1} X^T y$$</div>
-<p>There is no need to actually implementing the computation because <code>statsmodel</code> already provides a method for that.</p>
-<p><code>statsmodel</code> allows a R-like formula for the definition of a linear regression model, such as</p>
+<p>There is no need to actually implementing the computation because <code>statsmodels</code> already provides a method for that.</p>
+<p><code>statsmodels</code> allows a R-like formula for the definition of a linear regression model, such as</p>
 <div class="math">$$target \sim feature_1 + feature_2 + .. + feature_n$$</div>
 <p>We generate programmaticaly the regressors part of the formula using a list and the <code>join</code> method:</p>
 <div class="codehilite"><pre><span></span><span class="n">feature_name_list</span> <span class="o">=</span> <span class="p">[</span>
