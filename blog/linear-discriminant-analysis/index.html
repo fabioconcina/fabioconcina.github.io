@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+ <meta charset="utf-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+ <meta name="description" content="Overview of LDA model.">
+
+ <title>
+      Linear Discriminant Analysis
+ </title>
+ <link href="https://fabioconcina.github.io/static/img/favicon.ico" rel="icon">
+ <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
+
+ <!-- CSS -->
+ <link rel="stylesheet" 
+       href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" 
+       integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" 
+       crossorigin="anonymous">
+ <link rel="stylesheet" 
+       href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" 
+       integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" 
+       crossorigin="anonymous">
+ <link href="https://fabioconcina.github.io/static/css/main.css" rel="stylesheet">
+<!-- Google Analytics script -->
+<script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-93736348-1', 'auto');
+    ga('send', 'pageview');
+</script>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" 
+integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" 
+crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" 
+integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" 
+crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" 
+integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" 
+crossorigin="anonymous"></script>
+</head>
+<body>
+ <div class="container">
+<link href="https://fabioconcina.github.io/static/css/article.css" rel="stylesheet">
+<div style="padding:1rem;text-align:right;">
+    <a href="https://fabioconcina.github.io/blog" 
+       class="btn btn-dark" 
+       role="button" 
+       aria-pressed="true" 
+       style="color:white">Back</a>
+    <a href="/" 
+       class="btn btn-dark" 
+       role="button" 
+       aria-pressed="true" 
+       style="color:white">Home</a>
+</div>
+<hr />
+<h6 class="accent"><strong>MODEL</strong></h6>
+<h1>Linear Discriminant Analysis</h1>
+<p>May 21, 2019</p>
+<!--    model
+    stat
+ -->
+<p><strong>Linear Discriminant Analysis (LDA)</strong> is a classification method which takes a different approach from the one used in <a href="/blog/logistic-regression/"><strong>Logistic Regression</strong></a>.<br>
+Instead of directly modeling the <em>posterior probabilities</em> <span class="math">\(P(Y=k | X=x)\)</span>, it uses <a href="https://en.wikipedia.org/wiki/Bayes%27_theorem" target="_blank"><strong>Bayes theorem</strong></a> to compute them starting from the prior probabilities and conditional density functions of the classes.  </p>
+<p>More in detail, suppose to have:</p>
+<ul>
+<li><span class="math">\(\pi_k\)</span>: the <strong>prior probability</strong> that the response variable <span class="math">\(Y\)</span> belongs to k-th class;</li>
+<li><span class="math">\(f_k(x) = P(X=x | K=k)\)</span>: the <strong>density function</strong> of <span class="math">\(X\)</span> conditioned to the information that <span class="math">\(Y\)</span> comes from the k-th class.</li>
+</ul>
+<p>We can then apply Bayes theorem to obtain</p>
+<div class="math">$$P(Y=k | X=x) = \frac{\pi_k f_k(x)}{\sum_{j=1}^{K}\pi_j f_j(x)} \qquad (1)$$</div>
+<p>In general, we don't know <span class="math">\(\pi_k\)</span> and <span class="math">\(f_k(x)\)</span>.<br>
+<span class="math">\(\pi_k\)</span> can be easily estimated from the training data:</p>
+<div class="math">$$\hat \pi_k = \frac{N_k}{N}$$</div>
+<p>with <span class="math">\(N_k\)</span> the number of observation from the k-th class and <span class="math">\(N\)</span> the total number of observations.<br>
+<span class="math">\(f_k(x)\)</span> is more complex to estimate and we should made some assumptions.<br>
+Depending on the hypothesis we make <span class="math">\(f_k(x)\)</span>, we obtain different classification methods. </p>
+<p>If we assume that <span class="math">\(f_k(x)\)</span> follows a Multivariate Gaussian distribution, we obtain the <strong>Quadratic Discriminant Analysis (QDA)</strong> method:</p>
+<div class="math">$$f_k(x) = \frac{1}{(2 \pi)^{p/2} | \Sigma_k |^{1/2}} e^{-\frac{1}{2}(x-\mu_k)^T\Sigma_k^{-1}(x-\mu_k)}$$</div>
+<p>If we then make the additional assumption that all the classes share the same covariance matrix, i.e. <span class="math">\(\Sigma_k = \Sigma \enspace \forall k\)</span>, we obtain the <strong>Linear Discriminant Analysis</strong> method.</p>
+<p>Substituting in <span class="math">\((1)\)</span> we have</p>
+<div class="math">$$P(Y=k | X=x) \propto \pi_k f_k(x) \propto \pi_k e^{-\frac{1}{2}(x-\mu_k)^T\Sigma^{-1}(x-\mu_k)}$$</div>
+<p>where we have dropped the factors that not depend on the class <span class="math">\(k\)</span>.<br>
+Taking the <span class="math">\(\log\)</span> we have:</p>
+<div class="math">$$\log P(Y=k | X=x) \propto \log\pi_k -\frac{1}{2}(x-\mu_k)^T\Sigma^{-1}(x-\mu_k) \propto 
+\log\pi_k -\frac{1}{2}\mu_k^T\Sigma^{-1}\mu_k + x^T\Sigma^{-1}\mu_k$$</div>
+<p>To classify a response, we take the class <span class="math">\(k\)</span> which maximixes the following function:</p>
+<div class="math">$$\delta_k(x) = \log\pi_k -\frac{1}{2}\mu_k^T\Sigma^{-1}\mu_k + x^T\Sigma^{-1}\mu_k \qquad (2)$$</div>
+<p>The <strong>decision boundary</strong> is the set of points for which</p>
+<div class="math">$$\delta_i(x) = \delta_j(x) \quad i \neq j$$</div>
+<p>We see from <span class="math">\((2)\)</span> that <strong>LDA</strong> creates linear decision boundaries, hence the name.</p>
+<p>Differently, if we remove the hypothesis of common covariance matrix <span class="math">\(\Sigma\)</span> among classes, we obtain the following equation:</p>
+<div class="math">$$\delta_k(x) = \log\pi_k -\frac{1}{2}\mu_k^T\Sigma_k^{-1}\mu_k + x^T\Sigma_k^{-1}\mu_k -\frac{1}{2}x^T\Sigma_k^{-1}x -\frac{1}{2} \log |\Sigma_k| \qquad (3)$$</div>
+<p><span class="math">\((3)\)</span> is a quadratic function, so with <strong>QDA</strong> we will have quadratic decision boundaries.</p>
+<script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
+    var align = "center",
+        indent = "0em",
+        linebreak = "false";
+
+    if (false) {
+        align = (screen.width < 768) ? "left" : align;
+        indent = (screen.width < 768) ? "0em" : indent;
+        linebreak = (screen.width < 768) ? 'true' : linebreak;
+    }
+
+    var mathjaxscript = document.createElement('script');
+    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
+    mathjaxscript.type = 'text/javascript';
+    mathjaxscript.src = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS-MML_HTMLorMML';
+    mathjaxscript[(window.opera ? "innerHTML" : "text")] =
+        "MathJax.Hub.Config({" +
+        "    config: ['MMLorHTML.js']," +
+        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'AMS' } }," +
+        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
+        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
+        "    displayAlign: '"+ align +"'," +
+        "    displayIndent: '"+ indent +"'," +
+        "    showMathMenu: true," +
+        "    messageStyle: 'normal'," +
+        "    tex2jax: { " +
+        "        inlineMath: [ ['\\\\(','\\\\)'] ], " +
+        "        displayMath: [ ['$$','$$'] ]," +
+        "        processEscapes: true," +
+        "        preview: 'TeX'," +
+        "    }, " +
+        "    'HTML-CSS': { " +
+        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'inherit ! important'} }," +
+        "        linebreaks: { automatic: "+ linebreak +", width: '90% container' }," +
+        "    }, " +
+        "}); " +
+        "if ('default' !== 'default') {" +
+            "MathJax.Hub.Register.StartupHook('HTML-CSS Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax['HTML-CSS'].FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+            "MathJax.Hub.Register.StartupHook('SVG Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+        "}";
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
+}
+</script>
+<hr />
+<div style="text-align:right;">
+    <a href="https://fabioconcina.github.io/blog" 
+       class="btn btn-dark" 
+       role="button" 
+       aria-pressed="true" 
+       style="color:white">Back</a>
+</div>
+<div id="disqus_thread"></div>
+<script>
+
+/**
+*  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+
+var disqus_config = function () {
+this.page.url = "https://fabioconcina.github.io/blog/linear-discriminant-analysis/";  // Replace PAGE_URL with your page's canonical URL variable
+this.page.identifier = "linear-discriminant-analysis"; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+};
+
+(function() { // DON'T EDIT BELOW THIS LINE
+var d = document, s = d.createElement('script');
+s.src = 'https://fabioconcina.disqus.com/embed.js';
+s.setAttribute('data-timestamp', +new Date());
+(d.head || d.body).appendChild(s);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+ </div>
+</body>
+</html>
