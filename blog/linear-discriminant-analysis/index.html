@@ -64,8 +64,8 @@ crossorigin="anonymous"></script>
 <!--    model
     stat
  -->
-<p><strong>Linear Discriminant Analysis (LDA)</strong> is a classification method which takes a different approach from the one used in <a href="/blog/logistic-regression/"><strong>Logistic Regression</strong></a>.<br>
-Instead of directly modeling the <em>posterior probabilities</em> <span class="math">\(P(Y=k | X=x)\)</span>, it uses <a href="https://en.wikipedia.org/wiki/Bayes%27_theorem" target="_blank"><strong>Bayes theorem</strong></a> to compute them starting from the prior probabilities and conditional density functions of the classes.  </p>
+<p><strong>Linear Discriminant Analysis (LDA)</strong> is a classification method which takes a different approach from the one used by <a href="/blog/logistic-regression/"><strong>Logistic Regression</strong></a>.<br>
+Instead of directly modeling the <em>posterior probabilities</em> <span class="math">\(P(Y=k | X=x)\)</span>, it uses <a href="https://en.wikipedia.org/wiki/Bayes%27_theorem" target="_blank"><strong>Bayes theorem</strong></a> to compute them starting from the prior probabilities and conditional density functions of the k classes.  </p>
 <p>More in detail, suppose to have:</p>
 <ul>
 <li><span class="math">\(\pi_k\)</span>: the <strong>prior probability</strong> that the response variable <span class="math">\(Y\)</span> belongs to k-th class;</li>
@@ -90,6 +90,8 @@ Taking the <span class="math">\(\log\)</span> on both sides, we have:</p>
 \log\pi_k -\frac{1}{2}\mu_k^T\Sigma^{-1}\mu_k + x^T\Sigma^{-1}\mu_k$$</div>
 <p>To classify a response, we take the class <span class="math">\(k\)</span> which maximixes the following function:</p>
 <div class="math">$$\delta_k(x) = \log\pi_k -\frac{1}{2}\mu_k^T\Sigma^{-1}\mu_k + x^T\Sigma^{-1}\mu_k \qquad (2)$$</div>
+<p>Formally, we define an estimator <span class="math">\(\tilde Y\)</span> such that:</p>
+<div class="math">$$\tilde Y(x) = argmax_k \delta_k(x)$$</div>
 <p>The <strong>decision boundary</strong> is the set of points for which</p>
 <div class="math">$$\delta_i(x) = \delta_j(x) \quad i \neq j$$</div>
 <p>i.e. the estimated separating boundary between the classes.</p>
@@ -97,6 +99,12 @@ Taking the <span class="math">\(\log\)</span> on both sides, we have:</p>
 <p>Differently, if we remove the hypothesis of common covariance matrix <span class="math">\(\Sigma\)</span> among classes, we obtain the following equation:</p>
 <div class="math">$$\delta_k(x) = \log\pi_k -\frac{1}{2}\mu_k^T\Sigma_k^{-1}\mu_k + x^T\Sigma_k^{-1}\mu_k -\frac{1}{2}x^T\Sigma_k^{-1}x -\frac{1}{2} \log |\Sigma_k| \qquad (3)$$</div>
 <p><span class="math">\((3)\)</span> is a quadratic function, so with <strong>QDA</strong> we will have quadratic decision boundaries.</p>
+<p>To use the method in practice we still need to estimate the parameters for the Gaussian distribution:</p>
+<div class="math">$$\hat \mu_k = \sum_{i=1}^{N_k} \frac{x_i}{N_k}$$</div>
+<div class="math">$$\hat \Sigma = \frac{1}{N-K} \sum_{k=1}^{K} \sum_{i=1}^{N_k} (x_i - \hat \mu_k) (x_i - \hat \mu_k)^T$$</div>
+<p>In the QDA case we should estimate each <span class="math">\(\Sigma_k\)</span> separately, as they are different for each class. 
+This greatly increases the number of parameters to estimate, so when choosing between LDA and QDA also the 
+availability of training data should be taken into account.</p>
 <script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
     var align = "center",
         indent = "0em",
