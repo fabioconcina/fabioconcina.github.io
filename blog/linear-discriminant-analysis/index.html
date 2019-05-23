@@ -72,7 +72,7 @@ Instead of directly modeling the <em>posterior probabilities</em> <span class="m
 <li><span class="math">\(f_k(x) = P(X=x | Y=k)\)</span>: the <strong>density function</strong> of <span class="math">\(X\)</span> conditioned to the information that <span class="math">\(Y\)</span> comes from the k-th class.</li>
 </ul>
 <p>We can then apply Bayes theorem to obtain</p>
-<div class="math">$$P(Y=k | X=x) = \frac{\pi_k f_k(x)}{\sum_{j=1}^{K}\pi_j f_j(x)} \qquad (1)$$</div>
+<div class="math">$$P(Y=k | X=x) = \frac{\pi_k f_k(x)}{\sum_{j=1}^{K}\pi_j f_j(x)} \qquad \tag{1}$$</div>
 <p>In general, we don't know <span class="math">\(\pi_k\)</span> and <span class="math">\(f_k(x)\)</span>.<br>
 <span class="math">\(\pi_k\)</span> can be easily estimated from the training data:</p>
 <div class="math">$$\hat \pi_k = \frac{N_k}{N}$$</div>
@@ -89,7 +89,7 @@ Taking the <span class="math">\(\log\)</span> on both sides, we have:</p>
 <div class="math">$$\log P(Y=k | X=x) \propto \log\pi_k -\frac{1}{2}(x-\mu_k)^T\Sigma^{-1}(x-\mu_k) \propto 
 \log\pi_k -\frac{1}{2}\mu_k^T\Sigma^{-1}\mu_k + x^T\Sigma^{-1}\mu_k$$</div>
 <p>To classify a response, we take the class <span class="math">\(k\)</span> which maximixes the following function:</p>
-<div class="math">$$\delta_k(x) = \log\pi_k -\frac{1}{2}\mu_k^T\Sigma^{-1}\mu_k + x^T\Sigma^{-1}\mu_k \qquad (2)$$</div>
+<div class="math">$$\delta_k(x) = \log\pi_k -\frac{1}{2}\mu_k^T\Sigma^{-1}\mu_k + x^T\Sigma^{-1}\mu_k \qquad \tag{2}$$</div>
 <p>Formally, we define an estimator <span class="math">\(\tilde Y\)</span> such that:</p>
 <div class="math">$$\tilde Y(x) = argmax_k \delta_k(x)$$</div>
 <p>The <strong>decision boundary</strong> is the set of points for which</p>
@@ -97,7 +97,7 @@ Taking the <span class="math">\(\log\)</span> on both sides, we have:</p>
 <p>i.e. the estimated separating boundary between the classes.</p>
 <p>We see from <span class="math">\((2)\)</span> that <strong>LDA</strong> creates linear decision boundaries, hence the name.</p>
 <p>Differently, if we remove the hypothesis of common covariance matrix <span class="math">\(\Sigma\)</span> among classes, we obtain the following equation:</p>
-<div class="math">$$\delta_k(x) = \log\pi_k -\frac{1}{2}\mu_k^T\Sigma_k^{-1}\mu_k + x^T\Sigma_k^{-1}\mu_k -\frac{1}{2}x^T\Sigma_k^{-1}x -\frac{1}{2} \log |\Sigma_k| \qquad (3)$$</div>
+<div class="math">$$\delta_k(x) = \log\pi_k -\frac{1}{2}\mu_k^T\Sigma_k^{-1}\mu_k + x^T\Sigma_k^{-1}\mu_k -\frac{1}{2}x^T\Sigma_k^{-1}x -\frac{1}{2} \log |\Sigma_k| \qquad \tag{3}$$</div>
 <p><span class="math">\((3)\)</span> is a quadratic function, so with <strong>QDA</strong> we will have quadratic decision boundaries.</p>
 <p>To use the method in practice we still need to estimate the parameters for the Gaussian distribution:</p>
 <div class="math">$$\hat \mu_k = \sum_{i=1}^{N_k} \frac{x_i}{N_k}$$</div>

@@ -113,6 +113,10 @@ Rearranging the terms of <span class="math">\((1)\)</span> we have</p>
 <p>Taking the logarithm of both sides we finally have</p>
 <div class="math">$$\log\left(\frac{p(X)}{1-p(X)}\right) = \beta_0 + \beta_1 X \tag{2}$$</div>
 <p><span class="math">\((2)\)</span> shows that the <em>log-odds</em> (or <em>logit</em>) are linear in the parameters <span class="math">\(\beta_0\)</span> and <span class="math">\(\beta_1\)</span>. Increasing the value of X has the effect of linearly increasing the log-odds of success.  </p>
+<p>In general, with k classes, we are building a model with the following form:</p>
+<div class="math">$$\log \left(\frac{P(Y=k | X=x)}{P(Y=K | X=x)}\right) = \beta_{k0} + \beta_k^Tx \qquad k=1,...,K-1 \tag{3}$$</div>
+<p><span class="math">\((3)\)</span> shows that the model estimates <strong>linear decision boundaries</strong> between the classes.<br>
+This is closely related to the result we obtain with <a href="/blog/linear-discriminant-analysis/"><strong>Linear Discriminant Analysis</strong></a>.</p>
 <p>In a following post we'll show how to apply the logistic regression model for a classification task.</p>
 <script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
     var align = "center",
