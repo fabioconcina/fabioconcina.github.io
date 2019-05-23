@@ -69,7 +69,7 @@ Instead of directly modeling the <em>posterior probabilities</em> <span class="m
 <p>More in detail, suppose to have:</p>
 <ul>
 <li><span class="math">\(\pi_k\)</span>: the <strong>prior probability</strong> that the response variable <span class="math">\(Y\)</span> belongs to k-th class;</li>
-<li><span class="math">\(f_k(x) = P(X=x | K=k)\)</span>: the <strong>density function</strong> of <span class="math">\(X\)</span> conditioned to the information that <span class="math">\(Y\)</span> comes from the k-th class.</li>
+<li><span class="math">\(f_k(x) = P(X=x | Y=k)\)</span>: the <strong>density function</strong> of <span class="math">\(X\)</span> conditioned to the information that <span class="math">\(Y\)</span> comes from the k-th class.</li>
 </ul>
 <p>We can then apply Bayes theorem to obtain</p>
 <div class="math">$$P(Y=k | X=x) = \frac{\pi_k f_k(x)}{\sum_{j=1}^{K}\pi_j f_j(x)} \qquad (1)$$</div>
