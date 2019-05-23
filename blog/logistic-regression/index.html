@@ -76,7 +76,7 @@ This could represent for example</p>
 <p>Logistic regression models the <strong>probability</strong> that <span class="math">\(Y\)</span> belongs to a specific class, instead of modeling <span class="math">\(Y\)</span> directly.  </p>
 <p>Suppose <span class="math">\(X\)</span> being the independent variable, which could be quantitative, taking values in <span class="math">\({\rm I\!R}\)</span>, or binary, taking values in <span class="math">\(\{0,1\}\)</span>. The output of the model will then be the probability <span class="math">\(P(Y=1|X)\)</span> (and hence <span class="math">\(P(Y=0|X) = 1 - P(Y=1|X)\)</span>).  </p>
 <p>To model the relationship between the probability <span class="math">\(p(X)\)</span> and <span class="math">\(X\)</span>, we can't use a linear relationship, as the predicted probability could fall outside the interval <span class="math">\([0,1]\)</span>. We need a function that could map the domain of X into the allowed interval for a probability.<br>
-One such function is the <strong>logistic function</strong>:</p>
+One such function is the <a href="https://en.wikipedia.org/wiki/Logistic_function" target="_blank"><strong>logistic function</strong></a>:</p>
 <div class="math">$$f(x) = \frac{e^{x}}{1 + e^{x}}, \qquad x \in {\rm I\!R}$$</div>
 <p>It's easy to see that</p>
 <div class="math">$$\frac{d}{dx} f(x) = \frac{e^x}{(1 + e^x)^2} &gt; 0 \qquad \forall x$$</div>
