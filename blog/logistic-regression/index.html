@@ -51,19 +51,16 @@ crossorigin="anonymous"></script>
        role="button" 
        aria-pressed="true" 
        style="color:white">Back</a>
-    <a href="/" 
+    <!-- <a href="/" 
        class="btn btn-dark" 
        role="button" 
        aria-pressed="true" 
-       style="color:white">Home</a>
+       style="color:white">Home</a> -->
 </div>
 <hr />
-<h6 class="accent"><strong>MODEL</strong></h6>
+<h6 class="accent"><strong>STAT</strong></h6>
 <h1>Logistic Regression</h1>
 <p>April 07, 2019</p>
-<!--    model
-    stat
- -->
 <p><strong>Logistic Regression</strong> is a popular model for <strong>classification</strong> problems.<br>
 In a classification setting, the response variable is <em>qualitative</em> (<em>categorical</em>), instead of being <em>quantitative</em> as in the case of <strong>regression</strong> problems.  </p>
 <p>We would like to predict if a particular observation belongs to a specific <strong>class</strong> (<em>category</em>).  <br>
@@ -76,7 +73,7 @@ This could represent for example</p>
 <p>Logistic regression models the <strong>probability</strong> that <span class="math">\(Y\)</span> belongs to a specific class, instead of modeling <span class="math">\(Y\)</span> directly.  </p>
 <p>Suppose <span class="math">\(X\)</span> being the independent variable, which could be quantitative, taking values in <span class="math">\({\rm I\!R}\)</span>, or binary, taking values in <span class="math">\(\{0,1\}\)</span>. The output of the model will then be the probability <span class="math">\(P(Y=1|X)\)</span> (and hence <span class="math">\(P(Y=0|X) = 1 - P(Y=1|X)\)</span>).  </p>
 <p>To model the relationship between the probability <span class="math">\(p(X)\)</span> and <span class="math">\(X\)</span>, we can't use a linear relationship, as the predicted probability could fall outside the interval <span class="math">\([0,1]\)</span>. We need a function that could map the domain of X into the allowed interval for a probability.<br>
-One such function is the <strong>logistic function</strong>:</p>
+One such function is the <a href="https://en.wikipedia.org/wiki/Logistic_function" target="_blank"><strong>logistic function</strong></a>:</p>
 <div class="math">$$f(x) = \frac{e^{x}}{1 + e^{x}}, \qquad x \in {\rm I\!R}$$</div>
 <p>It's easy to see that</p>
 <div class="math">$$\frac{d}{dx} f(x) = \frac{e^x}{(1 + e^x)^2} &gt; 0 \qquad \forall x$$</div>
@@ -113,7 +110,12 @@ Rearranging the terms of <span class="math">\((1)\)</span> we have</p>
 <p>Taking the logarithm of both sides we finally have</p>
 <div class="math">$$\log\left(\frac{p(X)}{1-p(X)}\right) = \beta_0 + \beta_1 X \tag{2}$$</div>
 <p><span class="math">\((2)\)</span> shows that the <em>log-odds</em> (or <em>logit</em>) are linear in the parameters <span class="math">\(\beta_0\)</span> and <span class="math">\(\beta_1\)</span>. Increasing the value of X has the effect of linearly increasing the log-odds of success.  </p>
-<p>In a following post we'll show how to apply the logistic regression model for a classification task.</p>
+<p>In general, with k classes, we are building a model with the following form:</p>
+<div class="math">$$\log \left(\frac{P(Y=k | X=x)}{P(Y=K | X=x)}\right) = \beta_{k0} + \beta_k^Tx \qquad k=1,...,K-1 \tag{3}$$</div>
+<p><span class="math">\((3)\)</span> shows that the model estimates <strong>linear decision boundaries</strong> between the classes.<br>
+This is closely related to the result we obtain with <a href="/blog/linear-discriminant-analysis/"><strong>Linear Discriminant Analysis</strong></a>.</p>
+<!-- In a following post we'll show how to apply the logistic regression model for a classification task. -->
+
 <script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
     var align = "center",
         indent = "0em",
