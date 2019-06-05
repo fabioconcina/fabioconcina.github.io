@@ -11,11 +11,11 @@ body {
 .header {
   padding-top: 50px;
   padding-bottom: 5px;
-  text-align: right;
+  text-align: center;
 }
 
 .header h1 {
-  font-size: 40px;
+  font-size: 44px;
 }
 
 .header h4 {
