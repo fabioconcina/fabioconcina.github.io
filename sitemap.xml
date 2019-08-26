@@ -5,28 +5,35 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>https://fabioconcina.github.io/</loc>
-<lastmod>2019-06-05T12:33:32-00:00</lastmod>
+<lastmod>2019-08-26T15:49:31-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>https://fabioconcina.github.io/archives.html</loc>
-<lastmod>2019-06-05T12:33:32-00:00</lastmod>
+<lastmod>2019-08-26T15:49:31-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>https://fabioconcina.github.io/tags.html</loc>
-<lastmod>2019-06-05T12:33:32-00:00</lastmod>
+<lastmod>2019-08-26T15:49:31-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>https://fabioconcina.github.io/categories.html</loc>
-<lastmod>2019-06-05T12:33:32-00:00</lastmod>
+<lastmod>2019-08-26T15:49:31-00:00</lastmod>
+<changefreq>daily</changefreq>
+<priority>0.5</priority>
+</url>
+
+<url>
+<loc>https://fabioconcina.github.io/fabio-concina/</loc>
+<lastmod>2019-08-26T15:49:31-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -41,13 +48,6 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <url>
 <loc>https://fabioconcina.github.io/blog/loopback-4-request-context/</loc>
 <lastmod>2019-05-03T22:00:00+02:00</lastmod>
-<changefreq>daily</changefreq>
-<priority>0.5</priority>
-</url>
-
-<url>
-<loc>https://fabioconcina.github.io/blog/ipad-google-photos-add-single-photos/</loc>
-<lastmod>2019-04-22T22:00:00+02:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -130,13 +130,6 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 </url>
 
 <url>
-<loc>https://fabioconcina.github.io/category/tip.html</loc>
-<lastmod>2019-04-22T22:00:00+00:09</lastmod>
-<changefreq>daily</changefreq>
-<priority>0.5</priority>
-</url>
-
-<url>
 <loc>https://fabioconcina.github.io/category/version-control.html</loc>
 <lastmod>2019-01-10T08:00:00+00:09</lastmod>
 <changefreq>daily</changefreq>
@@ -167,20 +160,6 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <url>
 <loc>https://fabioconcina.github.io/tag/nodejs.html</loc>
 <lastmod>2019-05-03T22:00:00+00:09</lastmod>
-<changefreq>daily</changefreq>
-<priority>0.5</priority>
-</url>
-
-<url>
-<loc>https://fabioconcina.github.io/tag/ios.html</loc>
-<lastmod>2019-04-22T22:00:00+00:09</lastmod>
-<changefreq>daily</changefreq>
-<priority>0.5</priority>
-</url>
-
-<url>
-<loc>https://fabioconcina.github.io/tag/photos.html</loc>
-<lastmod>2019-04-22T22:00:00+00:09</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
