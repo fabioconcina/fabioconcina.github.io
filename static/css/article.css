@@ -4,20 +4,20 @@
 
 /* unvisited link */
 a:link {
-    color: rgb(107, 131, 172);
+    color: var(--link);
 }
 
 /* visited link */
 a:visited {
-    color: rgb(99, 122, 163);
+    color: var(--link);
 }
 
 /* mouse over link */
 a:hover {
-    color: rgb(99, 122, 163);
+    color: var(--link);
 }
 
 /* selected link */
 a:active {
-    color: rgb(99, 122, 163);
+    color: var(--link);
 }

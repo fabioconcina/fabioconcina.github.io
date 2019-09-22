@@ -1,3 +1,9 @@
+:root {
+  --accent: rgb(64,126,201);
+  --link: rgb(80,109,133);
+}
+
+
 body {
   font-family: 'Raleway', sans-serif;
 }
@@ -62,7 +68,7 @@ a:active {
 }
 
 code {
-  color: rgb(6, 175, 253);
+  color: var(--accent);
   /* background-color: rgb(245,245,245); */
 }
 
@@ -74,7 +80,7 @@ pre {
 }
 
 .accent {
-  color: rgb(6, 175, 253);
+  color: var(--accent);
 }
 
 .codehilite .hll { background-color: #ffffcc }
@@ -116,7 +122,7 @@ pre {
 .codehilite .ne { color: #D2413A; font-weight: bold } /* Name.Exception */
 .codehilite .nf { color: #0000FF } /* Name.Function */
 .codehilite .nl { color: #A0A000 } /* Name.Label */
-.codehilite .nn { color: rgb(6, 175, 253); font-weight: bold } /* Name.Namespace */
+.codehilite .nn { color: var(--accent); font-weight: bold } /* Name.Namespace */
 .codehilite .nt { color: #008000; font-weight: bold } /* Name.Tag */
 .codehilite .nv { color: #19177C } /* Name.Variable */
 .codehilite .ow { color: #AA22FF; font-weight: bold } /* Operator.Word */

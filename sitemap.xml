@@ -5,35 +5,35 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>https://fabioconcina.github.io/</loc>
-<lastmod>2019-08-26T15:49:31-00:00</lastmod>
+<lastmod>2019-09-22T19:08:52-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>https://fabioconcina.github.io/archives.html</loc>
-<lastmod>2019-08-26T15:49:31-00:00</lastmod>
+<lastmod>2019-09-22T19:08:52-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>https://fabioconcina.github.io/tags.html</loc>
-<lastmod>2019-08-26T15:49:31-00:00</lastmod>
+<lastmod>2019-09-22T19:08:52-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>https://fabioconcina.github.io/categories.html</loc>
-<lastmod>2019-08-26T15:49:31-00:00</lastmod>
+<lastmod>2019-09-22T19:08:52-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
-<loc>https://fabioconcina.github.io/fabio-concina/</loc>
-<lastmod>2019-08-26T15:49:31-00:00</lastmod>
+<loc>https://fabioconcina.github.io/blog/transactions-in-redis-with-python/</loc>
+<lastmod>2019-09-21T00:00:00+02:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -109,6 +109,13 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 </url>
 
 <url>
+<loc>https://fabioconcina.github.io/category/database.html</loc>
+<lastmod>2019-09-21T00:00:00+00:09</lastmod>
+<changefreq>daily</changefreq>
+<priority>0.5</priority>
+</url>
+
+<url>
 <loc>https://fabioconcina.github.io/category/protocol.html</loc>
 <lastmod>2019-03-17T10:00:00+00:09</lastmod>
 <changefreq>daily</changefreq>
@@ -132,6 +139,20 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <url>
 <loc>https://fabioconcina.github.io/category/version-control.html</loc>
 <lastmod>2019-01-10T08:00:00+00:09</lastmod>
+<changefreq>daily</changefreq>
+<priority>0.5</priority>
+</url>
+
+<url>
+<loc>https://fabioconcina.github.io/tag/python.html</loc>
+<lastmod>2019-09-21T00:00:00+00:09</lastmod>
+<changefreq>daily</changefreq>
+<priority>0.5</priority>
+</url>
+
+<url>
+<loc>https://fabioconcina.github.io/tag/redis.html</loc>
+<lastmod>2019-09-21T00:00:00+00:09</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -179,13 +200,6 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 </url>
 
 <url>
-<loc>https://fabioconcina.github.io/tag/python.html</loc>
-<lastmod>2019-02-21T08:00:00+00:09</lastmod>
-<changefreq>daily</changefreq>
-<priority>0.5</priority>
-</url>
-
-<url>
 <loc>https://fabioconcina.github.io/tag/virtualenv.html</loc>
 <lastmod>2019-02-21T08:00:00+00:09</lastmod>
 <changefreq>daily</changefreq>
@@ -208,7 +222,7 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>https://fabioconcina.github.io/author/fabio-concina.html</loc>
-<lastmod>2019-05-21T22:00:00+00:09</lastmod>
+<lastmod>2019-09-21T00:00:00+00:09</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
