@@ -58,22 +58,22 @@ crossorigin="anonymous"></script>
 
 <p><strong>Linear Regression</strong> is one of the simplest yet explainable models to describe the relationship between quantitative variables.
 More advanced statistical learning models can be seen as a generalization of this approach.<br>
-In this model, one or more indipendent variables (<strong>explanatory variables, regressors</strong>, <strong>features</strong>) are used to predict one dependent variable (<strong>response variable, regressand</strong>).<br>
-The model assumes that there is approximately a linear relationship between indipendent and dependent variables.</p>
-<p>The scenario with a single indipendent variable is called <strong>simple linear regression</strong>:</p>
+In this model, one or more independent variables (<strong>explanatory variables, regressors</strong>, <strong>features</strong>) are used to predict one dependent variable (<strong>response variable, regressand</strong>).<br>
+The model assumes that there is approximately a linear relationship between independent and dependent variables.</p>
+<p>The scenario with a single independent variable is called <strong>simple linear regression</strong>:</p>
 <div class="math">$$Y = \beta_0 + \beta_1 X + \epsilon$$</div>
 <p><span class="math">\(Y\)</span> is the response variable and <span class="math">\(X\)</span> is the explanatory variable.<br>
 <span class="math">\(\epsilon\)</span> is an error term, a random variable used to model the deviation from the regression line observed in the data.<br>
 <span class="math">\(\beta_0\)</span> and <span class="math">\(\beta_1\)</span> are called <strong>parameters</strong>. They are unknown and we must estimate them from the data. This step represents the training process for the model.</p>
 <p>To estimate the parameters, the most common algorithm is the <strong>ordinary least squares (OLS)</strong>. This method tries to minimize the sum of squares of the differences between the actual observations of the response variable and the predicted response using the model. <br>
 The estimated <strong>regression line</strong> is the best fit to the data in the sense of least squares; this can be different from the actual <strong>population line</strong>, since we only have available a sample of the population to estimate the model.  </p>
-<p>Once the parameters are estimated, we can use the model to predict the response variable given a value of the explanatory variable. We can also explain how the explanatory variable influences the response variable (does it change when the indipendent variables changes? how much does it change?).<br>
-Notice that the linearity is in the parameters, but not in the indipendent variables (<span class="math">\(Y = \beta_0 + \beta_1 X^2 + \epsilon\)</span> is still a linear model).</p>
-<p>The case with multiple indipendent variables is called <strong>multiple linear regression</strong>:</p>
+<p>Once the parameters are estimated, we can use the model to predict the response variable given a value of the explanatory variable. We can also explain how the explanatory variable influences the response variable (does it change when the independent variables changes? how much does it change?).<br>
+Notice that the linearity is in the parameters, but not in the independent variables (<span class="math">\(Y = \beta_0 + \beta_1 X^2 + \epsilon\)</span> is still a linear model).</p>
+<p>The case with multiple independent variables is called <strong>multiple linear regression</strong>:</p>
 <div class="math">$$Y = \beta_0 + \beta_1 X_1 + \beta_2 X_2 + ... + \beta_p X_p + \epsilon$$</div>
 <p>Supposing to have N observations, the last formula can conveniently represented with matrix linear algebra:</p>
 <div class="math">$$y = X \beta + \epsilon$$</div>
-<p><span class="math">\(X\)</span> is a N x (p+1) matrix where we have p indipendent variables plus 1 constant term.<br>
+<p><span class="math">\(X\)</span> is a N x (p+1) matrix where we have p independent variables plus 1 constant term.<br>
 <span class="math">\(y\)</span> is a N-vector of response variables, <span class="math">\(\beta\)</span> is a (p+1)-vector of parameters and <span class="math">\(\epsilon\)</span> is a N-vector of errors.<br>
 We now minimize the sum of squares using this linear algebra representation.<br>
 We can then write the error term as a function of <span class="math">\(\beta\)</span> as</p>
@@ -98,7 +98,7 @@ H is usually called **hat matrix**.   -->
 In general, in a statistical learning model we need to estimate the parameters through an iterative process.</p>
 <p>Note that the OLS derivation for the parameters makes no probabilistic assumptions on the random variables used in the model.<br>
 Making probabilistic assumptions let use derive additional results on the parameters estimator <span class="math">\(\tilde \beta\)</span> (see <a href="/blog/linear-regression-probabilistic-assumptions"><strong>Linear Regression: probabilistic assumptions</strong></a>).</p>
-<p><small>(*) If <span class="math">\(X\)</span> has not full rank, i.e. some columns are not linearly indipendent, as in the case of perfect correlation, some strategy is necessary to remove the columns.</small></p>
+<p><small>(*) If <span class="math">\(X\)</span> has not full rank, i.e. some columns are not linearly independent, as in the case of perfect correlation, some strategy is necessary to remove the columns.</small></p>
 <script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
     var align = "center",
         indent = "0em",
