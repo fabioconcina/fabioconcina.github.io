@@ -91,8 +91,8 @@ crossorigin="anonymous"></script>
 It is still possible though to find a biased estimator with lower variance.</p>
 <p>To estimate <span class="math">\(\sigma^2\)</span> we can use the following estimator:</p>
 <div class="math">$$\tilde \sigma^2 = \frac{1}{N-p-1}  \sum_{i=1}^{N} (y_i - \tilde y_i)^2$$</div>
-<p><br></p>
-<h3>Confidence intervals</h3>
+<p><br>
+<h4 id="confidence-intervals">Confidence Intervals</h4></p>
 <p>To compute a <strong>confidence interval</strong> for the parameters we can use the distributional information on <span class="math">\(\tilde \beta\)</span>:</p>
 <div class="math">$$\left(\tilde \beta_j - t^{(1-\alpha)}v_j^{1/2} \tilde \sigma, \quad\tilde \beta_j + t^{(1-\alpha)}v_j^{1/2} \tilde \sigma \right)$$</div>
 <p>where <span class="math">\(t_j^{(1-\alpha)}\)</span> is the <span class="math">\(1-\alpha\)</span> percentile of the <strong>Student's t-distribution</strong> with N-p-1 degrees of freedom and <span class="math">\(v_j\)</span> is the j-th diagonal element of <span class="math">\(X\)</span> matrix.<br>
@@ -104,8 +104,8 @@ If we know the real value of <span class="math">\(\sigma\)</span>, or the sample
 We can compute confidence intervals using</p>
 <div class="math">$$\left(\tilde \beta_j - z^{(1-\alpha)} SE(\tilde \beta_j), \quad \tilde \beta_j + z^{(1-\alpha)} SE(\tilde \beta_j) \right) \qquad j=0,1$$</div>
 <p>If we choose a 95% confidence interval, <span class="math">\(\alpha=0.025\)</span> and <span class="math">\(z^{(1-\alpha)}=1.96\)</span>.</p>
-<p><br></p>
-<h3>Hypothesis tests</h3>
+<p><br>
+<h4 id="hypothesis-test">Hypothesis test</h4></p>
 <p>We can construct an <strong>hypothesis test</strong> on a single parameter as follows:</p>
 <div class="math">$$H_0: \qquad \beta_j = 0$$</div>
 <div class="math">$$H_1: \qquad \beta_j \neq 0$$</div>
