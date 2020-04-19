@@ -5,28 +5,35 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>https://fabioconcina.github.io/</loc>
-<lastmod>2020-04-14T22:38:15-00:00</lastmod>
+<lastmod>2020-04-19T12:42:01-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>https://fabioconcina.github.io/archives.html</loc>
-<lastmod>2020-04-14T22:38:15-00:00</lastmod>
+<lastmod>2020-04-19T12:42:01-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>https://fabioconcina.github.io/tags.html</loc>
-<lastmod>2020-04-14T22:38:15-00:00</lastmod>
+<lastmod>2020-04-19T12:42:01-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>https://fabioconcina.github.io/categories.html</loc>
-<lastmod>2020-04-14T22:38:15-00:00</lastmod>
+<lastmod>2020-04-19T12:42:01-00:00</lastmod>
+<changefreq>daily</changefreq>
+<priority>0.5</priority>
+</url>
+
+<url>
+<loc>https://fabioconcina.github.io/blog/markov-decision-process/</loc>
+<lastmod>2020-04-12T22:00:00+02:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -144,6 +151,13 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 </url>
 
 <url>
+<loc>https://fabioconcina.github.io/category/reinforcement-learning.html</loc>
+<lastmod>2020-04-12T22:00:00+00:09</lastmod>
+<changefreq>daily</changefreq>
+<priority>0.5</priority>
+</url>
+
+<url>
 <loc>https://fabioconcina.github.io/category/stat.html</loc>
 <lastmod>2019-05-21T22:00:00+00:09</lastmod>
 <changefreq>daily</changefreq>
@@ -159,7 +173,14 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>https://fabioconcina.github.io/tag/model.html</loc>
-<lastmod>2020-01-04T22:00:00+00:09</lastmod>
+<lastmod>2020-04-12T22:00:00+00:09</lastmod>
+<changefreq>daily</changefreq>
+<priority>0.5</priority>
+</url>
+
+<url>
+<loc>https://fabioconcina.github.io/tag/rl.html</loc>
+<lastmod>2020-04-12T22:00:00+00:09</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -243,7 +264,7 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>https://fabioconcina.github.io/author/fabio-concina.html</loc>
-<lastmod>2020-01-04T22:00:00+00:09</lastmod>
+<lastmod>2020-04-12T22:00:00+00:09</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
