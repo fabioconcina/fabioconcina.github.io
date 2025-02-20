@@ -1,4 +1,3 @@
-/* Import Raleway font */
 body {
     font-family: 'Raleway', sans-serif;
     margin: 0;
@@ -31,17 +30,22 @@ p {
     font-weight: 300;
 }
 
-nav {
-    margin-top: 1rem;
-}
-
 nav a {
     margin: 0 10px;
-    text-decoration: none;
-    color: #333;
     font-weight: 400;
 }
 
+/* Global link styling for consistent appearance across all states in light mode */
+a:link,
+a:visited,
+a:hover,
+a:active,
+a:focus {
+    color: #333; /* Same as the body text color */
+    text-decoration: none;
+}
+
+/* Optional: Add underline on hover for nav links only */
 nav a:hover {
     text-decoration: underline;
 }
@@ -55,7 +59,11 @@ nav a:hover {
     p {
         color: #bbbbbb;
     }
-    nav a {
+    /* Override global link color in dark mode */
+    a:link,
+    a:visited,
+    a:hover,
+    a:active,
+    a:focus {
         color: #f8f8f8;
     }
-}
