@@ -22,6 +22,8 @@ h1 {
 h2 {
     font-size: 1.5rem;
     margin-top: 1.5rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid #e0e0e0;
 }
 
 p {
@@ -257,6 +259,9 @@ nav a:hover {
     body {
         background-color: #121212;
         color: #f8f8f8;
+    }
+    h2 {
+        border-top-color: #333;
     }
     p {
         color: #bbbbbb;
