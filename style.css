@@ -133,6 +133,30 @@ nav a:hover {
     margin-bottom: 0;
 }
 
+.talk {
+    margin-bottom: 1.25rem;
+}
+
+.talk h3 {
+    margin-bottom: 0.2rem;
+    font-weight: 600;
+    font-size: 1.2rem;
+    color: #333;
+}
+
+.talk .meta {
+    font-size: 0.9rem;
+    color: #888;
+    margin-top: 0;
+    margin-bottom: 0.2rem;
+    font-style: italic;
+}
+
+.talk p {
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
 .post {
     margin-bottom: 1.25rem;
 }
@@ -256,6 +280,12 @@ nav a:hover {
         color: #f8f8f8;
     }
     .publication .meta {
+        color: #aaa;
+    }
+    .talk h3 {
+        color: #f8f8f8;
+    }
+    .talk .meta {
         color: #aaa;
     }
     /* Override global link color in dark mode */
