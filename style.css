@@ -19,6 +19,31 @@ h1 {
     margin-bottom: 0.5rem;
 }
 
+.intro {
+    display: flex;
+    align-items: center;
+    gap: 1.25rem;
+    margin-top: 1rem;
+}
+
+.intro h1 {
+    margin-top: 0;
+    margin-bottom: 0.25rem;
+}
+
+.intro p {
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+.avatar {
+    width: 96px;
+    height: 96px;
+    border-radius: 4px;
+    object-fit: cover;
+    flex-shrink: 0;
+}
+
 h2 {
     font-size: 1.5rem;
     margin-top: 1.5rem;
