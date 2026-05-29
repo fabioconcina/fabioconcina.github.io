@@ -83,6 +83,21 @@ nav a:hover {
     text-decoration: underline;
 }
 
+/* Inline prose links get a subtle underline so they read as clickable */
+.intro p a,
+section p a,
+section li a {
+    text-decoration: underline;
+    text-decoration-color: #bbb;
+    text-underline-offset: 2px;
+}
+
+.intro p a:hover,
+section p a:hover,
+section li a:hover {
+    text-decoration-color: currentColor;
+}
+
 .job {
     margin-bottom: 2rem;
 }
@@ -326,6 +341,11 @@ nav a:hover {
     a:active,
     a:focus {
         color: #f8f8f8;
+    }
+    .intro p a,
+    section p a,
+    section li a {
+        text-decoration-color: #666;
     }
     .post h3 {
         color: #f8f8f8;
