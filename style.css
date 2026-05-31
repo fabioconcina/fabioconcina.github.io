@@ -240,6 +240,74 @@ section li a:hover {
     font-style: italic;
 }
 
+.blog-post .meta .revised {
+    font-size: 0.8em;
+    color: #aaa;
+    font-style: normal;
+    letter-spacing: 0.02em;
+    margin-left: 0.9em;
+}
+
+.shift-marker {
+    margin: 2.5rem 0;
+    padding-left: 1.1rem;
+    border-left: 2px solid #ccc;
+}
+
+.shift-marker div {
+    display: flex;
+    align-items: baseline;
+    gap: 0.7rem;
+    line-height: 1.9;
+}
+
+.shift-marker .year {
+    font-variant-numeric: tabular-nums;
+    font-weight: 600;
+    color: #555;
+    min-width: 3ch;
+}
+
+.shift-marker .arrow {
+    color: #aaa;
+}
+
+.shift-marker .what {
+    color: #333;
+}
+
+.fn-ref {
+    line-height: 0;
+    font-size: 0.7em;
+}
+
+.fn-ref a {
+    text-decoration: none;
+    padding: 0 0.15em;
+}
+
+.footnotes-sep {
+    border: none;
+    border-top: 1px solid #ddd;
+    width: 35%;
+    margin: 3rem 0 1.2rem;
+}
+
+.footnotes {
+    font-size: 0.85rem;
+    color: #777;
+    line-height: 1.65;
+    padding-left: 1.4rem;
+}
+
+.footnotes li {
+    margin-bottom: 0.5rem;
+}
+
+.footnotes li::marker {
+    color: #aaa;
+}
+
 .blog-post h2 {
     font-size: 1.3rem;
     margin-top: 2rem;
@@ -367,6 +435,24 @@ section li a:hover {
         color: #bbb;
     }
     .blog-post-nav {
+        border-top-color: #333;
+    }
+    .shift-marker {
+        border-left-color: #555;
+    }
+    .shift-marker .year {
+        color: #e8e8e8;
+    }
+    .shift-marker .arrow {
+        color: #777;
+    }
+    .shift-marker .what {
+        color: #bbb;
+    }
+    .footnotes {
+        color: #aaa;
+    }
+    .footnotes-sep {
         border-top-color: #333;
     }
 }
