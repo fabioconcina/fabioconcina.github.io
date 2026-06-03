@@ -98,34 +98,107 @@ section li a:hover {
     text-decoration-color: currentColor;
 }
 
-.job {
+.company {
     margin-bottom: 2rem;
 }
 
-.job h3 {
-    margin-bottom: 0.2rem;
+.company-head {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 0.25rem 1rem;
+    margin-bottom: 1.8rem;
+}
+
+.company-head h3 {
+    margin: 0;
+    font-weight: 600;
+    font-size: 1.35rem;
+    color: #333;
+}
+
+.company-dates {
+    font-size: 0.9rem;
+    color: #888;
+    font-style: italic;
+    white-space: nowrap;
+}
+
+.role {
+    position: relative;
+    padding-left: 1.4rem;
+    padding-bottom: 1.2rem;
+}
+
+.role:last-child {
+    padding-bottom: 0;
+}
+
+.role::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0.75rem;
+    height: 100%;
+    width: 1px;
+    background-color: #e0e0e0;
+}
+
+.role:last-child::after {
+    display: none;
+}
+
+.role::before {
+    content: "";
+    position: absolute;
+    left: -4px;
+    top: 0.5rem;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: #f8f8f8;
+    border: 1.5px solid #999;
+    box-sizing: border-box;
+    z-index: 1;
+}
+
+.role-head {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 0.1rem 1rem;
+}
+
+.role-head h4 {
+    margin: 0;
     font-weight: 600;
     font-size: 1.2rem;
     color: #333;
 }
 
-.job .meta {
+.role-dates {
     font-size: 0.9rem;
     color: #888;
-    margin-top: 0;
-    margin-bottom: 0.5rem;
     font-style: italic;
+    white-space: nowrap;
 }
 
-.job ul {
+.role ul {
     padding-left: 20px;
-    margin-top: 0.5rem;
+    margin-top: 0.3rem;
+    margin-bottom: 0;
 }
 
-.job li {
-    margin-bottom: 0.5rem;
+.role li {
+    margin-bottom: 0.4rem;
     color: #666;
     font-weight: 300;
+}
+
+.role li:last-child {
+    margin-bottom: 0;
 }
 
 .edu {
@@ -197,6 +270,34 @@ section li a:hover {
 
 .talk p {
     margin-top: 0;
+    margin-bottom: 0;
+}
+
+.project {
+    margin-bottom: 1.25rem;
+}
+
+.project h3 {
+    margin-bottom: 0.4rem;
+    font-weight: 600;
+    font-size: 1.2rem;
+    color: #333;
+}
+
+.project .meta {
+    font-size: 0.9rem;
+    color: #888;
+    margin-top: 0;
+    margin-bottom: 0.2rem;
+    font-style: italic;
+}
+
+.project p {
+    margin-top: 0;
+    margin-bottom: 0.75rem;
+}
+
+.project p:last-child {
     margin-bottom: 0;
 }
 
@@ -355,6 +456,40 @@ section li a:hover {
     border-radius: 4px;
 }
 
+.blog-post figure {
+    margin: 2rem 0;
+    text-align: center;
+}
+
+.blog-post figcaption {
+    font-size: 0.85rem;
+    color: #888;
+    margin-top: 0.5rem;
+    font-style: italic;
+}
+
+.blog-post figure svg {
+    width: 100%;
+    max-width: 480px;
+    height: auto;
+}
+
+.blog-post .eqn {
+    display: flex;
+    justify-content: safe center;
+    overflow-x: auto;
+    overflow-y: hidden;
+    margin: 1.5rem 0;
+    padding-bottom: 0.25rem;
+    color: #333;
+}
+
+@media (max-width: 480px) {
+    .blog-post .eqn {
+        font-size: 0.9em;
+    }
+}
+
 .blog-post-nav {
     max-width: 640px;
     margin: 3rem auto 0;
@@ -375,13 +510,26 @@ section li a:hover {
     p {
         color: #bbbbbb;
     }
-    .job h3 {
+    .company-head h3 {
         color: #f8f8f8;
     }
-    .job .meta {
+    .company-dates {
         color: #aaa;
     }
-    .job li {
+    .role-head h4 {
+        color: #f8f8f8;
+    }
+    .role-dates {
+        color: #aaa;
+    }
+    .role::after {
+        background-color: #333;
+    }
+    .role::before {
+        background-color: #121212;
+        border-color: #777;
+    }
+    .role li {
         color: #bbbbbb;
     }
     .edu h3 {
@@ -400,6 +548,12 @@ section li a:hover {
         color: #f8f8f8;
     }
     .talk .meta {
+        color: #aaa;
+    }
+    .project h3 {
+        color: #f8f8f8;
+    }
+    .project .meta {
         color: #aaa;
     }
     /* Override global link color in dark mode */
@@ -436,6 +590,12 @@ section li a:hover {
     }
     .blog-post-nav {
         border-top-color: #333;
+    }
+    .blog-post figcaption {
+        color: #aaa;
+    }
+    .blog-post .eqn {
+        color: #f8f8f8;
     }
     .shift-marker {
         border-left-color: #555;

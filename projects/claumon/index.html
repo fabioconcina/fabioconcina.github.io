@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Forecasting rate limits in claumon - Fabio Concina</title>
+    <meta name="description" content="How claumon forecasts Claude Code rate limits: utilization at reset and ETA to a threshold, with an 80% credible interval from a monotone, bounded model.">
+    <link rel="canonical" href="https://fabioconcina.com/projects/claumon/">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://fabioconcina.com/projects/claumon/">
+    <meta property="og:title" content="Forecasting rate limits in claumon">
+    <meta property="og:description" content="How claumon forecasts Claude Code rate limits: utilization at reset and ETA to a threshold, with an 80% credible interval from a monotone, bounded model.">
+    <meta property="og:image" content="https://fabioconcina.com/static/img/claumon-session-forecast.png">
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Forecasting rate limits in claumon">
+    <meta name="twitter:description" content="How claumon forecasts Claude Code rate limits: utilization at reset and ETA to a threshold, with an 80% credible interval from a monotone, bounded model.">
+    <meta name="twitter:image" content="https://fabioconcina.com/static/img/claumon-session-forecast.png">
+
+    <meta name="theme-color" content="#f8f8f8" media="(prefers-color-scheme: light)">
+    <meta name="theme-color" content="#121212" media="(prefers-color-scheme: dark)">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+    <link rel="apple-touch-icon" href="/static/img/fabio.jpeg">
+</head>
+<body>
+    <main>
+        <article class="blog-post">
+            <header>
+                <h1>Forecasting rate limits in claumon</h1>
+                <p class="meta">June 2026 &middot; Go &middot; open source &middot; MIT-licensed</p>
+            </header>
+
+            <p><a href="https://github.com/fabioconcina/claumon" target="_blank" rel="noopener">claumon</a> is a small, fast dashboard for Claude Code - a single binary, zero config, one browser tab. It shows rate-limit gauges, per-session token and cost breakdowns, and historical trends. This page covers one piece: the forecaster behind the rate-limit gauges.</p>
+
+            <figure>
+                <img src="/static/img/claumon-session-forecast.png" alt="claumon session-window forecast showing projected utilization at reset with an 80% credible interval" width="1840" height="1112">
+                <figcaption>The session-window forecast: projected utilization at reset with an 80% credible interval.</figcaption>
+            </figure>
+
+            <p>The forecaster reads the time series of utilization snapshots in each open rate-limit window (session, weekly, per-model weekly) and produces, per gauge, a point estimate of utilization at reset, an 80% credible interval, and a median ETA to a threshold (with its own interval) when that threshold is reachable before reset.</p>
+
+            <h2>The model</h2>
+
+            <p>Four pieces carry the forecast. The full derivation, calibration, and a worked example live in the <a href="/static/pdf/claumon-forecast-model.pdf" target="_blank" rel="noopener">spec</a>.</p>
+
+            <p><strong>The path law.</strong> Inside the open window, utilization accumulates as a Gamma process - a non-decreasing jump process. Conditioned on a mean rate <math><mi>r</mi></math>, the increment over a horizon <math><mi>s</mi></math> is</p>
+            <div class="eqn"><math display="block" class="tml-display" style="display:block math;"><mrow><mi>u</mi><mrow><mo fence="true" form="prefix" stretchy="false">(</mo><msub><mi>t</mi><mtext>now</mtext></msub><mo>+</mo><mi>s</mi><mo fence="true" form="postfix" stretchy="false">)</mo></mrow><mo>−</mo><msub><mi>u</mi><mtext>now</mtext></msub><mo>∼</mo><mpadded lspace="0"><mi>Gamma</mi></mpadded><mrow style="margin-left:-0.1667em;"></mrow><mrow><mo fence="true" form="prefix" stretchy="true">(</mo><mtext>shape</mtext><mo>=</mo><mfrac><mrow><msup><mi>r</mi><mn class="tml-sml-pad">2</mn></msup><mi>s</mi></mrow><msubsup><mi>σ</mi><mtext>session</mtext><mn>2</mn></msubsup></mfrac><mo separator="true">,</mo><mtext> </mtext><mtext>scale</mtext><mo>=</mo><mfrac><msubsup><mi>σ</mi><mtext>session</mtext><mn>2</mn></msubsup><mi>r</mi></mfrac><mo fence="true" form="postfix" stretchy="true">)</mo></mrow></mrow></math></div>
+            <p>so its mean and variance grow linearly in time:</p>
+            <div class="eqn"><math display="block" class="tml-display" style="display:block math;"><mrow><mi>𝔼</mi><mo fence="true" symmetric="true" minsize="1.2em" maxsize="1.2em">[</mo><mi>u</mi><mo form="prefix" stretchy="false">(</mo><msub><mi>t</mi><mtext>now</mtext></msub><mo>+</mo><mi>s</mi><mo form="postfix" stretchy="false">)</mo><mo>−</mo><msub><mi>u</mi><mtext>now</mtext></msub><mo fence="true" symmetric="true" minsize="1.2em" maxsize="1.2em">]</mo><mo>=</mo><mi>r</mi><mspace width="0.1667em"></mspace><mi>s</mi><mo separator="true">,</mo><mspace width="2em"></mspace><mi>Var</mi><mo>⁡</mo><mo fence="true" symmetric="true" minsize="1.2em" maxsize="1.2em">[</mo><mi>u</mi><mo form="prefix" stretchy="false">(</mo><msub><mi>t</mi><mtext>now</mtext></msub><mo>+</mo><mi>s</mi><mo form="postfix" stretchy="false">)</mo><mo>−</mo><msub><mi>u</mi><mtext>now</mtext></msub><mo fence="true" symmetric="true" minsize="1.2em" maxsize="1.2em">]</mo><mo>=</mo><msubsup><mi>σ</mi><mtext>session</mtext><mn>2</mn></msubsup><mspace width="0.1667em"></mspace><mi>s</mi></mrow></math></div>
+            <p>Every increment is non-negative, so simulated paths are monotone and floored at the value now.</p>
+
+            <p><strong>The rate, by empirical Bayes.</strong> The unknown rate <math><mi>r</mi></math> combines the recent OLS slope (<math><msub><mi>r</mi><mtext>OLS</mtext></msub></math>, with standard error <math><msub><mpadded lspace="0"><mi>SE</mi></mpadded><mtext>OLS</mtext></msub></math>) and a prior fit on past sessions (mean <math><msub><mi>μ</mi><mn>0</mn></msub></math>, variance <math><msubsup><mi>τ</mi><mn>0</mn><mn>2</mn></msubsup></math>) through a normal-normal conjugate update:</p>
+            <div class="eqn"><math display="block" class="tml-display" style="display:block math;"><mrow><mfrac><mn>1</mn><msubsup><mi>τ</mi><mtext>post</mtext><mn>2</mn></msubsup></mfrac><mo>=</mo><mfrac><mn>1</mn><msubsup><mi>τ</mi><mn>0</mn><mn>2</mn></msubsup></mfrac><mo>+</mo><mfrac><mn>1</mn><msubsup><mpadded lspace="0"><mi>SE</mi></mpadded><mtext>OLS</mtext><mn>2</mn></msubsup></mfrac><mo separator="true">,</mo><mspace width="2em"></mspace><msub><mi>r</mi><mtext>post</mtext></msub><mo>=</mo><msubsup><mi>τ</mi><mtext>post</mtext><mn>2</mn></msubsup><mrow><mo fence="true" form="prefix" stretchy="true">(</mo><mfrac><msub><mi>μ</mi><mn>0</mn></msub><msubsup><mi>τ</mi><mn>0</mn><mn>2</mn></msubsup></mfrac><mo>+</mo><mfrac><msub><mi>r</mi><mtext>OLS</mtext></msub><msubsup><mpadded lspace="0"><mi>SE</mi></mpadded><mtext>OLS</mtext><mn>2</mn></msubsup></mfrac><mo fence="true" form="postfix" stretchy="true">)</mo></mrow></mrow></math></div>
+            <p>The prior dominates early, when the slope is noisy; the data takes over as snapshots accumulate.</p>
+
+            <p><strong>The forecast and its spread.</strong> The point forecast extrapolates the posterior rate to reset,</p>
+            <div class="eqn"><math display="block" class="tml-display" style="display:block math;"><mrow><mi>F</mi><mo>=</mo><msub><mi>u</mi><mtext>now</mtext></msub><mo>+</mo><msub><mi>r</mi><mtext>post</mtext></msub><mspace width="0.1667em"></mspace><mrow><mi mathvariant="normal">Δ</mi><mspace></mspace></mrow><msub><mi>t</mi><mtext>rem</mtext></msub></mrow></math></div>
+            <p>and the law of total variance splits its spread into rate uncertainty (quadratic in the remaining horizon) and path noise (linear in it):</p>
+            <div class="eqn"><math display="block" class="tml-display" style="display:block math;"><mrow><msubsup><mi>σ</mi><mi>F</mi><mn>2</mn></msubsup><mo>=</mo><mrow><munder><munder><mrow><mrow><mi mathvariant="normal">Δ</mi><mspace></mspace></mrow><msubsup><mi>t</mi><mtext>rem</mtext><mn class="tml-med-pad">2</mn></msubsup><mspace width="0.1667em"></mspace><mrow><mspace width="0.1667em"></mspace><mi>max</mi><mo>⁡</mo><mspace width="0.1667em"></mspace></mrow><mrow style="margin-left:-0.1667em;"></mrow><mo fence="true" symmetric="true" minsize="1.2em" maxsize="1.2em">(</mo><msubsup><mi>τ</mi><mtext>post</mtext><mn>2</mn></msubsup><mo separator="true">,</mo><msup><mover accent="true"><mi>τ</mi><mo>‾</mo></mover><mn>2</mn></msup><mo fence="true" symmetric="true" minsize="1.2em" maxsize="1.2em">)</mo></mrow><mo stretchy="true" style="math-depth:0;">⏟</mo></munder><mtext>rate uncertainty</mtext></munder></mrow><mo>+</mo><mrow><munder><munder><mrow><mrow><mi mathvariant="normal">Δ</mi><mspace></mspace></mrow><msub><mi>t</mi><mtext>rem</mtext></msub><mspace width="0.1667em"></mspace><msubsup><mi>σ</mi><mtext>session</mtext><mn>2</mn></msubsup></mrow><mo stretchy="true" style="math-depth:0;">⏟</mo></munder><mtext>path noise</mtext></munder></mrow></mrow></math></div>
+            <figure>
+                <svg viewBox="0 0 492 258" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" role="img" aria-label="Forecast variance versus time remaining to reset. Path noise grows linearly and leads near reset; rate uncertainty grows quadratically and dominates as more time remains; the total is their sum."><line x1="52.0" y1="22.0" x2="52.0" y2="222.0" stroke-opacity="0.35"/><line x1="52.0" y1="222.0" x2="358.0" y2="222.0" stroke-opacity="0.35"/><line x1="170.4" y1="201.3" x2="170.4" y2="222.0" stroke-opacity="0.3" stroke-dasharray="3 3"/><polyline points="52.0,222.0 58.2,220.9 64.3,219.8 70.5,218.8 76.7,217.7 82.8,216.6 89.0,215.5 95.2,214.5 101.3,213.4 107.5,212.3 113.7,211.2 119.8,210.1 126.0,209.1 132.2,208.0 138.3,206.9 144.5,205.8 150.7,204.8 156.8,203.7 163.0,202.6 169.2,201.5 175.3,200.4 181.5,199.4 187.7,198.3 193.8,197.2 200.0,196.1 206.2,195.1 212.3,194.0 218.5,192.9 224.7,191.8 230.8,190.7 237.0,189.7 243.2,188.6 249.3,187.5 255.5,186.4 261.7,185.4 267.8,184.3 274.0,183.2 280.2,182.1 286.3,181.0 292.5,180.0 298.7,178.9 304.8,177.8 311.0,176.7 317.2,175.7 323.3,174.6 329.5,173.5 335.7,172.4 341.8,171.3 348.0,170.3" stroke-opacity="0.6" stroke-width="1.6" stroke-dasharray="2 4" stroke-linecap="round" stroke-linejoin="round"/><polyline points="52.0,222.0 58.2,221.9 64.3,221.8 70.5,221.5 76.7,221.1 82.8,220.6 89.0,220.0 95.2,219.2 101.3,218.4 107.5,217.5 113.7,216.4 119.8,215.2 126.0,213.9 132.2,212.5 138.3,211.0 144.5,209.4 150.7,207.6 156.8,205.8 163.0,203.8 169.2,201.7 175.3,199.5 181.5,197.2 187.7,194.8 193.8,192.3 200.0,189.7 206.2,186.9 212.3,184.1 218.5,181.1 224.7,178.0 230.8,174.8 237.0,171.5 243.2,168.1 249.3,164.5 255.5,160.9 261.7,157.1 267.8,153.2 274.0,149.2 280.2,145.2 286.3,140.9 292.5,136.6 298.7,132.2 304.8,127.6 311.0,123.0 317.2,118.2 323.3,113.3 329.5,108.3 335.7,103.2 341.8,98.0 348.0,92.7" stroke-opacity="0.6" stroke-width="1.6" stroke-dasharray="7 4" stroke-linejoin="round"/><polyline points="52.0,222.0 58.2,220.9 64.3,219.6 70.5,218.3 76.7,216.8 82.8,215.2 89.0,213.5 95.2,211.7 101.3,209.8 107.5,207.8 113.7,205.6 119.8,203.4 126.0,201.0 132.2,198.5 138.3,195.9 144.5,193.2 150.7,190.4 156.8,187.5 163.0,184.4 169.2,181.3 175.3,178.0 181.5,174.6 187.7,171.1 193.8,167.5 200.0,163.8 206.2,160.0 212.3,156.0 218.5,152.0 224.7,147.8 230.8,143.5 237.0,139.1 243.2,134.6 249.3,130.0 255.5,125.3 261.7,120.5 267.8,115.5 274.0,110.4 280.2,105.3 286.3,100.0 292.5,94.6 298.7,89.1 304.8,83.4 311.0,77.7 317.2,71.9 323.3,65.9 329.5,59.8 335.7,53.6 341.8,47.3 348.0,40.9" stroke-opacity="1" stroke-width="2.4" stroke-linejoin="round"/><circle cx="170.4" cy="201.3" r="2.6" fill="currentColor" stroke="none" fill-opacity="0.8"/><g fill="currentColor" stroke="none" font-family="Raleway, sans-serif"><text x="52.0" y="16.0" font-size="12" fill-opacity="0.6">variance</text><text x="356.0" y="44.9" font-size="12" fill-opacity="0.95">total</text><text x="356.0" y="96.7" font-size="12" fill-opacity="0.6">rate uncertainty</text><text x="356.0" y="174.3" font-size="12" fill-opacity="0.6">path noise</text><text x="52.0" y="240.0" font-size="11.5" fill-opacity="0.55">near reset</text><text x="170.4" y="240.0" font-size="11.5" fill-opacity="0.55" text-anchor="middle">crossover</text><text x="358.0" y="240.0" font-size="11.5" fill-opacity="0.55" text-anchor="end">more time to reset</text></g></svg>
+                <figcaption>The forecast's spread is the sum of two pieces: path noise grows linearly with the time to reset and leads early, while rate uncertainty grows quadratically and takes over as more time remains. The marked point is where they contribute equally.</figcaption>
+            </figure>
+            <p>The reported 80% interval is read off the Monte Carlo terminal quantiles rather than <math><msub><mi>σ</mi><mi>F</mi></msub></math>, so it keeps the right skew and the floor at the current value instead of forcing a symmetric Gaussian band.</p>
+
+            <p><strong>The ETA.</strong> Because the paths are monotone, a threshold <math><msub><mi>C</mi><mtext>thr</mtext></msub></math> is crossed once and stays crossed, so the first-passage time is well defined:</p>
+            <div class="eqn"><math display="block" class="tml-display" style="display:block math;"><mrow><msup><mi>T</mi><mo form="prefix" stretchy="false" lspace="0em" rspace="0em" class="tml-med-pad">∗</mo></msup><mo>=</mo><mrow><mi>inf</mi><mo>⁡</mo></mrow><mrow><mo fence="true" form="prefix" stretchy="false">{</mo><mspace width="0.1667em"></mspace><mi>t</mi><mo>&gt;</mo><msub><mi>t</mi><mtext>now</mtext></msub><mo lspace="0.2222em" rspace="0.2222em">:</mo><mi>u</mi><mrow><mo fence="true" form="prefix" stretchy="false">(</mo><mi>t</mi><mo fence="true" form="postfix" stretchy="false">)</mo></mrow><mo>≥</mo><msub><mi>C</mi><mtext>thr</mtext></msub><mspace width="0.1667em"></mspace><mo fence="true" form="postfix" stretchy="false">}</mo></mrow></mrow></math></div>
+            <p>The mean trajectory gives an early deterministic anchor,</p>
+            <div class="eqn"><math display="block" class="tml-display" style="display:block math;"><mrow><msup><mover accent="true"><mi>T</mi><mo>~</mo></mover><mo form="prefix" stretchy="false" lspace="0em" rspace="0em">∗</mo></msup><mo>=</mo><msub><mi>t</mi><mtext>now</mtext></msub><mo>+</mo><mfrac><mrow><msub><mi>C</mi><mtext>thr</mtext></msub><mo>−</mo><msub><mi>u</mi><mtext>now</mtext></msub></mrow><msub><mi>r</mi><mtext>post</mtext></msub></mfrac></mrow></math></div>
+            <p>but the reported median ETA and its interval come from the same Monte Carlo. The Gamma skew pushes the median past this anchor, while near-zero rate draws - which may never reach the threshold before reset - stretch the upper tail.</p>
+
+            <p>The method is a normative, versioned spec: it fixes the generative model and its calibration so implementations must match, with retired versions archived alongside a changelog.</p>
+
+            <p><a href="https://github.com/fabioconcina/claumon" target="_blank" rel="noopener">View on GitHub</a> &middot; <a href="/static/pdf/claumon-forecast-model.pdf" target="_blank" rel="noopener">Download the spec (PDF)</a></p>
+        </article>
+
+        <nav class="blog-post-nav">
+            <a href="/">&larr; Home</a>
+        </nav>
+    </main>
+</body>
+</html>
