@@ -98,6 +98,15 @@ section li a:hover {
     text-decoration-color: currentColor;
 }
 
+/* kwantis brand accent (their teal); wins in light and dark via the link-state selectors */
+a.brand:link,
+a.brand:visited,
+a.brand:hover,
+a.brand:active,
+a.brand:focus {
+    color: #0088b7;
+}
+
 .company {
     margin-bottom: 2rem;
 }
@@ -116,6 +125,8 @@ section li a:hover {
     font-weight: 600;
     font-size: 1.35rem;
     color: #333;
+    padding-bottom: 0.25rem;
+    border-bottom: 2px solid #0088b7;
 }
 
 .company-dates {
