@@ -10,25 +10,23 @@
     <!-- Open Graph -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://fabioconcina.com/">
-    <meta property="og:title" content="Fabio Concina">
+    <meta property="og:title" content="Fabio Concina - Head of AI &amp; Analytics">
     <meta property="og:description" content="Head of AI &amp; Analytics at kwantis. Engineering leader with 10+ years in software and data, delivering production AI for major energy operators.">
     <meta property="og:image" content="https://fabioconcina.com/static/img/fabio.jpeg">
 
     <!-- Twitter -->
     <meta name="twitter:card" content="summary">
-    <meta name="twitter:title" content="Fabio Concina">
+    <meta name="twitter:title" content="Fabio Concina - Head of AI &amp; Analytics">
     <meta name="twitter:description" content="Head of AI &amp; Analytics at kwantis. Engineering leader with 10+ years in software and data, delivering production AI for major energy operators.">
     <meta name="twitter:image" content="https://fabioconcina.com/static/img/fabio.jpeg">
 
     <meta name="theme-color" content="#f8f8f8" media="(prefers-color-scheme: light)">
     <meta name="theme-color" content="#121212" media="(prefers-color-scheme: dark)">
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;600&display=swap" rel="stylesheet">
     <link rel="icon" type="image/svg+xml" href="favicon.svg">
-    <link rel="apple-touch-icon" href="static/img/fabio.jpeg">
+    <link rel="apple-touch-icon" href="static/img/apple-touch-icon.png">
+    <link rel="alternate" type="application/atom+xml" title="Fabio Concina" href="/feed.xml">
 
     <script type="application/ld+json">
     {
@@ -121,13 +119,14 @@
         <section>
             <h2>Education</h2>
             <div class="edu">
-                <h3><a href="static/pdf/paid-incurred-stochastic-reserving.pdf" target="_blank" rel="noopener">MSc in Statistics and Actuarial Science</a></h3>
+                <h3>MSc in Statistics and Actuarial Science</h3>
                 <p class="meta"><a href="https://www.units.it/" target="_blank" rel="noopener">University of Trieste</a>, Trieste, Italy, 2015</p>
-                <p>Contributed to the <a href="https://mages.github.io/ChainLadder/index.html" target="_blank" rel="noopener">R ChainLadder package</a> as part of thesis research on stochastic reserving methods.</p>
+                <p>Contributed to the <a href="https://mages.github.io/ChainLadder/index.html" target="_blank" rel="noopener">R ChainLadder package</a> as part of thesis research on stochastic reserving methods (<a href="static/pdf/paid-incurred-stochastic-reserving.pdf" target="_blank" rel="noopener">thesis, PDF</a>).</p>
             </div>
             <div class="edu">
-                <h3><a href="static/pdf/biological-waves.pdf" target="_blank" rel="noopener">BSc in Mathematical Engineering</a></h3>
+                <h3>BSc in Mathematical Engineering</h3>
                 <p class="meta"><a href="https://www.polimi.it/" target="_blank" rel="noopener">Politecnico di Milano</a>, Milan, Italy, 2012</p>
+                <p>Final presentation on biological waves applied to epidemic spread and control (<a href="static/pdf/biological-waves.pdf" target="_blank" rel="noopener">PDF</a>).</p>
             </div>
         </section>
         <section>
@@ -164,7 +163,7 @@
             <div class="project">
                 <h3><a href="/projects/claumon/">Forecasting rate limits in claumon</a></h3>
                 <p class="meta">June 2026</p>
-                <p>claumon is a dashboard for Claude Code that predicts when you'll hit your usage limits before you actually do. Under the hood, its forecaster models rate-limit utilization as a Gamma process, so every simulated path only ever climbs. From a single empirical-Bayes Monte Carlo it reads each gauge's value at reset and its threshold ETA, both with 80% credible intervals; the method is a normative, versioned spec.</p>
+                <p>claumon is a dashboard for Claude Code that predicts when you'll hit your usage limits before you actually do. Behind the gauges is a small Bayesian model that simulates how usage can evolve until the window resets, then reads off where it lands and when it would cross a threshold, each with an 80% credible interval.</p>
             </div>
         </section>
         <section>
@@ -172,6 +171,7 @@
             <div class="post">
                 <h3><a href="/blog/twice-in-three-years-two-ai-phase-shifts/">Twice in Three Years: Two AI Phase Shifts</a></h3>
                 <p class="meta">February 2026</p>
+                <p>ChatGPT in 2022, Claude Code in 2025: first the machine learned to understand us, then it learned to act for us. On what those two shifts changed, and why I expect a third.</p>
             </div>
         </section>
         <section>

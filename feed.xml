@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+    <title>Fabio Concina</title>
+    <subtitle>Writing and projects</subtitle>
+    <link href="https://fabioconcina.com/feed.xml" rel="self"/>
+    <link href="https://fabioconcina.com/"/>
+    <id>https://fabioconcina.com/</id>
+    <updated>2026-06-11T00:00:00Z</updated>
+    <author>
+        <name>Fabio Concina</name>
+    </author>
+    <entry>
+        <title>Forecasting rate limits in claumon</title>
+        <link href="https://fabioconcina.com/projects/claumon/"/>
+        <id>https://fabioconcina.com/projects/claumon/</id>
+        <published>2026-06-03T00:00:00Z</published>
+        <updated>2026-06-11T00:00:00Z</updated>
+        <summary>How claumon forecasts Claude Code rate limits: utilization at reset and ETA to a threshold, with an 80% credible interval from a monotone, bounded model.</summary>
+    </entry>
+    <entry>
+        <title>Twice in Three Years: Two AI Phase Shifts</title>
+        <link href="https://fabioconcina.com/blog/twice-in-three-years-two-ai-phase-shifts/"/>
+        <id>https://fabioconcina.com/blog/twice-in-three-years-two-ai-phase-shifts/</id>
+        <published>2026-02-01T00:00:00Z</published>
+        <updated>2026-05-31T00:00:00Z</updated>
+        <summary>Two moments three years apart - ChatGPT in 2022, Claude Code in 2025. First the machine learned to understand us; then it learned to act for us.</summary>
+    </entry>
+</feed>
