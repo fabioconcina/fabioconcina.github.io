@@ -45,6 +45,8 @@
 
             <p>The forecaster reads the time series of utilization snapshots in each open rate-limit window (session, weekly, per-model weekly) and produces, per gauge, a point estimate of utilization at reset, an 80% credible interval, and a median ETA to a threshold (with its own interval) when that threshold is reachable before reset.</p>
 
+            <p>The design goal is honesty under uncertainty: the gauge never promises more headroom than the data supports, and the interval tells you how much to trust the number.</p>
+
             <h2>The model</h2>
 
             <p>Four pieces carry the forecast. The full derivation, calibration, and a worked example live in the <a href="/static/pdf/claumon-forecast-model.pdf" target="_blank" rel="noopener">spec</a>.</p>
