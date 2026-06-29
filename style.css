@@ -163,6 +163,13 @@ a.brand:focus {
     color: var(--text);
     padding-bottom: 0.25rem;
     border-bottom: 2px solid var(--brand);
+    line-height: 0;
+}
+
+.brand-logo {
+    height: 1.5rem;
+    width: auto;
+    display: block;
 }
 
 .company-dates,
