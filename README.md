@@ -35,3 +35,13 @@ favicon.svg     Favicon
 
 Copy `blog/_template.html` into a new `blog/<slug>/index.html`, write the post,
 then add the entry to `index.html`, `feed.xml`, and `sitemap.xml`.
+
+## Social preview card
+
+`static/img/og-card.png` (1200x630, used by `og:image` / `twitter:image`) is
+rendered from `static/img/og-card.src.html`. To regenerate after editing the
+source, screenshot it with a headless Chromium browser:
+
+```
+msedge --headless=new --disable-gpu --hide-scrollbars --window-size=1200,630 --screenshot="static\img\og-card.png" "static\img\og-card.src.html"
+```

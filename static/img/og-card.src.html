@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<!-- Source for og-card.png (1200x630 social preview). To re-render, see README. -->
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<style>
+@font-face {
+    font-family: 'Raleway';
+    font-style: normal;
+    font-weight: 100 900;
+    src: url('../fonts/raleway-latin.woff2') format('woff2');
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html, body { width: 1200px; height: 630px; overflow: hidden; }
+body {
+    font-family: 'Raleway', sans-serif;
+    background-color: #121212;
+    color: #f2f2f2;
+    display: flex;
+    align-items: center;
+}
+.card {
+    display: flex;
+    align-items: center;
+    gap: 72px;
+    padding: 0 96px;
+    width: 100%;
+}
+.photo {
+    width: 240px;
+    height: 240px;
+    border-radius: 50%;
+    object-fit: cover;
+    box-shadow: 0 0 0 2px #333;
+    flex-shrink: 0;
+}
+.name {
+    font-size: 84px;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    line-height: 1.1;
+}
+.role {
+    font-size: 34px;
+    font-weight: 400;
+    color: #c4c4c4;
+    margin-top: 18px;
+}
+.rule {
+    width: 72px;
+    height: 4px;
+    background-color: #0088b7;
+    border-radius: 2px;
+    margin-top: 36px;
+}
+.site {
+    font-size: 26px;
+    font-weight: 500;
+    color: #4dbfe4;
+    margin-top: 28px;
+    letter-spacing: 0.04em;
+}
+</style>
+</head>
+<body>
+    <div class="card">
+        <img class="photo" src="fabio.jpeg" alt="">
+        <div>
+            <div class="name">Fabio Concina</div>
+            <div class="role">Head of AI &amp; Analytics at kwantis</div>
+            <div class="rule"></div>
+            <div class="site">fabioconcina.com</div>
+        </div>
+    </div>
+</body>
+</html>

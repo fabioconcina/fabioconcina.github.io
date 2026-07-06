@@ -11,9 +11,9 @@
 /* Theme: light by default, dark overrides the variables below */
 :root {
     --bg: #f8f8f8;
-    --text: #333;
-    --body: #666;
-    --meta: #707070;
+    --text: #222;
+    --body: #454545;
+    --meta: #6e6e6e;
     --faint: #aaa;
     --rule: #e0e0e0;
     --underline: #bbb;
@@ -21,15 +21,17 @@
     --code-bg: #f0f0f0;
     --quote-border: #ccc;
     --brand: #0088b7;
+    --accent: #0088b7;
 }
 
 body {
     font-family: 'Raleway', sans-serif;
     margin: 0;
-    padding: 20px;
-    max-width: 800px;
+    padding: 24px 22px 40px;
+    max-width: 46rem;
     margin: auto;
-    line-height: 1.6;
+    font-size: 1.0625rem;
+    line-height: 1.65;
     background-color: var(--bg);
     color: var(--text);
     transition: background-color 0.3s, color 0.3s;
@@ -40,16 +42,24 @@ h1, h2 {
 }
 
 h1 {
-    font-size: 2.5rem;
-    line-height: 1.2;
+    font-size: 2.75rem;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    line-height: 1.15;
     margin-bottom: 0.5rem;
+    text-wrap: balance;
+}
+
+::selection {
+    background-color: var(--accent);
+    color: #fff;
 }
 
 .intro {
     display: flex;
-    align-items: flex-start;
-    gap: 1.25rem;
-    margin-top: 1rem;
+    align-items: center;
+    gap: 1.6rem;
+    margin-top: 2.25rem;
 }
 
 .intro h1 {
@@ -60,21 +70,42 @@ h1 {
 .intro p {
     margin-top: 0;
     margin-bottom: 0;
+    font-size: 1.0625rem;
 }
 
 .avatar {
-    width: 96px;
-    height: 96px;
-    border-radius: 4px;
+    width: 112px;
+    height: 112px;
+    border-radius: 50%;
     object-fit: cover;
     flex-shrink: 0;
+    box-shadow: 0 0 0 1px var(--rule), 0 2px 10px rgba(0, 0, 0, 0.08);
 }
 
-h2 {
-    font-size: 1.5rem;
-    margin-top: 1.5rem;
-    padding-top: 1.5rem;
-    border-top: 1px solid var(--rule);
+.intro-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.3rem 1.15rem;
+    margin-top: 0.85rem;
+    font-size: 0.9rem;
+}
+
+@media (max-width: 520px) {
+    .intro {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1.1rem;
+    }
+}
+
+/* Homepage section headings: small uppercase eyebrow labels */
+section > h2 {
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    color: var(--meta);
+    margin: 3.25rem 0 1.1rem;
 }
 
 p {
@@ -101,6 +132,16 @@ a:active,
 a:focus {
     color: var(--text);
     text-decoration: none;
+}
+
+a {
+    transition: color 0.15s ease, text-decoration-color 0.15s ease;
+}
+
+a:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+    border-radius: 2px;
 }
 
 /* Optional: Add underline on hover for nav links only */
@@ -131,7 +172,53 @@ section li a:hover,
 .talk h3 a:hover,
 .project h3 a:hover,
 .post h3 a:hover {
-    text-decoration-color: currentColor;
+    text-decoration-color: var(--accent);
+}
+
+.intro-links a {
+    font-weight: 500;
+    color: var(--body);
+    text-decoration: underline;
+    text-decoration-color: var(--underline);
+    text-underline-offset: 3px;
+}
+
+.intro-links a:hover {
+    color: var(--text);
+    text-decoration-color: var(--accent);
+}
+
+/* ===== Footer ===== */
+footer {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 0.4rem 1.5rem;
+    margin-top: 3.5rem;
+    padding-top: 1.4rem;
+    border-top: 1px solid var(--rule);
+    font-size: 0.875rem;
+    color: var(--meta);
+}
+
+footer p {
+    margin: 0;
+    font-size: 0.875rem;
+    color: var(--meta);
+}
+
+footer nav {
+    gap: 1.15rem;
+}
+
+footer nav a {
+    color: var(--body);
+}
+
+footer nav a:hover {
+    color: var(--text);
+    text-decoration-color: var(--accent);
 }
 
 /* kwantis brand accent (their teal); wins in light and dark via the link-state selectors */
@@ -174,9 +261,9 @@ a.brand:focus {
 
 .company-dates,
 .role-dates {
-    font-size: 0.9rem;
+    font-size: 0.875rem;
     color: var(--meta);
-    font-style: italic;
+    font-variant-numeric: tabular-nums;
     white-space: nowrap;
 }
 
@@ -213,7 +300,7 @@ a.brand:focus {
     height: 8px;
     border-radius: 50%;
     background-color: var(--bg);
-    border: 1.5px solid var(--marker);
+    border: 1.5px solid var(--accent);
     box-sizing: border-box;
     z-index: 1;
 }
@@ -256,7 +343,15 @@ a.brand:focus {
 .talk,
 .project,
 .post {
-    margin-bottom: 1.25rem;
+    margin-bottom: 1.6rem;
+}
+
+.edu:last-child,
+.publication:last-child,
+.talk:last-child,
+.project:last-child,
+.post:last-child {
+    margin-bottom: 0;
 }
 
 .edu h3,
@@ -267,7 +362,9 @@ a.brand:focus {
     margin-bottom: 0.2rem;
     font-weight: 600;
     font-size: 1.2rem;
+    line-height: 1.4;
     color: var(--text);
+    text-wrap: balance;
 }
 
 .project h3 {
@@ -279,11 +376,11 @@ a.brand:focus {
 .talk .meta,
 .project .meta,
 .post .meta {
-    font-size: 0.9rem;
+    font-size: 0.875rem;
     color: var(--meta);
     margin-top: 0;
     margin-bottom: 0.2rem;
-    font-style: italic;
+    font-variant-numeric: tabular-nums;
 }
 
 .edu .meta {
@@ -323,10 +420,10 @@ a.brand:focus {
 }
 
 .blog-post .meta {
-    font-size: 0.9rem;
+    font-size: 0.875rem;
     color: var(--meta);
     margin-top: 0;
-    font-style: italic;
+    font-variant-numeric: tabular-nums;
 }
 
 .blog-post .meta .revised {
@@ -400,6 +497,8 @@ a.brand:focus {
 .blog-post h2 {
     font-size: 1.3rem;
     margin-top: 2rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--rule);
 }
 
 .blog-post h3 {
@@ -490,9 +589,9 @@ a.brand:focus {
 @media (prefers-color-scheme: dark) {
     :root {
         --bg: #121212;
-        --text: #f8f8f8;
-        --body: #bbbbbb;
-        --meta: #aaa;
+        --text: #f2f2f2;
+        --body: #c4c4c4;
+        --meta: #9d9d9d;
         --faint: #777;
         --rule: #333;
         --underline: #666;
@@ -501,5 +600,14 @@ a.brand:focus {
         --quote-border: #555;
         --shift-year: #e8e8e8;
         --shift-what: #bbb;
+        --accent: #4dbfe4;
+    }
+
+    .avatar {
+        box-shadow: 0 0 0 1px var(--rule);
+    }
+
+    ::selection {
+        color: #121212;
     }
 }
