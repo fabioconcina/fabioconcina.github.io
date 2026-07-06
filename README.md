@@ -41,6 +41,15 @@ then:
 2. Generate the post's social preview card (see below) as
    `static/img/og-card-<slug>.png`.
 
+## Analytics
+
+Pageviews are counted with [GoatCounter](https://www.goatcounter.com/)
+(hosted, privacy-friendly, no cookies): dashboard at
+[fabioconcina.goatcounter.com](https://fabioconcina.goatcounter.com/). Every
+page (and `blog/_template.html`) includes the script tag just before
+`</body>`. GoatCounter ignores localhost, so local previews don't pollute the
+stats.
+
 ## Social preview cards
 
 The 1200x630 images used by `og:image` / `twitter:image` are rendered from
