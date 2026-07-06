@@ -34,14 +34,27 @@ favicon.svg     Favicon
 ## Adding a blog post
 
 Copy `blog/_template.html` into a new `blog/<slug>/index.html`, write the post,
-then add the entry to `index.html`, `feed.xml`, and `sitemap.xml`.
+then:
 
-## Social preview card
+1. Add the entry to `index.html`, `blog/index.html`, `feed.xml`, and
+   `sitemap.xml`.
+2. Generate the post's social preview card (see below) as
+   `static/img/og-card-<slug>.png`.
 
-`static/img/og-card.png` (1200x630, used by `og:image` / `twitter:image`) is
-rendered from `static/img/og-card.src.html`. To regenerate after editing the
-source, screenshot it with a headless Chromium browser:
+## Social preview cards
+
+The 1200x630 images used by `og:image` / `twitter:image` are rendered from
+committed HTML sources with a headless Chromium browser:
+
+- `static/img/og-card.src.html` -> `static/img/og-card.png` (homepage)
+- `static/img/og-card-post.src.html` -> `static/img/og-card-<slug>.png`
+  (one per blog post; pass the post title as a `title` query parameter,
+  URL-encoded)
 
 ```
+# Homepage card
 msedge --headless=new --disable-gpu --hide-scrollbars --window-size=1200,630 --screenshot="static\img\og-card.png" "static\img\og-card.src.html"
+
+# Per-post card (note the file:/// URL, needed for the query parameter)
+msedge --headless=new --disable-gpu --hide-scrollbars --window-size=1200,630 --screenshot="static\img\og-card-<slug>.png" "file:///C:/path/to/repo/static/img/og-card-post.src.html?title=Post%20Title"
 ```

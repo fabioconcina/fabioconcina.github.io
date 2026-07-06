@@ -585,6 +585,15 @@ a.brand:focus {
     font-size: 0.9rem;
 }
 
+/* Same look as .blog-post-nav, but aligned with full-width pages
+   (blog/projects indexes, 404) */
+.page-nav {
+    margin-top: 3rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--rule);
+    font-size: 0.9rem;
+}
+
 /* Dark mode: flip the variables, keep the rules above untouched */
 @media (prefers-color-scheme: dark) {
     :root {

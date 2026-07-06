@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<!-- Source for per-post og-card-<slug>.png (1200x630 social preview).
+     Pass the post title as a query parameter: og-card-post.src.html?title=Post%20Title
+     To render, see README. -->
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<style>
+@font-face {
+    font-family: 'Raleway';
+    font-style: normal;
+    font-weight: 100 900;
+    src: url('../fonts/raleway-latin.woff2') format('woff2');
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html, body { width: 1200px; height: 630px; overflow: hidden; }
+body {
+    font-family: 'Raleway', sans-serif;
+    background-color: #121212;
+    color: #f2f2f2;
+}
+.card {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+    padding: 88px 96px 72px;
+}
+.title {
+    font-size: 68px;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    line-height: 1.15;
+    max-width: 1008px;
+}
+.rule {
+    width: 72px;
+    height: 4px;
+    background-color: #0088b7;
+    border-radius: 2px;
+    margin-top: 40px;
+}
+.byline {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+}
+.photo {
+    width: 72px;
+    height: 72px;
+    border-radius: 50%;
+    object-fit: cover;
+    box-shadow: 0 0 0 2px #333;
+}
+.name {
+    font-size: 28px;
+    font-weight: 600;
+}
+.site {
+    font-size: 24px;
+    font-weight: 500;
+    color: #4dbfe4;
+    letter-spacing: 0.04em;
+    margin-top: 4px;
+}
+</style>
+</head>
+<body>
+    <div class="card">
+        <div>
+            <div class="title">Post title goes here</div>
+            <div class="rule"></div>
+        </div>
+        <div class="byline">
+            <img class="photo" src="fabio.jpeg" alt="">
+            <div>
+                <div class="name">Fabio Concina</div>
+                <div class="site">fabioconcina.com</div>
+            </div>
+        </div>
+    </div>
+    <script>
+        const el = document.querySelector('.title');
+        const title = new URLSearchParams(location.search).get('title');
+        if (title) el.textContent = title;
+        // Shrink long titles until the card fits without overflow
+        let size = 68;
+        while (document.body.scrollHeight > 630 && size > 36) {
+            size -= 2;
+            el.style.fontSize = size + 'px';
+        }
+    </script>
+</body>
+</html>
