@@ -157,6 +157,7 @@ section li a,
 .edu h3 a,
 .publication h3 a,
 .talk h3 a,
+.press h3 a,
 .project h3 a,
 .post h3 a {
     text-decoration: underline;
@@ -170,6 +171,7 @@ section li a:hover,
 .edu h3 a:hover,
 .publication h3 a:hover,
 .talk h3 a:hover,
+.press h3 a:hover,
 .project h3 a:hover,
 .post h3 a:hover {
     text-decoration-color: var(--accent);
@@ -337,10 +339,11 @@ a.brand:focus {
 }
 
 /* Shared layout for list-section items (education, publications, talks,
-   projects, posts) */
+   press, projects, posts) */
 .edu,
 .publication,
 .talk,
+.press,
 .project,
 .post {
     margin-bottom: 1.6rem;
@@ -349,6 +352,7 @@ a.brand:focus {
 .edu:last-child,
 .publication:last-child,
 .talk:last-child,
+.press:last-child,
 .project:last-child,
 .post:last-child {
     margin-bottom: 0;
@@ -357,6 +361,7 @@ a.brand:focus {
 .edu h3,
 .publication h3,
 .talk h3,
+.press h3,
 .project h3,
 .post h3 {
     margin-bottom: 0.2rem;
@@ -374,6 +379,7 @@ a.brand:focus {
 .edu .meta,
 .publication .meta,
 .talk .meta,
+.press .meta,
 .project .meta,
 .post .meta {
     font-size: 0.875rem;
@@ -383,13 +389,15 @@ a.brand:focus {
     font-variant-numeric: tabular-nums;
 }
 
-.edu .meta {
+.edu .meta,
+.press .meta {
     margin-bottom: 0.5rem;
 }
 
 .edu p,
 .publication p,
-.talk p {
+.talk p,
+.press p {
     margin-top: 0;
     margin-bottom: 0;
 }
