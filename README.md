@@ -41,6 +41,23 @@ then:
 2. Generate the post's social preview card (see below) as
    `static/img/og-card-<slug>.png`.
 
+## CV and LinkedIn content
+
+The detailed career record lives in `../cv/career.html`, alongside its generator
+in the separate `cv` project. The homepage is an independent introduction:
+changing its wording, layout, or selected highlights does not change the CV.
+
+To update CV or LinkedIn content, edit `../cv/career.html` (or `extras.yaml` for
+CV-specific details), then run:
+
+```bash
+../cv/.venv/bin/python ../cv/build.py --check  # inspect generated-output drift
+../cv/.venv/bin/python ../cv/build.py          # regenerate text and PDFs
+```
+
+The build copies the public PDF to `static/pdf/cv-web.pdf`. Full HTML conventions
+and build instructions are in `../cv/CLAUDE.md`.
+
 ## Analytics
 
 Pageviews are counted with [GoatCounter](https://www.goatcounter.com/)
