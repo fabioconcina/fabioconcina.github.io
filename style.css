@@ -480,6 +480,11 @@ a.brand:focus {
     padding: 0 0.15em;
 }
 
+.blog-post .post-update {
+    font-size: 0.9rem;
+    margin-top: 2.5rem;
+}
+
 .footnotes-sep {
     border: none;
     border-top: 1px solid var(--rule);
