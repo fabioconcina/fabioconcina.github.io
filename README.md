@@ -1,10 +1,13 @@
 # fabioconcina.com
 
 Personal site of Fabio Concina. Hand-written static HTML and CSS, served via
-GitHub Pages at [fabioconcina.com](https://fabioconcina.com).
+Cloudflare Pages at [fabioconcina.com](https://fabioconcina.com). GitHub Pages
+still redirects `fabioconcina.github.io` there (the CV and LinkedIn link to
+those URLs), so keep `CNAME`.
 
 There is no build step or framework: the files in this repo are exactly what is
-served.
+served. That includes authoring sources like `blog/_template.html` and the
+`*.src.html` card sources, so `_headers` marks them `noindex`.
 
 ## Local preview
 
@@ -27,7 +30,8 @@ static/         Assets: fonts/, img/, pdf/
 feed.xml        RSS feed
 sitemap.xml     Sitemap
 robots.txt      Crawler rules
-CNAME           Custom domain (fabioconcina.com)
+_headers        Cloudflare Pages response headers
+CNAME           GitHub Pages custom domain (redirects fabioconcina.github.io)
 favicon.svg     Favicon
 ```
 
@@ -74,13 +78,21 @@ committed HTML sources with a headless Chromium browser:
 
 - `static/img/og-card.src.html` -> `static/img/og-card.png` (homepage)
 - `static/img/og-card-post.src.html` -> `static/img/og-card-<slug>.png`
-  (one per blog post; pass the post title as a `title` query parameter,
-  URL-encoded)
+  (one per blog post or project page; pass the title as a `title` query
+  parameter, URL-encoded)
 
-```
+Any Chrome or Chromium binary works. Set `CHROME` to its path, e.g.
+`/Applications/Google Chrome.app/Contents/MacOS/Google Chrome`, or Playwright's
+Chrome for Testing under `~/Library/Caches/ms-playwright/chromium-*/`. Run from
+the repo root:
+
+```bash
 # Homepage card
-msedge --headless=new --disable-gpu --hide-scrollbars --window-size=1200,630 --screenshot="static\img\og-card.png" "static\img\og-card.src.html"
+"$CHROME" --headless=new --disable-gpu --hide-scrollbars --window-size=1200,630 \
+  --screenshot="$PWD/static/img/og-card.png" "file://$PWD/static/img/og-card.src.html"
 
-# Per-post card (note the file:/// URL, needed for the query parameter)
-msedge --headless=new --disable-gpu --hide-scrollbars --window-size=1200,630 --screenshot="static\img\og-card-<slug>.png" "file:///C:/path/to/repo/static/img/og-card-post.src.html?title=Post%20Title"
+# Per-post card (file:// URL needed for the query parameter)
+"$CHROME" --headless=new --disable-gpu --hide-scrollbars --window-size=1200,630 \
+  --screenshot="$PWD/static/img/og-card-<slug>.png" \
+  "file://$PWD/static/img/og-card-post.src.html?title=Post%20Title"
 ```

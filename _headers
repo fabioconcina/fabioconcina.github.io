@@ -1,0 +1,15 @@
+# Cloudflare Pages response headers (this file itself is not served).
+# Authoring sources are deployed like everything else; keep them out of search
+# results. Pages redirects *.html to the extensionless URL, so list both.
+/blog/_template
+  X-Robots-Tag: noindex
+/blog/_template.html
+  X-Robots-Tag: noindex
+/static/img/og-card.src
+  X-Robots-Tag: noindex
+/static/img/og-card.src.html
+  X-Robots-Tag: noindex
+/static/img/og-card-post.src
+  X-Robots-Tag: noindex
+/static/img/og-card-post.src.html
+  X-Robots-Tag: noindex

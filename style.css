@@ -17,16 +17,13 @@
     --faint: #aaa;
     --rule: #e0e0e0;
     --underline: #bbb;
-    --marker: #999;
     --code-bg: #f0f0f0;
     --quote-border: #ccc;
-    --brand: #0088b7;
     --accent: #0088b7;
 }
 
 body {
     font-family: 'Raleway', sans-serif;
-    margin: 0;
     padding: 24px 22px 40px;
     max-width: 46rem;
     margin: auto;
@@ -221,121 +218,6 @@ footer nav a {
 footer nav a:hover {
     color: var(--text);
     text-decoration-color: var(--accent);
-}
-
-/* kwantis brand accent (their teal); wins in light and dark via the link-state selectors */
-a.brand:link,
-a.brand:visited,
-a.brand:hover,
-a.brand:active,
-a.brand:focus {
-    color: var(--brand);
-}
-
-.company {
-    margin-bottom: 2rem;
-}
-
-.company-head {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    align-items: baseline;
-    gap: 0.25rem 1rem;
-    margin-bottom: 1.8rem;
-}
-
-.company-head h3 {
-    margin: 0;
-    font-weight: 600;
-    font-size: 1.35rem;
-    color: var(--text);
-    padding-bottom: 0.25rem;
-    border-bottom: 2px solid var(--brand);
-    line-height: 0;
-}
-
-.brand-logo {
-    height: 1.5rem;
-    width: auto;
-    display: block;
-}
-
-.company-dates,
-.role-dates {
-    font-size: 0.875rem;
-    color: var(--meta);
-    font-variant-numeric: tabular-nums;
-    white-space: nowrap;
-}
-
-.role {
-    position: relative;
-    padding-left: 1.4rem;
-    padding-bottom: 1.2rem;
-}
-
-.role:last-child {
-    padding-bottom: 0;
-}
-
-.role::after {
-    content: "";
-    position: absolute;
-    left: 0;
-    top: 0.75rem;
-    height: 100%;
-    width: 1px;
-    background-color: var(--rule);
-}
-
-.role:last-child::after {
-    display: none;
-}
-
-.role::before {
-    content: "";
-    position: absolute;
-    left: -4px;
-    top: 0.5rem;
-    width: 8px;
-    height: 8px;
-    border-radius: 50%;
-    background-color: var(--bg);
-    border: 1.5px solid var(--accent);
-    box-sizing: border-box;
-    z-index: 1;
-}
-
-.role-head {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    align-items: baseline;
-    gap: 0.1rem 1rem;
-}
-
-.role-head h4 {
-    margin: 0;
-    font-weight: 600;
-    font-size: 1.2rem;
-    color: var(--text);
-}
-
-.role ul {
-    padding-left: 20px;
-    margin-top: 0.3rem;
-    margin-bottom: 0;
-}
-
-.role li {
-    margin-bottom: 0.4rem;
-    color: var(--body);
-    font-weight: 400;
-}
-
-.role li:last-child {
-    margin-bottom: 0;
 }
 
 /* Shared layout for list-section items (education, publications, talks,
@@ -617,7 +499,6 @@ a.brand:focus {
         --faint: #777;
         --rule: #333;
         --underline: #666;
-        --marker: #777;
         --code-bg: #1e1e1e;
         --quote-border: #555;
         --shift-year: #e8e8e8;
